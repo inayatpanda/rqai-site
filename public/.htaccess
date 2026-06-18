@@ -1,0 +1,8 @@
+# RQAI landing — static single page on Hostinger (Apache / LiteSpeed).
+# Don't cache the entry point so content/asset updates land immediately.
+# (Hashed files under /assets are content-addressed and safe to cache.)
+<IfModule mod_headers.c>
+  <FilesMatch "(^index\.html$|manifest\.webmanifest$)">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+</IfModule>

@@ -1,0 +1,40 @@
+name: Build & Deploy to Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Exposed so the FTP step skips cleanly until the secrets are configured
+    # (the build still runs, so a push before setup won't fail the workflow).
+    env:
+      FTP_SERVER: ${{ secrets.HOSTINGER_FTP_SERVER }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Deploy to Hostinger via FTP
+        if: ${{ env.FTP_SERVER != '' }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.HOSTINGER_FTP_SERVER }}
+          username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          # Vite build output.
+          local-dir: ./dist/
+          # Use a Hostinger FTP account SCOPED to rqai.co.uk's web root, so this
+          # stays "./" and can never touch any other site. (The action mirrors
+          # local-dir and deletes server files not present locally.)
+          server-dir: ./
+          state-name: .ftp-deploy-sync-state-rqai.json
+          timeout: 180000
