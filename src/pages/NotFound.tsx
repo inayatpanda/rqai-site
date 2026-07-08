@@ -1,3 +1,4 @@
+import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
 import { Constellation } from '../components/Constellation'
 
@@ -5,6 +6,14 @@ import { Constellation } from '../components/Constellation'
 export function NotFound() {
   return (
     <section className="container-edge flex min-h-[60vh] flex-col items-center justify-center py-20 text-center">
+      <Head>
+        <title>Page not found: RQAI</title>
+        <meta
+          name="description"
+          content="This page does not exist. Find every RQAI project from the home page."
+        />
+        <meta name="robots" content="noindex" />
+      </Head>
       <p className="eyebrow">404</p>
       <h1 className="mt-4 text-4xl md:text-5xl">Page not found.</h1>
       <p className="mt-4 max-w-prose text-lg leading-relaxed text-ink">

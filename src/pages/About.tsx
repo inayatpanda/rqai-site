@@ -1,4 +1,9 @@
+import { Head } from 'vite-react-ssg'
 import { Constellation } from '../components/Constellation'
+
+const ABOUT_TITLE = 'About RQAI: small, careful software'
+const ABOUT_DESCRIPTION =
+  'RQAI is one small independent UK studio building focused, local-first tools: one job done well, your data kept on your device, no accounts and no tracking.'
 
 /*
  * About — placeholder for the rich About page (Task 5 replaces this). Carries
@@ -14,6 +19,19 @@ const PRINCIPLES = [
 export function About() {
   return (
     <>
+      <Head>
+        <title>{ABOUT_TITLE}</title>
+        <meta name="description" content={ABOUT_DESCRIPTION} />
+        <meta property="og:title" content={ABOUT_TITLE} />
+        <meta property="og:description" content={ABOUT_DESCRIPTION} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://rqai.co.uk/about" />
+        <meta property="og:site_name" content="RQAI" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={ABOUT_TITLE} />
+        <meta name="twitter:description" content={ABOUT_DESCRIPTION} />
+      </Head>
+
       <section className="container-edge pb-8 pt-16 md:pt-24">
         <h1 className="max-w-3xl text-4xl leading-[1.05] md:text-6xl">
           Small, careful software.

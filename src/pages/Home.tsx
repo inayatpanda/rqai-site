@@ -1,6 +1,11 @@
+import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
 import { Constellation } from '../components/Constellation'
 import { PerspectiveShowcase } from '../components/PerspectiveShowcase'
+
+const HOME_TITLE = 'RQAI: focused, local-first software'
+const HOME_DESCRIPTION =
+  'RQAI is a small independent UK studio building focused, local-first software. No accounts, no tracking.'
 
 /*
  * Home — the front door of the RQAI studio.
@@ -18,6 +23,19 @@ import { PerspectiveShowcase } from '../components/PerspectiveShowcase'
 export function Home() {
   return (
     <>
+      <Head>
+        <title>{HOME_TITLE}</title>
+        <meta name="description" content={HOME_DESCRIPTION} />
+        <meta property="og:title" content={HOME_TITLE} />
+        <meta property="og:description" content={HOME_DESCRIPTION} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://rqai.co.uk/" />
+        <meta property="og:site_name" content="RQAI" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={HOME_TITLE} />
+        <meta name="twitter:description" content={HOME_DESCRIPTION} />
+      </Head>
+
       <section className="relative overflow-hidden">
         {/* Restrained luminous wash behind the hero. */}
         <div

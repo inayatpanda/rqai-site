@@ -31,7 +31,7 @@
   },
   "researchassistant": {
     "url": "https://researchassistant.rqai.co.uk",
-    "ok": true,
+    "ok": false,
     "checkedAt": "2026-07-08T18:36:09.978Z"
   }
 }
