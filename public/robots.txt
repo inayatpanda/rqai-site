@@ -1,0 +1,5 @@
+# RQAI: allow all crawlers.
+User-agent: *
+Allow: /
+
+Sitemap: https://rqai.co.uk/sitemap.xml

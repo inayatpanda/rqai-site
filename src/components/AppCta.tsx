@@ -63,7 +63,6 @@ export function AppCta({ product, className = '' }: { product: Product; classNam
 
   return (
     <div
-      role="status"
       className={`inline-flex max-w-full items-center gap-2.5 rounded-2xl border border-dashed border-hairline bg-card/50 px-5 py-3.5 text-sm text-inkMuted sm:text-base ${className}`}
     >
       <span
