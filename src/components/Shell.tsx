@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { APPS, APP_SLUGS } from '../App'
+import { PROJECTS, PROJECT_SLUGS } from '../App'
 
 const CONTACT_EMAIL = 'hello@rqai.co.uk'
 
-/* RQAI wordmark (never expanded) with a small static ECG blip mark. */
+/* RQAI wordmark (never expanded) with a small static constellation mark. */
 function Wordmark({ className = '' }: { className?: string }) {
   return (
     <Link
@@ -13,15 +13,20 @@ function Wordmark({ className = '' }: { className?: string }) {
       aria-label="RQAI home"
       className={`group inline-flex items-center gap-2.5 ${className}`}
     >
-      <span className="grid h-8 w-8 place-items-center rounded-[9px] bg-inkStrong text-teal shadow-soft transition-transform duration-300 ease-out-soft group-hover:-translate-y-0.5">
+      <span className="grid h-8 w-8 place-items-center rounded-[9px] border border-hairline bg-card text-accent shadow-soft transition-transform duration-300 ease-out-soft group-hover:-translate-y-0.5">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path
-            d="M2 13 H7 L9 8 L12 18 L14 13 H22"
+            d="M5.5 17.5 12 6.5l7 6.5-5.5 5.5z M12 6.5l1.5 12"
             stroke="currentColor"
-            strokeWidth="2"
+            strokeWidth="1.1"
             strokeLinecap="round"
             strokeLinejoin="round"
+            opacity="0.55"
           />
+          <circle cx="5.5" cy="17.5" r="1.7" fill="currentColor" />
+          <circle cx="12" cy="6.5" r="2.1" fill="currentColor" />
+          <circle cx="19" cy="13" r="1.7" fill="currentColor" />
+          <circle cx="13.5" cy="18.5" r="1.5" fill="currentColor" />
         </svg>
       </span>
       <span className="font-display text-xl font-semibold leading-none tracking-tight text-inkStrong">
@@ -31,8 +36,8 @@ function Wordmark({ className = '' }: { className?: string }) {
   )
 }
 
-/* Desktop "Apps" dropdown listing the six app pages. */
-function AppsMenu({ active }: { active: boolean }) {
+/* Desktop "Projects" dropdown listing the seven project pages. */
+function ProjectsMenu({ active }: { active: boolean }) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const reduce = useReducedMotion()
@@ -60,11 +65,11 @@ function AppsMenu({ active }: { active: boolean }) {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm transition-colors hover:text-teal ${
-          active || open ? 'text-teal' : 'text-ink'
+        className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm transition-colors hover:text-accent ${
+          active || open ? 'text-accent' : 'text-ink'
         }`}
       >
-        Apps
+        Projects
         <svg
           width="12"
           height="12"
@@ -87,18 +92,18 @@ function AppsMenu({ active }: { active: boolean }) {
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
             className="absolute right-0 top-[calc(100%+0.5rem)] w-60 overflow-hidden rounded-2xl border border-hairline bg-card p-1.5 shadow-lift"
           >
-            {APPS.map((app) => (
+            {PROJECTS.map((project) => (
               <NavLink
-                key={app.slug}
-                to={`/${app.slug}`}
+                key={project.slug}
+                to={`/${project.slug}`}
                 role="menuitem"
                 className={({ isActive }) =>
                   `block rounded-xl px-3 py-2.5 text-sm transition-colors ${
-                    isActive ? 'bg-paper text-teal' : 'text-ink hover:bg-paper hover:text-teal'
+                    isActive ? 'bg-canvas text-accent' : 'text-ink hover:bg-canvas hover:text-accent'
                   }`
                 }
               >
-                {app.name}
+                {project.name}
               </NavLink>
             ))}
           </motion.div>
@@ -114,7 +119,7 @@ function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
-  const onApp = APP_SLUGS.some((s) => pathname === `/${s}`)
+  const onProject = PROJECT_SLUGS.some((s) => pathname === `/${s}`)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -130,7 +135,7 @@ function Header() {
     <header
       className={`sticky top-0 z-40 transition-colors duration-300 ${
         scrolled || open
-          ? 'border-b border-hairline bg-paper/85 backdrop-blur-md'
+          ? 'border-b border-hairline bg-canvas/85 backdrop-blur-md'
           : 'border-b border-transparent'
       }`}
     >
@@ -138,12 +143,12 @@ function Header() {
         <Wordmark />
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
-          <AppsMenu active={onApp} />
+          <ProjectsMenu active={onProject} />
           <NavLink
             to="/about"
             className={({ isActive }) =>
-              `rounded-full px-3.5 py-2 text-sm transition-colors hover:text-teal ${
-                isActive ? 'text-teal' : 'text-ink'
+              `rounded-full px-3.5 py-2 text-sm transition-colors hover:text-accent ${
+                isActive ? 'text-accent' : 'text-ink'
               }`
             }
           >
@@ -180,33 +185,33 @@ function Header() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={reduce ? undefined : { height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-t border-hairline bg-paper md:hidden"
+            className="overflow-hidden border-t border-hairline bg-canvas md:hidden"
           >
             <nav className="container-edge flex flex-col gap-1 py-4" aria-label="Mobile">
               <NavLink
                 to="/about"
                 className={({ isActive }) =>
-                  `rounded-xl px-3 py-3 text-base transition-colors hover:bg-card hover:text-teal ${
-                    isActive ? 'text-teal' : 'text-ink'
+                  `rounded-xl px-3 py-3 text-base transition-colors hover:bg-card hover:text-accent ${
+                    isActive ? 'text-accent' : 'text-ink'
                   }`
                 }
               >
                 About
               </NavLink>
               <p className="mt-2 px-3 pb-1 font-mono text-[0.7rem] uppercase tracking-label text-inkMuted">
-                Apps
+                Projects
               </p>
-              {APPS.map((app) => (
+              {PROJECTS.map((project) => (
                 <NavLink
-                  key={app.slug}
-                  to={`/${app.slug}`}
+                  key={project.slug}
+                  to={`/${project.slug}`}
                   className={({ isActive }) =>
-                    `rounded-xl px-3 py-3 text-base transition-colors hover:bg-card hover:text-teal ${
-                      isActive ? 'text-teal' : 'text-ink'
+                    `rounded-xl px-3 py-3 text-base transition-colors hover:bg-card hover:text-accent ${
+                      isActive ? 'text-accent' : 'text-ink'
                     }`
                   }
                 >
-                  {app.name}
+                  {project.name}
                 </NavLink>
               ))}
             </nav>
@@ -229,22 +234,24 @@ function Footer() {
           </p>
           <a
             href={`mailto:${CONTACT_EMAIL}`}
-            className="mt-4 inline-block text-sm text-teal transition-colors hover:text-inkStrong"
+            className="mt-4 inline-block text-sm text-accent transition-colors hover:text-inkStrong"
           >
             {CONTACT_EMAIL}
           </a>
         </div>
 
         <div>
-          <h2 className="font-mono text-[0.7rem] uppercase tracking-label text-inkMuted">Apps</h2>
+          <h2 className="font-mono text-[0.7rem] uppercase tracking-label text-inkMuted">
+            Projects
+          </h2>
           <ul className="mt-4 space-y-2.5">
-            {APPS.map((app) => (
-              <li key={app.slug}>
+            {PROJECTS.map((project) => (
+              <li key={project.slug}>
                 <Link
-                  to={`/${app.slug}`}
-                  className="text-sm text-ink transition-colors hover:text-teal"
+                  to={`/${project.slug}`}
+                  className="text-sm text-ink transition-colors hover:text-accent"
                 >
-                  {app.name}
+                  {project.name}
                 </Link>
               </li>
             ))}
@@ -255,19 +262,19 @@ function Footer() {
           <h2 className="font-mono text-[0.7rem] uppercase tracking-label text-inkMuted">Studio</h2>
           <ul className="mt-4 space-y-2.5">
             <li>
-              <Link to="/" className="text-sm text-ink transition-colors hover:text-teal">
+              <Link to="/" className="text-sm text-ink transition-colors hover:text-accent">
                 Home
               </Link>
             </li>
             <li>
-              <Link to="/about" className="text-sm text-ink transition-colors hover:text-teal">
+              <Link to="/about" className="text-sm text-ink transition-colors hover:text-accent">
                 About
               </Link>
             </li>
             <li>
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
-                className="text-sm text-ink transition-colors hover:text-teal"
+                className="text-sm text-ink transition-colors hover:text-accent"
               >
                 Contact
               </a>
@@ -288,7 +295,7 @@ function Footer() {
 
 /*
  * Shell — the global layout wrapping every route: sticky header (wordmark,
- * Apps menu, About), the page outlet, and the footer. Rendered once at the
+ * Projects menu, About), the page outlet, and the footer. Rendered once at the
  * root of the route table so every page shares the same chrome.
  */
 export function Shell() {
@@ -296,7 +303,7 @@ export function Shell() {
     <div className="flex min-h-dvh flex-col">
       <a
         href="#main"
-        className="sr-only rounded-lg bg-inkStrong px-4 py-2 text-card focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50"
+        className="sr-only rounded-lg bg-inkStrong px-4 py-2 text-canvas focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50"
       >
         Skip to content
       </a>

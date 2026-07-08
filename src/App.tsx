@@ -5,7 +5,7 @@ import { About } from './pages/About'
 import { AppPage } from './pages/AppPage'
 import { NotFound } from './pages/NotFound'
 
-export interface AppMeta {
+export interface ProjectMeta {
   /** URL slug (exact, from the global constraints). */
   slug: string
   /** Product name, kept exactly as-is. */
@@ -13,20 +13,22 @@ export interface AppMeta {
 }
 
 /*
- * The six RQAI apps, in menu order. `slug` drives the /:slug route and the
- * prerendered path; `name` is the display label. Product pages (later tasks)
- * pull richer copy from src/data/products.ts — this is the route-level index.
+ * The seven RQAI projects, in menu order. `slug` drives the /:slug route and
+ * the prerendered path; `name` is the display label. Project pages (later
+ * tasks) pull richer copy from src/data/products.ts — this is the route-level
+ * index. Naming rule (hard): they are "projects", never "apps", in all UI copy.
  */
-export const APPS: AppMeta[] = [
+export const PROJECTS: ProjectMeta[] = [
   { slug: 'orthoportfolio', name: 'OrthoPortfolio' },
   { slug: 'consultantprep', name: 'OrthoConsultantPrep' },
   { slug: 'clinicalproms', name: 'ClinicalPROMs' },
   { slug: 'chapbook', name: 'Chapbook' },
   { slug: 'audioquill', name: 'AudioQuill' },
   { slug: 'scribble', name: 'Scribble' },
+  { slug: 'researchassistant', name: 'ResearchAssistant' },
 ]
 
-export const APP_SLUGS = APPS.map((a) => a.slug)
+export const PROJECT_SLUGS = PROJECTS.map((p) => p.slug)
 
 /*
  * Route table. The Shell layout wraps every page. `/:slug` is a dynamic route;
@@ -43,7 +45,7 @@ export const routes: RouteRecord[] = [
       {
         path: ':slug',
         element: <AppPage />,
-        getStaticPaths: () => APP_SLUGS,
+        getStaticPaths: () => PROJECT_SLUGS,
       },
       { path: '404', element: <NotFound /> },
       { path: '*', element: <NotFound /> },

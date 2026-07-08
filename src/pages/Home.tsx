@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
-import { EcgTrace } from '../components/EcgTrace'
-import { APPS } from '../App'
+import { Constellation } from '../components/Constellation'
+import { PROJECTS } from '../App'
 
 /*
  * Home — placeholder for the full landing (Task 2 replaces this with the
- * perspective-grid product showcase). It already does the site's core job:
- * a truthful hero, the ECG signature, and working links to every app.
+ * perspective-grid project showcase). It already does the site's core job:
+ * a truthful hero, the constellation signature, and working links to every
+ * project.
  */
 export function Home() {
   const reduce = useReducedMotion()
@@ -14,9 +15,10 @@ export function Home() {
   return (
     <>
       <section className="relative overflow-hidden">
+        {/* Restrained luminous wash behind the hero (accent at very low alpha). */}
         <div
           aria-hidden="true"
-          className="bg-chart-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(120%_90%_at_50%_0%,#000_35%,transparent_85%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(52rem_30rem_at_70%_-10%,rgba(69,213,242,0.08),transparent_65%)]"
         />
         <div className="container-edge relative pb-16 pt-16 md:pb-24 md:pt-24">
           <motion.h1
@@ -36,21 +38,21 @@ export function Home() {
             RQAI is a small independent UK studio building focused, local-first
             tools. No accounts, no tracking.
           </motion.p>
-          <EcgTrace tone="teal" className="mt-12 h-20 md:h-28" />
+          <Constellation tone="accent" className="mt-12 h-20 md:h-28" />
         </div>
       </section>
 
       <section className="container-edge py-8 md:py-12">
-        <h2 className="text-2xl md:text-3xl">The apps</h2>
+        <h2 className="text-2xl md:text-3xl">The projects</h2>
         <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {APPS.map((app) => (
-            <li key={app.slug}>
+          {PROJECTS.map((project) => (
+            <li key={project.slug}>
               <Link
-                to={`/${app.slug}`}
-                className="group flex items-center justify-between rounded-2xl border border-hairline bg-card p-5 shadow-soft transition-all duration-300 ease-out-soft hover:-translate-y-0.5 hover:border-teal hover:shadow-lift"
+                to={`/${project.slug}`}
+                className="group flex items-center justify-between rounded-2xl border border-hairline bg-card p-5 shadow-soft transition-all duration-300 ease-out-soft hover:-translate-y-0.5 hover:border-accent hover:shadow-lift"
               >
                 <span className="font-display text-lg font-semibold text-inkStrong">
-                  {app.name}
+                  {project.name}
                 </span>
                 <svg
                   width="18"
@@ -58,7 +60,7 @@ export function Home() {
                   viewBox="0 0 16 16"
                   fill="none"
                   aria-hidden="true"
-                  className="text-inkMuted transition-all duration-300 group-hover:translate-x-1 group-hover:text-teal"
+                  className="text-inkMuted transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent"
                 >
                   <path
                     d="M2 8h11M9 4l4 4-4 4"
@@ -75,14 +77,14 @@ export function Home() {
       </section>
 
       <section className="container-edge py-12 md:py-16">
-        <div className="flex flex-col items-start justify-between gap-6 rounded-2xl border border-hairline bg-paper p-8 sm:flex-row sm:items-center">
+        <div className="flex flex-col items-start justify-between gap-6 rounded-2xl border border-hairline bg-card p-8 sm:flex-row sm:items-center">
           <p className="max-w-xl text-lg leading-relaxed text-ink">
             Built and maintained by one small independent UK studio. Buy once or
             subscribe simply.
           </p>
           <Link
             to="/about"
-            className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-teal px-5 py-3 text-sm font-medium text-card transition-transform duration-300 ease-out-soft hover:-translate-y-0.5"
+            className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-semibold text-canvas transition-transform duration-300 ease-out-soft hover:-translate-y-0.5"
           >
             Read our approach
             <svg

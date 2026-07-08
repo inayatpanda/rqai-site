@@ -1,11 +1,11 @@
-import { EcgTrace } from '../components/EcgTrace'
+import { Constellation } from '../components/Constellation'
 
 /*
  * About — placeholder for the rich About page (Task 5 replaces this). Carries
  * the studio principles and contact so the route is meaningful in the meantime.
  */
 const PRINCIPLES = [
-  { title: 'One job, done well', body: 'Each app has a single clear purpose and stays out of the way.' },
+  { title: 'One job, done well', body: 'Each project has a single clear purpose and stays out of the way.' },
   { title: 'Local-first', body: 'Your data stays on your device. Nothing is sent anywhere by default.' },
   { title: 'No accounts, no tracking', body: 'No sign-up, no analytics following you around.' },
   { title: 'One small studio', body: 'Built and maintained by one independent UK studio.' },
@@ -22,7 +22,7 @@ export function About() {
           RQAI builds focused tools that respect your time and your data. Here is
           what that means in practice.
         </p>
-        <EcgTrace tone="ink" className="mt-10 h-16 md:h-20" />
+        <Constellation tone="ink" className="mt-10 h-16 md:h-20" />
       </section>
 
       <section className="container-edge py-8 md:py-12">
@@ -44,7 +44,7 @@ export function About() {
           </p>
           <a
             href="mailto:hello@rqai.co.uk"
-            className="mt-5 inline-block font-mono text-teal transition-colors hover:text-inkStrong"
+            className="mt-5 inline-block font-mono text-accent transition-colors hover:text-inkStrong"
           >
             hello@rqai.co.uk
           </a>

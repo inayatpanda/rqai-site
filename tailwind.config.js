@@ -1,29 +1,32 @@
 /** @type {import('tailwindcss').Config} */
 
 /*
- * RQAI — light "ECG chart-paper" design system.
- * OWNER DECISION 2026-07-08: light theme (overrides the family "dark
- * everywhere" rule for THIS site). Warm cream paper canvas, white cards,
- * deep ink text, ONE surgical-teal accent + ONE warm amber accent used
- * sparingly. Editorial serif (Fraunces) over a clean sans (IBM Plex Sans).
+ * RQAI dark-blue design system.
+ * OWNER DECISION 2026-07-08 v2: DARK BLUE theme (supersedes the earlier light
+ * theme AND the family "near-black #04060c" rule for THIS site). A deep
+ * navy/indigo canvas that reads unmistakably blue, dark-blue cards, crisp
+ * hairlines, and restrained luminous accents: ONE electric-cyan accent + ONE
+ * warm gold counterpoint, used sparingly. Editorial serif (Fraunces) over a
+ * clean sans (IBM Plex Sans).
  *
- * Token contrast (WCAG AA verified against paper #faf7f2 and card #fffdfa):
- *   inkStrong 15.3:1 · ink 8.5:1 · inkMuted 5.2:1 · teal 5.5:1 (white-on-teal
- *   5.8:1) · amber 4.9:1 (white-on-amber 5.3:1). All pass AA for small text.
+ * Token contrast (WCAG AA verified against canvas #0c1a3a and card #13234c):
+ *   inkStrong 15.3:1 / ink 11.3:1 / inkMuted 6.0:1 (on card) / accent 8.8:1
+ *   (canvas-on-accent CTA text 9.8:1) / accentWarm 8.2:1. All pass AA for
+ *   small text on both surfaces.
  */
 export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        paper: '#faf7f2', // warm cream canvas (chart paper)
-        card: '#fffdfa', // white-warm surface for cards / raised panels
-        inkStrong: '#16212b', // headings — deep ink with a faint teal cast
-        ink: '#3d4a53', // body text
-        inkMuted: '#5f6a72', // captions, labels, secondary text
-        hairline: '#e9e2d7', // faint warm borders / dividers
-        teal: '#0b716c', // surgical-teal accent (links, CTAs, ECG trace)
-        amber: '#9c5d16', // warm accent, used sparingly
+        canvas: '#0c1a3a', // deep indigo-navy page background (reads blue, not black)
+        card: '#13234c', // dark-blue surface for cards / raised panels
+        inkStrong: '#eef2ff', // headings, near-white with a blue cast
+        ink: '#c7d2ec', // body text
+        inkMuted: '#93a2c8', // captions, labels, secondary text
+        hairline: '#2e4374', // crisp blue borders / dividers
+        accent: '#45d5f2', // electric cyan (links, CTAs, constellation)
+        accentWarm: '#f4b05a', // warm gold counterpoint, used sparingly
       },
       fontFamily: {
         display: ['Fraunces', 'Georgia', 'Cambria', 'serif'],
@@ -47,9 +50,10 @@ export default {
         label: '0.16em',
       },
       boxShadow: {
-        // Shadows tinted to the ink hue (never pure black on the light canvas).
-        soft: '0 1px 2px rgba(22,33,43,0.04), 0 8px 24px -12px rgba(22,33,43,0.12)',
-        lift: '0 2px 4px rgba(22,33,43,0.05), 0 20px 44px -20px rgba(11,113,108,0.22)',
+        // Deep navy shadows (never pure black); `lift` adds a restrained
+        // luminous cyan edge for hover states.
+        soft: '0 1px 2px rgba(3,8,24,0.5), 0 8px 24px -12px rgba(3,8,24,0.7)',
+        lift: '0 0 0 1px rgba(69,213,242,0.16), 0 20px 44px -20px rgba(3,8,24,0.8)',
       },
       borderRadius: {
         xl: '0.875rem',
