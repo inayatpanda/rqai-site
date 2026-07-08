@@ -43,6 +43,14 @@ export type Product = {
   features: string[]
   /** Only where a specific amount is verified in the product's own source. */
   price?: string
+  /**
+   * Optional "Where to find it" sentence for the project page, used verbatim
+   * when the project is live. Set it only where the default line ("<name> runs
+   * in your browser at <host>. It is local-first: your data stays on your
+   * device.") would be untrue — e.g. ClinicalPROMs is self-hosted desktop
+   * software, and its URL is the marketing/download site, not a browser app.
+   */
+  whereLine?: string
   /** The existing animated micro-demo for this project. */
   Demo: ComponentType
 }
@@ -95,6 +103,8 @@ export const PRODUCTS: Product[] = [
       'Outcome trajectories, analytics, and an audit log with data-rights tooling.',
       'Self-hosted on your own PC or Mac: one licence, unlimited cases and patients, no per-seat fees.',
     ],
+    whereLine:
+      'ClinicalPROMs is self-hosted software for your own Windows PC or Mac. Learn more and get it at clinicalproms.rqai.co.uk.',
     Demo: ClinicalPROMsDemo,
   },
   {

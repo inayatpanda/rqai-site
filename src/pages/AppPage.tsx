@@ -139,7 +139,7 @@ export function AppPage() {
 
   if (!product) return <NotFound />
 
-  const { name, tagline, description, features, price, url } = product
+  const { name, tagline, description, features, price, url, whereLine } = product
   const live = isLive(product.slug)
   const host = (() => {
     try {
@@ -284,8 +284,10 @@ export function AppPage() {
             {live ? (
               <>
                 <p className="mt-3 max-w-prose leading-relaxed text-ink">
-                  {name} runs in your browser at {host}. It is local-first: your
-                  data stays on your device.
+                  {/* whereLine overrides the default where the web-app framing
+                      would be untrue (e.g. self-hosted desktop software). */}
+                  {whereLine ??
+                    `${name} runs in your browser at ${host}. It is local-first: your data stays on your device.`}
                 </p>
                 <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
                   <AppCta product={product} />
