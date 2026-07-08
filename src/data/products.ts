@@ -70,6 +70,7 @@ export const PRODUCTS: Product[] = [
       'Validates the portfolio against the published rules and generates the verification proformas.',
       'Local-first: documents stay on your device unless you back up or sync, and an optional AI writing assistant uses your own key.',
     ],
+    price: '£49 a year',
     Demo: OrthoPortfolioDemo,
   },
   {
@@ -137,6 +138,7 @@ export const PRODUCTS: Product[] = [
       'Bring your own key: it is encrypted in your browser and only sent to the provider you choose.',
       'A library of templates and voice commands, with document export.',
     ],
+    price: '£30 a year',
     Demo: AudioQuillDemo,
   },
   {
