@@ -54,20 +54,31 @@ Mobile gets a compact disclosure menu. The current page's tab is visibly active.
 
 ## Design language
 
-Foundation is the existing RQAI dark system (bg #06070b, surfaces #0f1118/#141722,
-hairline #232734, text #eef2f9, muted #8b94a7, accent gradient teal #2dd4bf → cyan
-#22d3ee → violet #818cf8, Inter) — do not replace it; elevate it. Two house signatures:
+**OWNER DECISION 2026-07-08: light theme — this consciously overrides the family
+CLAUDE.md "dark everywhere" rule for THIS site; builders must not revert it.**
 
-- **Perspective grid** for product showcases (per the Vengence UI reference above).
-- **ECG/vitals-style animated trace** — a live-drawing line used in the hero and as
-  section punctuation (reference:
-  https://www.scichart.com/demo/react/vital-signs-ecg-medical-chart-example) —
-  implemented as lightweight SVG/canvas animation, NOT by adding a charting library.
+Pleasing, modern, light. The organising concept is **ECG chart paper**: a warm
+white/cream canvas (paper `#faf7f2`-family, white cards) carrying a barely-there
+chart-paper grid, with a live-drawing ECG trace in ink/teal as the house motif — the
+hero signature and section punctuation (reference:
+https://www.scichart.com/demo/react/vital-signs-ecg-medical-chart-example),
+implemented as lightweight SVG/canvas animation, NOT a charting library. Palette
+direction: deep ink for text, one surgical-teal accent plus one warm accent (amber),
+used sparingly — kin to the ClinicalPROMs marketing site's light editorial system
+(`ortho-outcomes/marketing-site/` — bone-paper, ink-green, teal + amber, Fraunces +
+IBM Plex), which builders should study as the family's proven light language. Type:
+an editorial display serif for headlines (e.g. Fraunces) over a clean sans for body —
+self-hosted, no paid fonts. The final palette/type call belongs to the taste-skill
+pass, within: light warm canvas, restrained accents, generous whitespace, modern
+editorial feel, nothing resembling generic AI-startup gradients.
+
+Second signature: the **perspective grid** for product showcases (per the Vengence UI
+reference above), restyled for the light canvas.
 
 Builders MUST load the `taste-skill` and `frontend-design:frontend-design` skills
 before writing UI code, and fetch both reference URLs for the real look. Reduced-motion
 fallbacks for every animation. British spelling. Copy tone per the family CLAUDE.md:
-confident, plain, no hype. WCAG AA contrast.
+confident, plain, no hype. WCAG AA contrast on the light canvas.
 
 ## Link integrity + infra fixes (in scope)
 
