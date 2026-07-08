@@ -1,4 +1,8 @@
-# RQAI landing — static single page on Hostinger (Apache / LiteSpeed).
+# RQAI multi-page site on Hostinger (Apache / LiteSpeed).
+# Every route is prerendered to its own /route/index.html (SEO + no-JS first
+# paint). Real files and directories are served as-is; unknown deep links fall
+# back to the SPA entry so client routing (including the 404 page) still works.
+
 # Don't cache the entry point so content/asset updates land immediately.
 # (Hashed files under /assets are content-addressed and safe to cache.)
 <IfModule mod_headers.c>
@@ -6,3 +10,17 @@
     Header set Cache-Control "no-cache, no-store, must-revalidate"
   </FilesMatch>
 </IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  # Serve existing files and directories directly (prerendered routes are dirs).
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+  # Everything else falls back to the SPA entry.
+  RewriteRule ^ /index.html [L]
+</IfModule>
+
+# Hosts without mod_rewrite still get the on-brand 404.
+ErrorDocument 404 /404/index.html

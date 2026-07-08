@@ -1,10 +1,7 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { ViteReactSSG } from 'vite-react-ssg'
 import './index.css'
-import App from './App.tsx'
+import { routes } from './App'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+// vite-react-ssg drives the router: it prerenders each route to static HTML at
+// build time and hydrates on the client. `createRoot` is the SSG entry point.
+export const createRoot = ViteReactSSG({ routes, basename: import.meta.env.BASE_URL })

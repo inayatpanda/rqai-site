@@ -1,10 +1,14 @@
-/* Inter, self-hosted via @fontsource (font-display: swap by default).
-   Latin subset only (UK English) — woff2, keeps the bundle small. */
-@import '@fontsource/inter/latin-400.css';
-@import '@fontsource/inter/latin-500.css';
-@import '@fontsource/inter/latin-600.css';
-@import '@fontsource/inter/latin-700.css';
-@import '@fontsource/inter/latin-800.css';
+/* Self-hosted fonts via @fontsource (font-display: swap, latin subset only).
+   Fraunces — editorial display serif for headlines.
+   IBM Plex Sans — clean body sans.  IBM Plex Mono — small technical labels. */
+@import '@fontsource/fraunces/latin-400.css';
+@import '@fontsource/fraunces/latin-600.css';
+@import '@fontsource/fraunces/latin-700.css';
+@import '@fontsource/ibm-plex-sans/latin-400.css';
+@import '@fontsource/ibm-plex-sans/latin-500.css';
+@import '@fontsource/ibm-plex-sans/latin-600.css';
+@import '@fontsource/ibm-plex-mono/latin-400.css';
+@import '@fontsource/ibm-plex-mono/latin-500.css';
 
 @tailwind base;
 @tailwind components;
@@ -17,13 +21,26 @@
   }
 
   body {
-    @apply bg-bg text-fg font-sans antialiased;
-    font-feature-settings: 'cv11', 'ss01';
+    @apply bg-paper text-ink font-sans antialiased;
+    font-feature-settings: 'kern', 'liga', 'calt';
   }
 
-  /* Visible, on-brand focus ring on every interactive element */
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-inkStrong;
+    letter-spacing: -0.015em;
+  }
+
+  ::selection {
+    background-color: rgba(11, 113, 108, 0.16);
+    color: #16212b;
+  }
+
+  /* Visible, on-brand focus ring on every interactive element. */
   :where(a, button, [tabindex]):focus-visible {
-    outline: 2px solid #22d3ee;
+    outline: 2px solid #0b716c;
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -35,9 +52,92 @@
   }
 }
 
+@layer components {
+  /* Consistent page gutters. */
+  .container-edge {
+    @apply mx-auto w-full max-w-edge px-5 sm:px-8;
+  }
+
+  /* Small uppercase mono kicker used above section headings (used sparingly). */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-mono text-[0.7rem] font-medium uppercase tracking-label text-teal;
+  }
+}
+
 @layer utilities {
-  /* Gradient text helper for the wordmark + accents */
-  .text-gradient {
-    @apply bg-accent-grad bg-clip-text text-transparent;
+  /* Barely-there ECG chart-paper grid: fine 8px squares over bold 40px squares,
+     tinted with the surgical-teal accent. */
+  .bg-chart-grid {
+    background-image:
+      linear-gradient(to right, rgba(11, 113, 108, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(11, 113, 108, 0.045) 1px, transparent 1px),
+      linear-gradient(to right, rgba(11, 113, 108, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(11, 113, 108, 0.08) 1px, transparent 1px);
+    background-size: 8px 8px, 8px 8px, 40px 40px, 40px 40px;
+    background-position: -1px -1px;
+  }
+}
+
+/* ---- EcgTrace house motif (hand-built SVG, not a charting library) ---- */
+/* Colour comes from the SVG's `color` (currentColor); tone set by the component. */
+.ecg-base,
+.ecg-beam {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.ecg-base {
+  stroke-width: 2;
+  opacity: 0.9;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: ecg-draw 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* The bright "live" scanning head that sweeps along the drawn trace. */
+.ecg-beam {
+  stroke-width: 2.6;
+  opacity: 0;
+  stroke-dasharray: 7 93;
+  stroke-dashoffset: 100;
+  filter: drop-shadow(0 0 3px currentColor);
+  animation: ecg-sweep 3.6s linear infinite;
+  animation-delay: 2.2s;
+}
+
+@keyframes ecg-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ecg-sweep {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Reduced motion: show the trace fully drawn, no draw-in and no sweep. */
+  .ecg-base {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .ecg-beam {
+    display: none;
   }
 }
