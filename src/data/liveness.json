@@ -1,37 +1,37 @@
 {
   "orthoportfolio": {
     "url": "https://topp.rqai.co.uk",
-    "ok": false,
-    "checkedAt": "2026-07-08T18:36:09.978Z"
+    "ok": true,
+    "checkedAt": "2026-07-08T20:18:58.048Z"
   },
   "consultantprep": {
     "url": "https://consultantprep.rqai.co.uk",
-    "ok": false,
-    "checkedAt": "2026-07-08T18:36:09.978Z"
+    "ok": true,
+    "checkedAt": "2026-07-08T20:18:58.048Z"
   },
   "clinicalproms": {
     "url": "https://clinicalproms.rqai.co.uk",
     "ok": true,
-    "checkedAt": "2026-07-08T18:36:09.978Z"
+    "checkedAt": "2026-07-08T20:18:58.048Z"
   },
   "chapbook": {
     "url": "https://chapbook.rqai.co.uk",
     "ok": true,
-    "checkedAt": "2026-07-08T18:36:09.978Z"
+    "checkedAt": "2026-07-08T20:18:58.048Z"
   },
   "audioquill": {
     "url": "https://audioquill.rqai.co.uk",
     "ok": true,
-    "checkedAt": "2026-07-08T18:36:09.978Z"
+    "checkedAt": "2026-07-08T20:18:58.048Z"
   },
   "scribble": {
     "url": "https://scribble.rqai.co.uk",
-    "ok": false,
-    "checkedAt": "2026-07-08T18:36:09.978Z"
+    "ok": true,
+    "checkedAt": "2026-07-08T20:18:58.048Z"
   },
   "researchassistant": {
     "url": "https://researchassistant.rqai.co.uk",
-    "ok": false,
-    "checkedAt": "2026-07-08T18:36:09.978Z"
+    "ok": true,
+    "checkedAt": "2026-07-08T20:18:58.048Z"
   }
 }
