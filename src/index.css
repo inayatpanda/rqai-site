@@ -136,3 +136,66 @@
     transform: none;
   }
 }
+
+/* ---- No-JS-safe reveal (default visible; motion is a pure-CSS enhancement) --
+   The prerendered HTML carries NO inline opacity:0 — the hidden start state
+   lives ONLY inside the no-preference media query below, so:
+   - JS disabled + CSS on  -> the keyframe still runs to a visible end state
+   - JS + CSS both off     -> raw text shows (no hidden inline style at all)
+   - prefers-reduced-motion -> the rule never applies, content is simply visible
+   Stagger is set per element with the --reveal-delay custom property. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(1.25rem);
+    animation: reveal-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--reveal-delay, 0s);
+  }
+}
+
+@keyframes reveal-rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- Perspective grid (second house signature, per the design spec) --------
+   A faint wireframe plane raked back into the distance behind the project
+   showcase — the dark-blue reading of the Vengence UI perspective grid. Purely
+   decorative (aria-hidden, pointer-events-none) and static, so it needs no
+   reduced-motion branch. Masked to dissolve before it reaches any card text so
+   legibility and contrast are never touched. */
+.pgrid-plane {
+  position: absolute;
+  left: 50%;
+  top: -6rem;
+  width: 150%;
+  height: 30rem;
+  transform: translateX(-50%) perspective(680px) rotateX(62deg);
+  transform-origin: top center;
+  background-image:
+    linear-gradient(to right, rgba(147, 162, 200, 0.16) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(147, 162, 200, 0.16) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(115% 80% at 50% 0%, #000 8%, transparent 60%);
+  mask-image: radial-gradient(115% 80% at 50% 0%, #000 8%, transparent 60%);
+  opacity: 0.7;
+}
+
+/* The card surface for the showcase: a raised dark-blue panel that lifts and
+   catches a luminous cyan edge on hover. The 3D pointer-tilt itself is applied
+   inline by PerspectiveShowcase (Motion values); this only styles the resting
+   and hover surface so touch / no-JS / reduced-motion all get a clean flat card. */
+.pgrid-card {
+  transition:
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pgrid-card:hover {
+  border-color: rgba(69, 213, 242, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(69, 213, 242, 0.16),
+    0 24px 50px -24px rgba(3, 8, 24, 0.85);
+}
