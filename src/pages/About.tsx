@@ -38,7 +38,7 @@ const COMMITMENTS: Array<{ title: string; body: string }> = [
   },
   {
     title: 'Buy once, or subscribe. Plainly.',
-    body: 'Pricing is one clear line. Some projects are a single purchase, others a straightforward subscription, and each project page says exactly which before you commit. No per-seat fees, no add-on tiers, and no upsell once you have paid.',
+    body: 'Pricing is one clear line. Some projects are a single purchase, others a straightforward subscription, and where a project is for sale, its page shows the price up front. No per-seat fees, no add-on tiers, and no upsell once you have paid.',
   },
 ]
 
