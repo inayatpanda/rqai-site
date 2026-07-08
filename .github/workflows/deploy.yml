@@ -21,7 +21,17 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      # Probe every project URL and refresh src/data/liveness.json before the
+      # build, so unreachable projects ship in their "coming soon" state. This
+      # never fails the build (the script always exits 0). SKIP_LINK_CHECK on
+      # the build step stops the prebuild hook re-running the same probe.
+      - name: Check project links
+        run: npm run check-links
+
       - run: npm run build
+        env:
+          SKIP_LINK_CHECK: '1'
 
       - name: Deploy to Hostinger via FTP
         if: ${{ env.FTP_SERVER != '' }}

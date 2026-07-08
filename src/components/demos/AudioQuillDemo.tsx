@@ -17,7 +17,7 @@ export function AudioQuillDemo() {
         {BARS.map((h, i) => (
           <motion.span
             key={i}
-            className="w-[3px] rounded-full bg-accent-grad"
+            className="w-[3px] rounded-full bg-accent"
             style={{ height: `${Math.round(h * 100)}%`, transformOrigin: 'center' }}
             initial={reduce ? false : { scaleY: 0.3 }}
             animate={
@@ -43,14 +43,14 @@ export function AudioQuillDemo() {
       {/* Resolved text lines */}
       <div className="flex flex-1 flex-col gap-1.5" aria-hidden="true">
         <motion.span
-          className="block h-1.5 rounded-full bg-fg/30"
+          className="block h-1.5 rounded-full bg-ink/30"
           initial={reduce ? false : { scaleX: 0, opacity: 0 }}
           animate={{ scaleX: 1, opacity: 1 }}
           transition={reduce ? undefined : { duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           style={{ transformOrigin: 'left' }}
         />
         <motion.span
-          className="block h-1.5 w-3/5 rounded-full bg-fg/20"
+          className="block h-1.5 w-3/5 rounded-full bg-ink/20"
           initial={reduce ? false : { scaleX: 0, opacity: 0 }}
           animate={{ scaleX: 1, opacity: 1 }}
           transition={reduce ? undefined : { duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}

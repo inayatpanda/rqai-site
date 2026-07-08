@@ -1,0 +1,37 @@
+{
+  "orthoportfolio": {
+    "url": "https://topp.rqai.co.uk",
+    "ok": false,
+    "checkedAt": "2026-07-08T18:36:09.978Z"
+  },
+  "consultantprep": {
+    "url": "https://consultantprep.rqai.co.uk",
+    "ok": false,
+    "checkedAt": "2026-07-08T18:36:09.978Z"
+  },
+  "clinicalproms": {
+    "url": "https://clinicalproms.rqai.co.uk",
+    "ok": true,
+    "checkedAt": "2026-07-08T18:36:09.978Z"
+  },
+  "chapbook": {
+    "url": "https://chapbook.rqai.co.uk",
+    "ok": true,
+    "checkedAt": "2026-07-08T18:36:09.978Z"
+  },
+  "audioquill": {
+    "url": "https://audioquill.rqai.co.uk",
+    "ok": true,
+    "checkedAt": "2026-07-08T18:36:09.978Z"
+  },
+  "scribble": {
+    "url": "https://scribble.rqai.co.uk",
+    "ok": false,
+    "checkedAt": "2026-07-08T18:36:09.978Z"
+  },
+  "researchassistant": {
+    "url": "https://researchassistant.rqai.co.uk",
+    "ok": true,
+    "checkedAt": "2026-07-08T18:36:09.978Z"
+  }
+}

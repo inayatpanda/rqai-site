@@ -34,13 +34,13 @@ export function ResearchAssistantDemo() {
           <motion.span
             key={i}
             variants={row}
-            className="block h-1.5 rounded-full bg-fg/15"
+            className="block h-1.5 rounded-full bg-ink/20"
             style={{ width: w }}
           />
         ))}
       </motion.div>
 
-      <span className="flex-none self-center text-accent-cyan/60">&rarr;</span>
+      <span className="flex-none self-center text-accent/60">&rarr;</span>
 
       {/* Summary: two accent bullet lines */}
       <div className="flex flex-1 flex-col justify-center gap-1.5">
@@ -53,9 +53,9 @@ export function ResearchAssistantDemo() {
             viewport={{ once: true, amount: 0.6 }}
             transition={reduce ? undefined : { duration: 0.4, delay: 0.5 + i * 0.12 }}
           >
-            <span className="h-1 w-1 flex-none rounded-full bg-accent-grad" />
+            <span className="h-1 w-1 flex-none rounded-full bg-accent" />
             <span
-              className="block h-1.5 rounded-full bg-accent-grad/70"
+              className="block h-1.5 rounded-full bg-accent/70"
               style={{ width: i === 0 ? '100%' : '70%' }}
             />
           </motion.span>

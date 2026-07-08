@@ -44,8 +44,8 @@ export function OrthoPortfolioDemo() {
   return (
     <div ref={ref} className="flex items-end gap-3" aria-hidden="true">
       <div className="leading-tight">
-        <div className="text-lg font-bold tabular-nums text-fg">{count}</div>
-        <div className="text-[0.6875rem] text-muted">cases logged</div>
+        <div className="text-lg font-bold tabular-nums text-inkStrong">{count}</div>
+        <div className="text-[0.6875rem] text-inkMuted">cases logged</div>
       </div>
       <motion.div
         variants={bars}
@@ -58,7 +58,7 @@ export function OrthoPortfolioDemo() {
           <motion.span
             key={i}
             variants={bar}
-            className="w-2 rounded-sm bg-accent-grad"
+            className="w-2 rounded-sm bg-accent"
             style={{ height: h, transformOrigin: 'bottom' }}
           />
         ))}

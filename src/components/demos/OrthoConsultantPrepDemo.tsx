@@ -32,10 +32,10 @@ export function OrthoConsultantPrepDemo() {
     >
       {ITEMS.map((w, i) => (
         <motion.li key={i} variants={item} className="flex items-center gap-2">
-          <span className="flex h-4 w-4 flex-none items-center justify-center rounded-full bg-accent-grad text-bg">
+          <span className="flex h-4 w-4 flex-none items-center justify-center rounded-full bg-accent text-canvas">
             <Check size={11} strokeWidth={3} />
           </span>
-          <span className="block h-1.5 rounded-full bg-fg/20" style={{ width: w }} />
+          <span className="block h-1.5 rounded-full bg-ink/25" style={{ width: w }} />
         </motion.li>
       ))}
     </motion.ul>

@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite-react-ssg dev",
+    "check-links": "node scripts/check-links.mjs",
+    "prebuild": "node scripts/check-links.mjs --ci-only",
     "build": "tsc -b && vite-react-ssg build",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview"

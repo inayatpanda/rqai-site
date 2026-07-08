@@ -12,9 +12,9 @@ export function ScribbleDemo() {
       <svg viewBox="0 0 120 24" className="h-6 w-full" fill="none" preserveAspectRatio="none">
         <defs>
           <linearGradient id="scribble-grad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="#2dd4bf" />
-            <stop offset="0.5" stopColor="#22d3ee" />
-            <stop offset="1" stopColor="#818cf8" />
+            <stop offset="0" stopColor="#45d5f2" />
+            <stop offset="0.7" stopColor="#45d5f2" />
+            <stop offset="1" stopColor="#f4b05a" />
           </linearGradient>
         </defs>
         {/* A loose, scribbled pen stroke that draws itself */}
@@ -33,7 +33,7 @@ export function ScribbleDemo() {
         {[0, 1].map((i) => (
           <motion.span
             key={i}
-            className="block h-1.5 rounded-full bg-fg/20"
+            className="block h-1.5 rounded-full bg-ink/25"
             style={{ width: i === 0 ? '100%' : '55%', transformOrigin: 'left' }}
             initial={reduce ? false : { scaleX: 0, opacity: 0 }}
             whileInView={{ scaleX: 1, opacity: 1 }}

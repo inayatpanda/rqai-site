@@ -18,12 +18,12 @@ export function ClinicalPROMsDemo() {
       <svg viewBox="0 0 40 40" className="h-12 w-12 flex-none -rotate-90">
         <defs>
           <linearGradient id="proms-grad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#2dd4bf" />
-            <stop offset="0.5" stopColor="#22d3ee" />
-            <stop offset="1" stopColor="#818cf8" />
+            <stop offset="0" stopColor="#45d5f2" />
+            <stop offset="0.7" stopColor="#45d5f2" />
+            <stop offset="1" stopColor="#f4b05a" />
           </linearGradient>
         </defs>
-        <circle cx="20" cy="20" r={R} fill="none" stroke="#232734" strokeWidth="4" />
+        <circle cx="20" cy="20" r={R} fill="none" stroke="#2e4374" strokeWidth="4" />
         <motion.circle
           cx="20"
           cy="20"
@@ -40,11 +40,11 @@ export function ClinicalPROMsDemo() {
         />
       </svg>
       <div className="leading-tight">
-        <div className="text-base font-bold tabular-nums text-fg">
+        <div className="text-base font-bold tabular-nums text-inkStrong">
           {SCORE}
-          <span className="text-xs font-medium text-muted"> / {MAX}</span>
+          <span className="text-xs font-medium text-inkMuted"> / {MAX}</span>
         </div>
-        <div className="text-[0.6875rem] text-muted">Oxford score</div>
+        <div className="text-[0.6875rem] text-inkMuted">Oxford score</div>
       </div>
     </div>
   )

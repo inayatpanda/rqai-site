@@ -4,6 +4,7 @@ import { Home } from './pages/Home'
 import { About } from './pages/About'
 import { AppPage } from './pages/AppPage'
 import { NotFound } from './pages/NotFound'
+import { PRODUCTS } from './data/products'
 
 export interface ProjectMeta {
   /** URL slug (exact, from the global constraints). */
@@ -13,20 +14,13 @@ export interface ProjectMeta {
 }
 
 /*
- * The seven RQAI projects, in menu order. `slug` drives the /:slug route and
- * the prerendered path; `name` is the display label. Project pages (later
- * tasks) pull richer copy from src/data/products.ts — this is the route-level
- * index. Naming rule (hard): they are "projects", never "apps", in all UI copy.
+ * The route-level project index, derived from the single source of truth in
+ * src/data/products.ts (no duplicate list). `slug` drives the /:slug route and
+ * the prerendered path; `name` is the display label. Project pages pull the
+ * richer copy (tagline, description, features, price, demo) from PRODUCTS
+ * directly. Naming rule (hard): they are "projects", never "apps", in all copy.
  */
-export const PROJECTS: ProjectMeta[] = [
-  { slug: 'orthoportfolio', name: 'OrthoPortfolio' },
-  { slug: 'consultantprep', name: 'OrthoConsultantPrep' },
-  { slug: 'clinicalproms', name: 'ClinicalPROMs' },
-  { slug: 'chapbook', name: 'Chapbook' },
-  { slug: 'audioquill', name: 'AudioQuill' },
-  { slug: 'scribble', name: 'Scribble' },
-  { slug: 'researchassistant', name: 'ResearchAssistant' },
-]
+export const PROJECTS: ProjectMeta[] = PRODUCTS.map(({ slug, name }) => ({ slug, name }))
 
 export const PROJECT_SLUGS = PROJECTS.map((p) => p.slug)
 
