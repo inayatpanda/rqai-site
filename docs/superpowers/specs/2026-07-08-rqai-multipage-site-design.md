@@ -41,9 +41,11 @@ home grid and each project page (enlarged).
    ClinicalPROMs £49 lifetime; others omit if unverified), and one big CTA
    "Open <project>" → the live URL. A "coming soon" variant (no dead CTA) is used
    automatically for any URL the ship-time link check finds unreachable.
-   ResearchAssistant (researchassistant.rqai.co.uk) has no shipped product yet: its
-   page reuses the existing ResearchAssistantDemo, describes it honestly as in
-   development, and ships in the coming-soon state — no invented capability claims.
+   ResearchAssistant: its page reuses the existing ResearchAssistantDemo and
+   describes it honestly as early-stage — no invented capability claims. Its CTA is
+   link-checker-driven like every other project (the owner pointed
+   researchassistant.rqai.co.uk at Cloudflare Pages on 2026-07-08, so it links out
+   whenever that URL answers; if it goes dark the page degrades to coming-soon).
 3. **About `/about`** — rich, not bland, principles over persona: one job well ·
    local-first, data stays on your device · no accounts, no tracking · built and
    maintained by one small independent UK studio · buy once or subscribe simply.
