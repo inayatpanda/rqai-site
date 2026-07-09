@@ -1,15 +1,15 @@
 import { Head } from 'vite-react-ssg'
 import { Constellation } from '../components/Constellation'
 
-const ABOUT_TITLE = 'About RQAI: small, careful software'
+const ABOUT_TITLE = 'About RQAI: how these projects are built'
 const ABOUT_DESCRIPTION =
-  'RQAI is one small independent UK studio building focused, local-first tools: one job done well, your data kept on your device, no accounts and no tracking.'
+  'The principles behind every RQAI project: one job done well, local-first, no accounts, no tracking, and nothing claimed that is not built.'
 
 /*
  * About — the page that carries RQAI's voice: principles over persona.
  *
  * Five commitments, told with conviction and plain language, then a direct line
- * to the studio. No founder bio, no specialty references, no hype. The
+ * to the maker. No founder bio, no specialty references, no hype. The
  * Constellation is used as punctuation between movements, exactly as on the home
  * and project pages, so the page reads as one system.
  *
@@ -30,11 +30,11 @@ const COMMITMENTS: Array<{ title: string; body: string }> = [
   },
   {
     title: 'No accounts, no tracking.',
-    body: 'There is no sign-up, no login wall and no analytics trailing you from page to page. You never make an account to begin, and nothing you do is measured, profiled or sold. A project should be useful the moment you open it, and mind its own business while you use it.',
+    body: 'There is no sign-up wall and no analytics trailing you from page to page. Where a project needs a licence key, that is all it needs: nothing you do inside is measured, profiled or sold. A project should be useful the moment you open it, and mind its own business while you use it.',
   },
   {
-    title: 'One small, independent UK studio.',
-    body: 'RQAI is a single studio in the United Kingdom, not a company chasing scale. That keeps the range deliberately small and the decisions honest: every project is built and maintained in-house, answerable to the people who use it rather than to investors or an advertising market.',
+    title: 'Nothing claimed that is not built.',
+    body: 'Every feature described on these pages exists in the shipping project, and the write-ups are checked against the code before they are published. Where something is still in progress, the page says so. If a claim here cannot be verified, it comes down.',
   },
   {
     title: 'Buy once, or subscribe. Plainly.',
@@ -66,15 +66,14 @@ export function About() {
         />
         <div className="container-edge relative pb-10 pt-16 md:pb-14 md:pt-24">
           <h1 className="reveal max-w-4xl text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.03]">
-            Small on purpose.
+            Made thoughtfully.
           </h1>
           <p
             className="reveal mt-6 max-w-[52ch] text-lg leading-relaxed text-ink md:text-xl"
             style={{ ['--reveal-delay' as string]: '0.1s' }}
           >
-            RQAI is one small, independent UK studio. It keeps a short list of
-            commitments, and they shape every project the same way, whatever it
-            does.
+            Seven projects, one set of principles. Whatever the job, every RQAI
+            project is built the same way. Here is what that means in practice.
           </p>
 
           <div
@@ -93,10 +92,9 @@ export function About() {
       {/* Lead — one paragraph that sets up the commitments. */}
       <section className="container-edge py-10 md:py-14">
         <p className="reveal max-w-[60ch] text-xl leading-relaxed text-inkStrong md:text-2xl md:leading-relaxed">
-          RQAI makes a small number of focused tools, each built the same way.
-          They answer to one idea: software should be simple to understand,
-          honest about what it does, and careful with your time and your data.
-          Here is what that means in practice.
+          Each project is made for one audience and one job: a surgeon collecting
+          outcomes, a researcher writing a paper, a writer publishing a blog. They
+          share no platform and no login. What they share is a way of being built.
         </p>
         <Constellation
           tone="ink"
@@ -134,7 +132,7 @@ export function About() {
           <div className="relative">
             <h2 className="text-2xl md:text-3xl">Say hello.</h2>
             <p className="mt-3 max-w-prose leading-relaxed text-ink">
-              Questions, feedback, or a licence query go straight to the studio.
+              Questions, feedback, or a licence query go straight to the maker.
               There is no ticketing system and no bot in between.
             </p>
             <a
