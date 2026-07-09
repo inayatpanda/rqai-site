@@ -64,7 +64,7 @@ function SceneStats() {
           <span className="reel-th">group</span>
           <span className="reel-th">score</span>
           <span className="reel-td">A</span><span className="reel-td">72.4</span>
-          <span className="reel-td">B</span><span className="reel-td">— 58.1</span>
+          <span className="reel-td">B</span><span className="reel-td">-58.1</span>
           <span className="reel-td">A</span><span className="reel-td">69.0</span>
         </div>
         <div className="reel-arrow" style={{ ['--d' as string]: '900ms' }}>→</div>
@@ -76,7 +76,7 @@ function SceneStats() {
         ))}
       </div>
       <div className="reel-statline" style={{ ['--d' as string]: '3000ms' }}>
-        <span className="reel-pill reel-pill--blue">mean diff 13.7 (95% CI 6.2–21.1), p &lt; 0.001</span>
+        <span className="reel-pill reel-pill--blue">mean diff 13.7 (95% CI 6.2 to 21.1), p &lt; 0.001</span>
       </div>
       <div className="reel-push" style={{ ['--d' as string]: '3500ms' }}>→ Results paragraph written &amp; pushed ✓</div>
     </div>
@@ -110,7 +110,7 @@ function SceneReview() {
         ))}
         <div className="reel-diamond" style={{ ['--d' as string]: '2900ms' }} />
         <div className="reel-statline reel-statline--center" style={{ ['--d' as string]: '3200ms' }}>
-          <span className="reel-pill reel-pill--blue">Pooled OR 0.74 (0.61–0.90)</span>
+          <span className="reel-pill reel-pill--blue">Pooled OR 0.74 (0.61 to 0.90)</span>
         </div>
       </div>
     </div>
@@ -170,7 +170,7 @@ function SceneAI() {
           Patients reported less pain at 24 hours and required less rescue
           analgesia<span className="reel-cite-inline" style={{ ['--d' as string]: '3100ms' }}>[1]</span>.
         </p>
-        <span className="reel-grounded" style={{ ['--d' as string]: '3400ms' }}>grounded ✓ — no invented facts</span>
+        <span className="reel-grounded" style={{ ['--d' as string]: '3400ms' }}>grounded ✓ · no invented facts</span>
       </div>
     </div>
   )
