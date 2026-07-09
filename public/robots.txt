@@ -1,4 +1,3 @@
-# RQAI: allow all crawlers.
 User-agent: *
 Allow: /
 
