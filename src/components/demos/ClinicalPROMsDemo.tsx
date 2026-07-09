@@ -1,51 +1,67 @@
 import { motion, useReducedMotion } from 'framer-motion'
 
 /**
- * ClinicalPROMs: a circular score gauge that fills to a value as it scrolls
- * into view (Oxford-style score out of 48). Abstract — no real data.
+ * ClinicalPROMs: a recovery trajectory draws itself across follow-up
+ * timepoints and crosses a dashed reference line (the MCID), the moment a
+ * score change becomes clinically meaningful. Abstract, no real data.
  */
-const SCORE = 42
-const MAX = 48
-const R = 16
-const CIRC = 2 * Math.PI * R
-const fraction = SCORE / MAX
+const POINTS = [
+  { x: 8, y: 44 },
+  { x: 42, y: 38 },
+  { x: 78, y: 24 },
+  { x: 112, y: 10 },
+]
 
 export function ClinicalPROMsDemo() {
   const reduce = useReducedMotion()
+  const path = `M ${POINTS.map((p) => `${p.x} ${p.y}`).join(' L ')}`
 
   return (
-    <div className="flex items-center gap-3" aria-hidden="true">
-      <svg viewBox="0 0 40 40" className="h-12 w-12 flex-none -rotate-90">
-        <defs>
-          <linearGradient id="proms-grad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#45d5f2" />
-            <stop offset="0.7" stopColor="#45d5f2" />
-            <stop offset="1" stopColor="#f4b05a" />
-          </linearGradient>
-        </defs>
-        <circle cx="20" cy="20" r={R} fill="none" stroke="#2e4374" strokeWidth="4" />
-        <motion.circle
-          cx="20"
-          cy="20"
-          r={R}
-          fill="none"
-          stroke="url(#proms-grad)"
-          strokeWidth="4"
-          strokeLinecap="round"
-          strokeDasharray={CIRC}
-          initial={reduce ? false : { strokeDashoffset: CIRC }}
-          whileInView={{ strokeDashoffset: CIRC * (1 - fraction) }}
+    <div className="w-full max-w-[10rem]" aria-hidden="true">
+      <svg viewBox="0 0 120 52" fill="none" className="block w-full">
+        {/* Dashed MCID reference line */}
+        <motion.line
+          x1="4"
+          y1="20"
+          x2="116"
+          y2="20"
+          stroke="#f4b05a"
+          strokeOpacity="0.55"
+          strokeWidth="1.4"
+          strokeDasharray="4 4"
+          initial={reduce ? false : { opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.6 }}
-          transition={reduce ? undefined : { duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={reduce ? undefined : { duration: 0.4 }}
         />
+        {/* Trajectory */}
+        <motion.path
+          d={path}
+          stroke="#45d5f2"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          initial={reduce ? false : { pathLength: 0 }}
+          whileInView={{ pathLength: 1 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={reduce ? undefined : { duration: 1.1, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+        />
+        {/* Follow-up timepoints */}
+        {POINTS.map((p, i) => (
+          <motion.circle
+            key={i}
+            cx={p.x}
+            cy={p.y}
+            r="2.6"
+            fill="#45d5f2"
+            initial={reduce ? false : { opacity: 0, scale: 0.3 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={
+              reduce ? undefined : { duration: 0.3, delay: 0.3 + i * 0.26, ease: [0.16, 1, 0.3, 1] }
+            }
+          />
+        ))}
       </svg>
-      <div className="leading-tight">
-        <div className="text-base font-bold tabular-nums text-inkStrong">
-          {SCORE}
-          <span className="text-xs font-medium text-inkMuted"> / {MAX}</span>
-        </div>
-        <div className="text-[0.6875rem] text-inkMuted">Oxford score</div>
-      </div>
     </div>
   )
 }
