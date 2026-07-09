@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom'
 import { Constellation } from '../components/Constellation'
 import { PerspectiveShowcase } from '../components/PerspectiveShowcase'
 
-const HOME_TITLE = 'RQAI: focused, local-first software'
+const HOME_TITLE = 'RQAI: focused software for clinicians, researchers and writers'
 const HOME_DESCRIPTION =
-  'RQAI is a small independent UK studio building focused, local-first software. No accounts, no tracking.'
+  'Seven focused, local-first projects: ResearchAssistant, ClinicalPROMs, Chapbook, OrthoPortfolio, OrthoConsultantPrep, AudioQuill and Scribble. Your data stays on your device.'
 
 /*
- * Home — the front door of the RQAI studio.
+ * Home — the front door of the site.
  *
  * Three movements: a hero (RQAI wordmark, the truthful tagline and the animated
  * Constellation as the house signature), the perspective-grid project showcase,
- * and a short studio note into /about.
+ * and a principles note into /about.
  *
  * No-JS legibility: the hero entrance is pure CSS (the `.reveal` class in
  * index.css), whose hidden start state lives only inside a
@@ -56,15 +56,14 @@ export function Home() {
             className="reveal mt-6 max-w-4xl text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.03]"
             style={{ ['--reveal-delay' as string]: '0.07s' }}
           >
-            Focused software for clinical work.
+            Software that does one job well.
           </h1>
 
           <p
             className="reveal mt-6 max-w-[54ch] text-lg leading-relaxed text-ink"
             style={{ ['--reveal-delay' as string]: '0.15s' }}
           >
-            A small independent UK studio. Every project is local-first, with no
-            accounts and no tracking.
+            Seven focused projects for clinicians, researchers and writers. Each one is local-first: your data stays on your device, with no accounts and no tracking.
           </p>
 
           {/* The Constellation is the hero signature: ideas linking into insight. */}
@@ -83,7 +82,7 @@ export function Home() {
 
       <PerspectiveShowcase />
 
-      {/* Studio note — two neutral sentences into the About page. */}
+      {/* Principles note — two sentences into the About page. */}
       <section className="container-edge pb-20 md:pb-28">
         <div className="relative overflow-hidden rounded-2xl border border-hairline bg-card p-8 md:p-10">
           <Constellation
@@ -92,14 +91,15 @@ export function Home() {
           />
           <div className="relative flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <p className="max-w-2xl text-lg leading-relaxed text-ink">
-              RQAI is one small, independent UK studio. Each project does a single
-              job well, runs locally and keeps your data on your device.
+              Every project here is built the same way: local-first, honest about what
+              it does, and careful with your data. Nothing is claimed on these pages
+              that is not already in the software.
             </p>
             <Link
               to="/about"
               className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-hairline bg-canvas px-5 py-3 text-sm font-semibold text-inkStrong transition-colors duration-300 ease-out-soft hover:border-accent hover:text-accent"
             >
-              About the studio
+              How these projects are built
               <svg
                 width="16"
                 height="16"
