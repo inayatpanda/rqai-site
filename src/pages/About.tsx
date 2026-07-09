@@ -3,7 +3,7 @@ import { Constellation } from '../components/Constellation'
 
 const ABOUT_TITLE = 'About RQAI: how these projects are built'
 const ABOUT_DESCRIPTION =
-  'The principles behind every RQAI project: one job done well, local-first, no accounts, no tracking, and nothing claimed that is not built.'
+  'The principles behind every RQAI project: one job done well, local-first, no tracking, and nothing claimed that is not built.'
 
 /*
  * About — the page that carries RQAI's voice: principles over persona.
@@ -29,8 +29,8 @@ const COMMITMENTS: Array<{ title: string; body: string }> = [
     body: 'Your work lives on your own device by default. Nothing is uploaded, synced or stored on a server unless you ask for it, and where a project does sync, it uses storage you own and control. The surest way to keep data private is never to collect it in the first place.',
   },
   {
-    title: 'No accounts, no tracking.',
-    body: 'There is no sign-up wall and no analytics trailing you from page to page. Where a project needs a licence key, that is all it needs: nothing you do inside is measured, profiled or sold. A project should be useful the moment you open it, and mind its own business while you use it.',
+    title: 'No tracking. Nothing collected.',
+    body: 'There is no analytics script trailing you from page to page, and none of these projects reports home. Where a project needs a licence key, or a sign-in that lives on your own server, that is all it is: nothing you do inside is measured, profiled or sold. A project should be useful the moment you open it, and mind its own business while you use it.',
   },
   {
     title: 'Nothing claimed that is not built.',

@@ -21,7 +21,7 @@ import { PRODUCTS, isLive, type Product } from '../data/products'
  * the tree). Touch, reduced-motion and no-JS all get the still, flat card.
  *
  * Odd count handled deliberately: on the widest breakpoint the seven cards sit
- * on a six-column grid in a 2 / 3 / 2 rhythm (spans 3-3 · 2-2-2 · 3-3) so every
+ * on a six-column grid in a 3-3 · 4-2 · 2-2-2 rhythm (flagships lead) so every
  * row fills exactly, no orphan tile. On tablet the trailing card spans the full
  * width to close the 2-column grid cleanly.
  */

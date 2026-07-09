@@ -34,7 +34,7 @@
   helm/scripts/fulfil-sales.mjs (buyers currently get a key with no
   download link), and remove the four "open source" claims on the spoke
   site (AccordionSection.tsx, TrustStrip.tsx, data/marketing.ts:62,
-  PricingPage.tsx:89).
+  PricingPage.tsx:89); the spoke site also still shows $60/yr (pricing card, FAQ, and SeoHead.tsx JSON-LD price '60.00' twice) — update to $99/yr and redeploy (repo is on the old Mac; branch feat/pico-decomposer holds uncommitted WIP, so coordinate with the owner).
 - Scribble: confirm the GBP 29/yr app price, then add it to products.ts.
 - Chapbook: confirm the price, then add it to products.ts.
 - Helm: set RESEND_API_KEY so licence emails send automatically.

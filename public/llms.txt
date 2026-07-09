@@ -2,7 +2,7 @@
 
 > RQAI (rqai.co.uk) makes focused, local-first software for clinicians,
 > researchers and writers. Each project does one job, keeps data on the
-> user's own device or hardware, and has no accounts and no tracking.
+> user's own device or hardware, and does not track its users.
 > Contact: hello@rqai.co.uk
 
 ## Projects
@@ -50,5 +50,4 @@
 ## About
 
 - [How these projects are built](https://rqai.co.uk/about/): one job done
-  well, local-first, no accounts, no tracking, nothing claimed that is not
-  built.
+  well, local-first, no tracking, nothing claimed that is not built.

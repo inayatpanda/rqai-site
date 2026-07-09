@@ -223,6 +223,7 @@ export function AppPage() {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:image" content="https://rqai.co.uk/og.png" />
+        {/* react-helmet-async emits script content only from string children; dangerouslySetInnerHTML is silently dropped. */}
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Head>
 

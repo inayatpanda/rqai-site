@@ -49,6 +49,7 @@ export function Home() {
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://rqai.co.uk/og.png" />
+        {/* react-helmet-async emits script content only from string children; dangerouslySetInnerHTML is silently dropped. */}
         <script type="application/ld+json">{JSON.stringify(orgJsonLd)}</script>
       </Head>
 
@@ -79,7 +80,7 @@ export function Home() {
             className="reveal mt-6 max-w-[54ch] text-lg leading-relaxed text-ink"
             style={{ ['--reveal-delay' as string]: '0.15s' }}
           >
-            Seven focused projects for clinicians, researchers and writers. Each one is local-first: your data stays on your device, with no accounts and no tracking.
+            Seven focused projects for clinicians, researchers and writers. Each one is local-first: your data stays with you, and nothing you do is tracked.
           </p>
 
           {/* The Constellation is the hero signature: ideas linking into insight. */}

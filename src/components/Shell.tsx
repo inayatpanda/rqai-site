@@ -286,7 +286,7 @@ function Footer() {
       <div className="border-t border-hairline">
         <div className="container-edge flex flex-col items-start justify-between gap-2 py-6 text-xs text-inkMuted sm:flex-row sm:items-center">
           <p>&copy; {year} RQAI</p>
-          <p className="font-mono">Local-first &middot; no accounts &middot; no tracking</p>
+          <p className="font-mono">Local-first &middot; no tracking &middot; your data stays with you</p>
         </div>
       </div>
     </footer>

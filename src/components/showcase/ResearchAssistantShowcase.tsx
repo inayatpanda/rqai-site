@@ -24,7 +24,7 @@ const TOURS = [
 export function ResearchAssistantShowcase() {
   return (
     <div>
-      <h2 className="reveal text-2xl leading-tight md:text-3xl">Watch it work</h2>
+      <h2 className="reveal text-2xl leading-tight md:text-3xl">See the workflow</h2>
       <p className="reveal mt-3 max-w-[52ch] leading-relaxed text-ink">
         The same animated workflow shown on researchassistant.rqai.co.uk:
         highlight, compile, analyse and write, step by step.
