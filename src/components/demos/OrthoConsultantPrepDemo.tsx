@@ -1,43 +1,50 @@
-import { motion, useReducedMotion, type Variants } from 'framer-motion'
-import { Check } from 'lucide-react'
+import { motion, useReducedMotion } from 'framer-motion'
 
 /**
- * OrthoConsultantPrep: a short checklist that ticks its items in sequence as it
- * scrolls into view (structured preparation). Abstract bars + tick icons.
+ * OrthoConsultantPrep: a question line sits on a live interview clock; the
+ * ring runs down and shifts to the urgency colour, the way the real timed
+ * mock does. Abstract, no real text.
  */
-const ITEMS = ['90%', '75%', '85%']
-
 export function OrthoConsultantPrepDemo() {
   const reduce = useReducedMotion()
 
-  const list: Variants = {
-    hidden: {},
-    show: { transition: { staggerChildren: reduce ? 0 : 0.22 } },
-  }
-  const item: Variants = reduce
-    ? { hidden: { opacity: 1 }, show: { opacity: 1 } }
-    : {
-        hidden: { opacity: 0.35 },
-        show: { opacity: 1, transition: { duration: 0.3 } },
-      }
-
   return (
-    <motion.ul
-      variants={list}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.6 }}
-      className="flex flex-col gap-2"
-      aria-hidden="true"
-    >
-      {ITEMS.map((w, i) => (
-        <motion.li key={i} variants={item} className="flex items-center gap-2">
-          <span className="flex h-4 w-4 flex-none items-center justify-center rounded-full bg-accent text-canvas">
-            <Check size={11} strokeWidth={3} />
-          </span>
-          <span className="block h-1.5 rounded-full bg-ink/25" style={{ width: w }} />
-        </motion.li>
-      ))}
-    </motion.ul>
+    <div className="flex items-center gap-3" aria-hidden="true">
+      {/* Interview clock */}
+      <div className="relative h-10 w-10 flex-none">
+        <svg viewBox="0 0 40 40" fill="none" className="h-full w-full -rotate-90">
+          <circle cx="20" cy="20" r="16" stroke="currentColor" strokeOpacity="0.15" strokeWidth="3" />
+          <motion.circle
+            cx="20"
+            cy="20"
+            r="16"
+            strokeWidth="3"
+            strokeLinecap="round"
+            initial={reduce ? { pathLength: 0.3, stroke: '#f4b05a' } : { pathLength: 1, stroke: '#45d5f2' }}
+            whileInView={
+              reduce ? {} : { pathLength: 0.3, stroke: ['#45d5f2', '#45d5f2', '#f4b05a'] }
+            }
+            viewport={{ once: true, amount: 0.6 }}
+            transition={reduce ? undefined : { duration: 2.2, delay: 0.3, ease: 'linear' }}
+          />
+        </svg>
+        <span className="absolute inset-0 flex items-center justify-center font-mono text-[0.5rem] font-medium text-ink">
+          3:00
+        </span>
+      </div>
+
+      {/* Question card */}
+      <motion.div
+        className="min-w-0 flex-1 rounded-lg border border-hairline bg-ink/10 p-2"
+        initial={reduce ? false : { opacity: 0, y: 6 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={reduce ? undefined : { duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <span className="block h-1.5 w-5/6 rounded-full bg-ink/40" />
+        <span className="mt-1.5 block h-1 w-full rounded-full bg-ink/25" />
+        <span className="mt-1 block h-1 w-1/2 rounded-full bg-ink/25" />
+      </motion.div>
+    </div>
   )
 }
