@@ -14,7 +14,7 @@
   Cohen's kappa, risk of bias, meta-analysis, GRADE), 52 statistical tests
   validated value for value against R, strict AI drafting that grounds every
   claim to a sentence in the user's library, offline AI via Ollama, and
-  one-click submission packets. $99 a year. Full site:
+  one-click submission packets. £99 a year. Full site:
   https://researchassistant.rqai.co.uk
 - [ClinicalPROMs](https://rqai.co.uk/clinicalproms/): self-hosted software
   (also known as Ortho Outcomes) for collecting and tracking validated
@@ -45,7 +45,7 @@
 - [Scribble](https://rqai.co.uk/scribble/): a private, on-device notebook of
   typed blocks with stickers, figures and interactive playgrounds; optional
   bring-your-own-key AI; publishing and sync through the user's own
-  repositories. App: https://scribble.rqai.co.uk
+  repositories. £29 a year. App: https://scribble.rqai.co.uk
 
 ## About
 

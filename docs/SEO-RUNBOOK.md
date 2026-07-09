@@ -30,14 +30,15 @@
   and shown on the site (products.ts + llms.txt). What remains: fix the
   spoke site's Terms page, which still contradicts this with a stale GBP 49
   lifetime figure, and swap the test Stripe link to the live one.
-- ResearchAssistant: create the LemonSqueezy product (buy link is a
-  placeholder slug), add `research` to PRODUCT_URLS in
+- ResearchAssistant: price now confirmed £99/yr (owner's Stripe payment link)
+  and shown on the site (products.ts + llms.txt). What remains: create the LemonSqueezy product (buy link is a placeholder slug), add `research` to PRODUCT_URLS in
   helm/scripts/fulfil-sales.mjs (buyers currently get a key with no
   download link), and remove the four "open source" claims on the spoke
   site (AccordionSection.tsx, TrustStrip.tsx, data/marketing.ts:62,
-  PricingPage.tsx:89); the spoke site also still shows $60/yr (pricing card, FAQ, and SeoHead.tsx JSON-LD price '60.00' twice) — update to $99/yr and redeploy (repo is on the old Mac; branch feat/pico-decomposer holds uncommitted WIP, so coordinate with the owner).
-- Scribble: its test Stripe payment link is DEAD (returns page not found) —
-  recreate the link at go-live. Keep the price off the site until then.
+  PricingPage.tsx:89); the spoke site also still shows $60/yr (pricing card, FAQ, and SeoHead.tsx JSON-LD price '60.00' twice) — update to £99/yr and redeploy (repo is on the old Mac; branch feat/pico-decomposer holds uncommitted WIP, so coordinate with the owner).
+- Scribble: price now confirmed £29/yr (owner's Stripe payment link, Active
+  link) and shown on the site (products.ts + llms.txt). What remains: wire
+  the CURRENT link URL into the app (hardcoded test URL is dead).
 - Chapbook: price now confirmed £49/yr (owner's Stripe payment link) and
   shown on the site (products.ts + llms.txt). What remains is the live
   link swap.
