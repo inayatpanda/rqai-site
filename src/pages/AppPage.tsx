@@ -159,6 +159,26 @@ export function AppPage() {
 
   const others = PRODUCTS.filter((p) => p.slug !== product.slug)
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name,
+    url,
+    description: metaDescription,
+    applicationCategory: product.category,
+    operatingSystem: product.platforms,
+    ...(product.offer
+      ? {
+          offers: {
+            '@type': 'Offer',
+            price: product.offer.price,
+            priceCurrency: product.offer.currency,
+          },
+        }
+      : {}),
+    publisher: { '@type': 'Organization', name: 'RQAI', url: 'https://rqai.co.uk/' },
+  }
+
   const heroText = (
     <div className={demoInBand ? 'max-w-3xl' : ''}>
       <h1
@@ -203,6 +223,7 @@ export function AppPage() {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:image" content="https://rqai.co.uk/og.png" />
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Head>
 
       {/* Hero */}

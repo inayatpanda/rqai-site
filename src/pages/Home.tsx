@@ -21,6 +21,16 @@ const HOME_DESCRIPTION =
  * and reduced-motion users see the copy immediately.
  */
 export function Home() {
+  const orgJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'RQAI',
+    url: 'https://rqai.co.uk/',
+    email: 'hello@rqai.co.uk',
+    description:
+      'Focused, local-first software for clinicians, researchers and writers.',
+  }
+
   return (
     <>
       <Head>
@@ -39,6 +49,7 @@ export function Home() {
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://rqai.co.uk/og.png" />
+        <script type="application/ld+json">{JSON.stringify(orgJsonLd)}</script>
       </Head>
 
       <section className="relative overflow-hidden">
