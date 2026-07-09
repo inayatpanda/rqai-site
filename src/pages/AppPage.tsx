@@ -139,7 +139,8 @@ export function AppPage() {
 
   if (!product) return <NotFound />
 
-  const { name, tagline, description, features, price, url, whereLine } = product
+  const { name, tagline, description, features, price, url, whereLine, Showcase } =
+    product
   const live = isLive(product.slug)
   const host = (() => {
     try {
@@ -271,6 +272,13 @@ export function AppPage() {
           ))}
         </ul>
       </section>
+
+      {/* Showcase band (only where a product defines one, e.g. ResearchAssistant) */}
+      {Showcase && (
+        <section className="container-edge py-8 md:py-12">
+          <Showcase />
+        </section>
+      )}
 
       {/* Where to find it */}
       <section className="container-edge py-8 md:py-12">

@@ -7,6 +7,7 @@ import { OrthoConsultantPrepDemo } from '../components/demos/OrthoConsultantPrep
 import { OrthoPortfolioDemo } from '../components/demos/OrthoPortfolioDemo'
 import { ResearchAssistantDemo } from '../components/demos/ResearchAssistantDemo'
 import { ScribbleDemo } from '../components/demos/ScribbleDemo'
+import { ResearchAssistantShowcase } from '../components/showcase/ResearchAssistantShowcase'
 
 /**
  * The single source of truth for the seven RQAI projects.
@@ -84,6 +85,7 @@ export const PRODUCTS: Product[] = [
     whereLine:
       'ResearchAssistant is desktop software for Mac, Windows and Linux. Walkthroughs, documentation and downloads are at researchassistant.rqai.co.uk.',
     Demo: ResearchAssistantDemo,
+    Showcase: ResearchAssistantShowcase,
   },
   {
     name: 'ClinicalPROMs',
