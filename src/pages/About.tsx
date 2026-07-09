@@ -58,7 +58,7 @@ export function About() {
         <meta name="twitter:description" content={ABOUT_DESCRIPTION} />
       </Head>
 
-      {/* Hero — the thesis in three words, then the studio in one line. */}
+      {/* Hero — the thesis in two words, then the principles in one line. */}
       <section className="relative overflow-hidden">
         <div
           aria-hidden="true"
@@ -122,7 +122,7 @@ export function About() {
         </div>
       </section>
 
-      {/* Contact — straight to the studio. */}
+      {/* Contact — straight to the maker. */}
       <section className="container-edge py-12 md:py-16">
         <div className="relative overflow-hidden rounded-2xl border border-hairline bg-card p-8 md:p-10">
           <Constellation
