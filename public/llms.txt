@@ -22,12 +22,12 @@
   instruments scored exactly as published with MCID thresholds, photo
   capture of theatre lists, end-to-end encrypted patient questionnaires,
   outcome trajectories over time. Runs on the surgeon's own Mac or Windows
-  PC; one licence, no per-seat fees. Full site:
+  PC; one licence, no per-seat fees. £200 a year. Full site:
   https://clinicalproms.rqai.co.uk
 - [Chapbook](https://rqai.co.uk/chapbook/): write a blog from a phone in a
   chat-style composer, with photos, video embeds, 75 interactive widgets and
   six themes; posts commit to the user's own repository and deploy to their
-  own domain. No platform holds the content. App:
+  own domain. No platform holds the content. £49 a year. App:
   https://chapbook.rqai.co.uk
 - [OrthoPortfolio](https://rqai.co.uk/orthoportfolio/): compiles a
   submission-ready GMC Portfolio Pathway application for Trauma and
@@ -40,7 +40,7 @@
   profiles. £49 one-off. App: https://consultantprep.rqai.co.uk
 - [AudioQuill](https://rqai.co.uk/audioquill/): a voice-to-writing studio
   with on-device Whisper transcription, non-destructive AI cleanup over a
-  preserved raw transcript, 44 templates and 49 voice commands. £30 a year.
+  preserved raw transcript, 44 templates and 49 voice commands. £29 a year.
   App: https://audioquill.rqai.co.uk
 - [Scribble](https://rqai.co.uk/scribble/): a private, on-device notebook of
   typed blocks with stickers, figures and interactive playgrounds; optional
