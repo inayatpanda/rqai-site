@@ -71,7 +71,7 @@ export const PRODUCTS: Product[] = [
       'ResearchAssistant is a local-first workbench for clinical research: one desktop project that carries a study from question to submitted manuscript. It searches and imports literature from PubMed, guides a systematic review from search strategy to GRADE, runs 52 statistical tests validated value for value against R, and drafts with an AI that must cite a specific sentence in your library or say nothing. Your work lives in a database on your own machine; your phone and iPad connect over your private network. The full walkthroughs, documentation and downloads are at researchassistant.rqai.co.uk.',
     features: [
       'Statistics you can defend: 52 tests validated value for value against R with the full comparison published, plus power and sample-size planning.',
-      'A guided systematic review: a MeSH search builder grounded in an offline index of 30,956 descriptors with live PubMed counts, dual screening with a live Cohen\'s kappa, then risk of bias, meta-analysis and GRADE.',
+      'A guided systematic review: a MeSH search builder grounded in an offline index of 30,956 descriptors with live PubMed counts, dual screening with a live Cohen’s kappa, then risk of bias, meta-analysis and GRADE.',
       'Synthesis beyond the basics: individual-participant data pooling, network meta-analysis and survival meta-analysis, with forest and funnel plots.',
       'Writing that cannot invent a citation: strict AI drafting grounds every claim to a sentence in your library, flags weak paraphrases and uncited paragraphs, and a simulated Reviewer 2 pass critiques the draft before you submit.',
       'Local-first: projects live in a database on your own machine, AI can run fully offline through Ollama, and your phone, iPad and co-authors connect over your private Tailscale network.',
@@ -92,12 +92,12 @@ export const PRODUCTS: Product[] = [
     tagline: 'Collect and track validated patient-reported outcomes.',
     hook: 'Twenty validated instruments, scored as published, on hardware you control.',
     description:
-      'ClinicalPROMs (also known as Ortho Outcomes) is self-hosted software for collecting and tracking validated patient-reported outcome measures. Photograph a theatre or clinic list and it becomes structured cases with no retyping. Patients answer encrypted questionnaires on their own phone, and the encryption key never touches a server. Twenty validated instruments are scored exactly as published, each with the thresholds that make a change clinically meaningful, and every patient\'s recovery plots as a trajectory over time. It runs on your own Mac or Windows PC with its own embedded database: one licence, no per-seat fees, no vendor cloud. The full detail is at clinicalproms.rqai.co.uk.',
+      'ClinicalPROMs (also known as Ortho Outcomes) is self-hosted software for collecting and tracking validated patient-reported outcome measures. Photograph a theatre or clinic list and it becomes structured cases with no retyping. Patients answer encrypted questionnaires on their own phone, and the encryption key never touches a server. Twenty validated instruments are scored exactly as published, each with the thresholds that make a change clinically meaningful, and every patient’s recovery plots as a trajectory over time. It runs on your own Mac or Windows PC with its own embedded database: one licence, no per-seat fees, no vendor cloud. The full detail is at clinicalproms.rqai.co.uk.',
     features: [
       'Twenty validated instruments, from the Oxford scores to EQ-5D-5L, each scored exactly as published and checked by its own test.',
       'Clinically meaningful interpretation built in: MCID thresholds and concern bands, so a score change reads as improvement, not just a number.',
       'Capture cases from a photograph of a theatre or clinic list; patient questionnaires run in any phone browser.',
-      'End-to-end encrypted patient links: answers are encrypted on the patient\'s device and the key never reaches a server.',
+      'End-to-end encrypted patient links: answers are encrypted on the patient’s device and the key never reaches a server.',
       'Self-hosted on your own Mac or Windows PC with an embedded database, an audit log and data-rights tooling: one licence, unlimited patients.',
     ],
     category: 'Medical software',
@@ -156,10 +156,10 @@ export const PRODUCTS: Product[] = [
     url: 'https://consultantprep.rqai.co.uk',
     tagline: 'Structured preparation for the consultant interview.',
     description:
-      'OrthoConsultantPrep is a local-first tool for preparing for the UK consultant interview in Trauma and Orthopaedics. It ships with 237 questions across 15 categories, each with a model answer, delivery advice, key statistics, references and follow-ups. A daily five-card practice flow keeps revision moving; a timed mock runs ten questions on a real three-minute interview clock; and Trust Prep reads a named trust\'s published CQC, GIRFT and NHFD signals to show which scenarios that panel is likely to probe. All content is bundled in; your notes and progress stay on your device, with no account and no cloud.',
+      'OrthoConsultantPrep is a local-first tool for preparing for the UK consultant interview in Trauma and Orthopaedics. It ships with 237 questions across 15 categories, each with a model answer, delivery advice, key statistics, references and follow-ups. A daily five-card practice flow keeps revision moving; a timed mock runs ten questions on a real three-minute interview clock; and Trust Prep reads a named trust’s published CQC, GIRFT and NHFD signals to show which scenarios that panel is likely to probe. All content is bundled in; your notes and progress stay on your device, with no account and no cloud.',
     features: [
       '237 questions in 15 categories, each with a model answer, delivery advice, key statistics, clickable references and follow-ups.',
-      'Trust Prep: pick from 20 trust profiles and 13 interview scenarios are matched to that trust\'s actual published signals, with the triggering evidence shown.',
+      'Trust Prep: pick from 20 trust profiles and 13 interview scenarios are matched to that trust’s actual published signals, with the triggering evidence shown.',
       'A timed mock interview: ten questions, three minutes each, with an end-of-run review of what you answered, skipped or timed out.',
       'A daily five-card practice flow that weights what you have not seen and what you flagged for review, and keeps a streak.',
       '28 hot-topic briefings linked to their questions, checked against current NHS source documents. Everything stays on your device.',
@@ -198,12 +198,12 @@ export const PRODUCTS: Product[] = [
     url: 'https://scribble.rqai.co.uk',
     tagline: 'A private notebook that stays on your device.',
     description:
-      'Scribble is a private notebook that lives entirely on your device: no server, no account, and nothing collected. Notes are built from typed blocks, with text, headings, quotes, images, figures, 211 stickers and sandboxed interactive playgrounds, and a live preview as you write. AI help is optional and bring-your-own-key across seven providers. A note can publish straight to your own site\'s repository, and your devices sync through a private repository you control, with conflicts surfaced rather than silently overwritten. There is also a calendar planner and a video-reel maker that renders on your device.',
+      'Scribble is a private notebook that lives entirely on your device: no server, no account, and nothing collected. Notes are built from typed blocks, with text, headings, quotes, images, figures, 211 stickers and sandboxed interactive playgrounds, and a live preview as you write. AI help is optional and bring-your-own-key across seven providers. A note can publish straight to your own site’s repository, and your devices sync through a private repository you control, with conflicts surfaced rather than silently overwritten. There is also a calendar planner and a video-reel maker that renders on your device.',
     features: [
       'On-device and offline-first: notes, notebooks and keys stay with you; there is no Scribble server and no account.',
       'A typed block editor with images, figures, 211 stickers and interactive playgrounds, plus a live preview.',
       'Optional AI with your own key, across seven providers; keys never enter your notes and go nowhere but the provider you choose.',
-      'Publish a note to your own site\'s repository and sync devices through a private repository, with explicit conflict choices.',
+      'Publish a note to your own site’s repository and sync devices through a private repository, with explicit conflict choices.',
       'Runs in any browser, installs on iOS and Android, and includes a calendar planner and on-device video reels.',
     ],
     category: 'Productivity software',
