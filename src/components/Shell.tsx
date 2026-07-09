@@ -230,7 +230,7 @@ function Footer() {
         <div className="max-w-sm">
           <Wordmark />
           <p className="mt-4 text-sm leading-relaxed text-ink">
-            Seven focused, local-first projects for clinicians, researchers and writers.
+            Focused, local-first software for clinicians, researchers and writers.
           </p>
           <a
             href={`mailto:${CONTACT_EMAIL}`}
@@ -259,7 +259,7 @@ function Footer() {
         </div>
 
         <div>
-          <h2 className="font-mono text-[0.7rem] uppercase tracking-label text-inkMuted">Company</h2>
+          <h2 className="font-mono text-[0.7rem] uppercase tracking-label text-inkMuted">Site</h2>
           <ul className="mt-4 space-y-2.5">
             <li>
               <Link to="/" className="text-sm text-ink transition-colors hover:text-accent">
