@@ -23,13 +23,13 @@ import { ScribbleDemo } from '../components/demos/ScribbleDemo'
  * unreachable project to a "coming soon" state without a code change.
  */
 export type Slug =
-  | 'orthoportfolio'
-  | 'consultantprep'
+  | 'researchassistant'
   | 'clinicalproms'
   | 'chapbook'
+  | 'orthoportfolio'
+  | 'consultantprep'
   | 'audioquill'
   | 'scribble'
-  | 'researchassistant'
 
 export type Product = {
   name: string
@@ -37,40 +37,117 @@ export type Product = {
   url: string
   /** <= 8 words, factual. */
   tagline: string
+  /** One line rendered on flagship home cards only. */
+  hook?: string
   /** One paragraph, factual. */
   description: string
   /** 3-5 bullets, each verifiable against the product. */
   features: string[]
-  /** Only where a specific amount is verified in the product's own source. */
+  /** Display price, only where verified in the product's own source. */
   price?: string
-  /**
-   * Optional "Where to find it" sentence for the project page, used verbatim
-   * when the project is live. Set it only where the default line ("<name> runs
-   * in your browser at <host>. It is local-first: your data stays on your
-   * device.") would be untrue — e.g. ClinicalPROMs is self-hosted desktop
-   * software, and its URL is the marketing/download site, not a browser app.
-   */
+  /** Machine-readable price for JSON-LD; present iff `price` is present. */
+  offer?: { price: string; currency: 'GBP' | 'USD'; period: 'year' | 'once' }
+  /** schema.org applicationCategory. */
+  category: string
+  /** schema.org operatingSystem. */
+  platforms: string
+  /** Flagships get larger home cards and the hook line. */
+  flagship: boolean
   whereLine?: string
-  /** The existing animated micro-demo for this project. */
+  /** The animated micro-demo for this project. */
   Demo: ComponentType
+  /** Optional full-width showcase band on the project page. */
+  Showcase?: ComponentType
 }
 
 export const PRODUCTS: Product[] = [
+  {
+    name: 'ResearchAssistant',
+    slug: 'researchassistant',
+    url: 'https://researchassistant.rqai.co.uk',
+    tagline: 'Evidence, from search to submission.',
+    hook: 'A complete clinical research workbench that runs on your own machine.',
+    description:
+      'ResearchAssistant is a local-first workbench for clinical research: one desktop project that carries a study from question to submitted manuscript. It searches and imports literature from PubMed, guides a systematic review from search strategy to GRADE, runs 52 statistical tests validated value for value against R, and drafts with an AI that must cite a specific sentence in your library or say nothing. Your work lives in a database on your own machine; your phone and iPad connect over your private network. The full walkthroughs, documentation and downloads are at researchassistant.rqai.co.uk.',
+    features: [
+      'Statistics you can defend: 52 tests validated value for value against R with the full comparison published, plus power and sample-size planning.',
+      'A guided systematic review: a MeSH search builder grounded in an offline index of 30,956 descriptors with live PubMed counts, dual screening with a live Cohen\'s kappa, then risk of bias, meta-analysis and GRADE.',
+      'Synthesis beyond the basics: individual-participant data pooling, network meta-analysis and survival meta-analysis, with forest and funnel plots.',
+      'Writing that cannot invent a citation: strict AI drafting grounds every claim to a sentence in your library, flags weak paraphrases and uncited paragraphs, and a simulated Reviewer 2 pass critiques the draft before you submit.',
+      'Local-first: projects live in a database on your own machine, AI can run fully offline through Ollama, and your phone, iPad and co-authors connect over your private Tailscale network.',
+    ],
+    price: '$60 a year',
+    offer: { price: '60', currency: 'USD', period: 'year' },
+    category: 'Research software',
+    platforms: 'macOS, Windows, Linux',
+    flagship: true,
+    whereLine:
+      'ResearchAssistant is desktop software for Mac, Windows and Linux. Walkthroughs, documentation and downloads are at researchassistant.rqai.co.uk.',
+    Demo: ResearchAssistantDemo,
+  },
+  {
+    name: 'ClinicalPROMs',
+    slug: 'clinicalproms',
+    url: 'https://clinicalproms.rqai.co.uk',
+    tagline: 'Collect and track validated patient-reported outcomes.',
+    hook: 'Twenty validated instruments, scored as published, on hardware you control.',
+    description:
+      'ClinicalPROMs (also known as Ortho Outcomes) is self-hosted software for collecting and tracking validated patient-reported outcome measures. Photograph a theatre or clinic list and it becomes structured cases with no retyping. Patients answer encrypted questionnaires on their own phone, and the encryption key never touches a server. Twenty validated instruments are scored exactly as published, each with the thresholds that make a change clinically meaningful, and every patient\'s recovery plots as a trajectory over time. It runs on your own Mac or Windows PC with its own embedded database: one licence, no per-seat fees, no vendor cloud. The full detail is at clinicalproms.rqai.co.uk.',
+    features: [
+      'Twenty validated instruments, from the Oxford scores to EQ-5D-5L, each scored exactly as published and checked by its own test.',
+      'Clinically meaningful interpretation built in: MCID thresholds and concern bands, so a score change reads as improvement, not just a number.',
+      'Capture cases from a photograph of a theatre or clinic list; patient questionnaires run in any phone browser.',
+      'End-to-end encrypted patient links: answers are encrypted on the patient\'s device and the key never reaches a server.',
+      'Self-hosted on your own Mac or Windows PC with an embedded database, an audit log and data-rights tooling: one licence, unlimited patients.',
+    ],
+    category: 'Medical software',
+    platforms: 'macOS, Windows',
+    flagship: true,
+    whereLine:
+      'ClinicalPROMs is self-hosted software for your own Mac or Windows PC. Learn more and get it at clinicalproms.rqai.co.uk.',
+    Demo: ClinicalPROMsDemo,
+  },
+  {
+    name: 'Chapbook',
+    slug: 'chapbook',
+    url: 'https://chapbook.rqai.co.uk',
+    tagline: 'Write your blog from your phone.',
+    hook: 'A chat-style composer that publishes to a blog you own.',
+    description:
+      'Chapbook turns writing a blog into something you can do from your phone, as naturally as texting. Ideas go into a chat-style composer: each message becomes a paragraph, and tapping any block lets you edit it by chatting. Drop in photos, embed videos, add interactive widgets from a library of 75, and pick from six reading surfaces for how your blog looks. When you publish, the post commits straight to your own repository and deploys to your own site, on your own domain. There is no Chapbook server holding your words: your blog belongs to you. An AI can help draft, in a voice it learns from your own recent posts, and nothing ever posts without your say-so.',
+    features: [
+      'A chat-style composer: write a post the way you text, message by message, and edit any block by chatting.',
+      'Photos processed on your device, video embeds, and 75 interactive widgets you can drop into a post.',
+      'Six reading surfaces (Observatory, Parchment, Manuscript, Newsprint, Slate and Focus), custom accents, topics and your own domain.',
+      'Publishing is a real commit to your own repository; your blog deploys to your own site and belongs to you.',
+      'AI drafting that learns your voice from your own recent posts, with your own key; it never posts on your behalf.',
+    ],
+    category: 'Publishing software',
+    platforms: 'Web, iOS, Android',
+    flagship: true,
+    whereLine:
+      'Chapbook runs in your browser at chapbook.rqai.co.uk and installs to your phone. Your posts live in your own repository; your keys stay in your browser.',
+    Demo: ChapbookDemo,
+  },
   {
     name: 'OrthoPortfolio',
     slug: 'orthoportfolio',
     url: 'https://topp.rqai.co.uk',
     tagline: 'Compile a submission-ready Portfolio Pathway application.',
     description:
-      'OrthoPortfolio turns a pile of raw evidence documents into a submission-ready GMC Specialist Register (Portfolio Pathway) application for Trauma & Orthopaedics. It redacts your documents, sorts them into the right categories, indexes and bundles them, validates the portfolio against the published rules and produces the verification proformas. Everything runs locally on your own device.',
+      'OrthoPortfolio turns a pile of raw evidence documents into a submission-ready GMC Portfolio Pathway application for Trauma and Orthopaedics. It knows the T&O curriculum: 13 index procedures, 14 critical conditions and the CiP structured reports. It redacts patient details from your documents and verifies nothing recoverable remains, files each document against the right requirement, and compiles indexed, bundled section PDFs with cover pages and page numbering. A dashboard tracks readiness, lists the gaps and prints a submission checklist. Everything runs locally on your own device.',
     features: [
-      'Redacts, sorts and indexes your evidence into the application’s categories, then compiles bundled section PDFs with cover pages and page numbering.',
-      'A dashboard tracks overall readiness, highlights gaps and shows what to do next.',
-      'Trackers for logbook numbers, PBAs, CBD/CEX and a CPD diary, checked against the indicative requirements.',
-      'Validates the portfolio against the published rules and generates the verification proformas.',
-      'Local-first: documents stay on your device unless you back up or sync, and an optional AI writing assistant uses your own key.',
+      'Built on the published T&O requirements: 13 index procedures, 14 critical conditions, the CiP structured reports and the MSF and appraisal minimums.',
+      'Redaction that rasterises each page and detects NHS numbers, postcodes, phone numbers and dates of birth, then verifies no recoverable text remains.',
+      'Files each document against the right requirement automatically, with an offline fallback when no AI key is set.',
+      'Compiles indexed section bundles: cover band, document index, per-document reflection pages and continuous page numbering.',
+      'A readiness dashboard, a prioritised gap list and a printable submission checklist, plus logbook and CPD trackers checked against the indicative requirements.',
     ],
     price: '£49 a year',
+    offer: { price: '49', currency: 'GBP', period: 'year' },
+    category: 'Medical software',
+    platforms: 'Web, macOS, Windows',
+    flagship: false,
     Demo: OrthoPortfolioDemo,
   },
   {
@@ -79,50 +156,20 @@ export const PRODUCTS: Product[] = [
     url: 'https://consultantprep.rqai.co.uk',
     tagline: 'Structured preparation for the consultant interview.',
     description:
-      'OrthoConsultantPrep is a local-first tool for preparing for the UK consultant interview in Trauma & Orthopaedics. It ships with a searchable question bank (model answers, delivery advice, key statistics, references and follow-ups), plus refreshed hot-topic briefings, timed mock interviews and a Trust Prep mode that tailors preparation to a specific trust and its context. All the content is bundled in; your notes and progress stay on your device, with no account and no cloud.',
+      'OrthoConsultantPrep is a local-first tool for preparing for the UK consultant interview in Trauma and Orthopaedics. It ships with 237 questions across 15 categories, each with a model answer, delivery advice, key statistics, references and follow-ups. A daily five-card practice flow keeps revision moving; a timed mock runs ten questions on a real three-minute interview clock; and Trust Prep reads a named trust\'s published CQC, GIRFT and NHFD signals to show which scenarios that panel is likely to probe. All content is bundled in; your notes and progress stay on your device, with no account and no cloud.',
     features: [
-      'A searchable question bank with model answers, delivery advice, key statistics, clickable references and follow-ups, plus confidence flags and per-question notes.',
-      'Trust Prep: choose a target trust for its profile and context, then match interview scenarios to tailored talking points (20 trust profiles, 13 interview scenarios).',
-      'Timed mock interviews with an end-of-run review, and a daily card-based practice flow.',
-      'Refreshed hot-topic briefings linked to their related questions.',
-      'Optional AI question builder and CV tools that run with your own key; all content and progress stay on your device.',
+      '237 questions in 15 categories, each with a model answer, delivery advice, key statistics, clickable references and follow-ups.',
+      'Trust Prep: pick from 20 trust profiles and 13 interview scenarios are matched to that trust\'s actual published signals, with the triggering evidence shown.',
+      'A timed mock interview: ten questions, three minutes each, with an end-of-run review of what you answered, skipped or timed out.',
+      'A daily five-card practice flow that weights what you have not seen and what you flagged for review, and keeps a streak.',
+      '28 hot-topic briefings linked to their questions, checked against current NHS source documents. Everything stays on your device.',
     ],
     price: '£49 one-off',
+    offer: { price: '49', currency: 'GBP', period: 'once' },
+    category: 'Education software',
+    platforms: 'Web (installable)',
+    flagship: false,
     Demo: OrthoConsultantPrepDemo,
-  },
-  {
-    name: 'ClinicalPROMs',
-    slug: 'clinicalproms',
-    url: 'https://clinicalproms.rqai.co.uk',
-    tagline: 'Collect and track validated patient-reported outcomes.',
-    description:
-      'ClinicalPROMs is a self-hosted platform for collecting and tracking patient-reported outcome measures. Capture cases straight from a photograph of a list, send patients encrypted questionnaires they complete on their own device, and watch validated outcome scores build over time. It carries more than twenty validated instruments, each scored exactly as published, alongside outcome trajectories, analytics and an audit log. Everything runs on your own Windows PC or Mac: one licence, no per-seat fees, no cloud.',
-    features: [
-      'Capture cases from a photograph of a theatre or clinic list, with no retyping.',
-      'More than twenty validated outcome instruments, each scored exactly as published with its established thresholds.',
-      'Encrypted patient questionnaires completed on the patient’s own device, where the encryption key never reaches a server.',
-      'Outcome trajectories, analytics, and an audit log with data-rights tooling.',
-      'Self-hosted on your own PC or Mac: one licence, unlimited cases and patients, no per-seat fees.',
-    ],
-    whereLine:
-      'ClinicalPROMs is self-hosted software for your own Windows PC or Mac. Learn more and get it at clinicalproms.rqai.co.uk.',
-    Demo: ClinicalPROMsDemo,
-  },
-  {
-    name: 'Chapbook',
-    slug: 'chapbook',
-    url: 'https://chapbook.rqai.co.uk',
-    tagline: 'Capture an idea, draft a post, publish.',
-    description:
-      'Chapbook is a mobile-first tool for turning a rough idea into a finished post. Type or paste a thought and an AI drafts a single post in a fixed, considered voice, with alternative opening hooks to try, which you edit and approve before anything goes out. Share it through your phone’s native share sheet, or expand it into a full blog article that commits straight to your own site’s repository and publishes itself. It never posts on your behalf, and it doubles as a content manager for your blog.',
-    features: [
-      'Turn a rough idea or a pasted note into one finished draft, written in a fixed voice with alternative opening hooks.',
-      'You always edit and approve before anything is shared; it never auto-posts.',
-      'Share through your phone’s native share sheet, with no OAuth and no monthly platform fees.',
-      'Expand a post into a 500 to 900 word article that commits to your own site repository and auto-deploys.',
-      'Manage your blog from one place: publish, take down and delete posts, with images resized on-device. Uses your own AI key.',
-    ],
-    Demo: ChapbookDemo,
   },
   {
     name: 'AudioQuill',
@@ -130,47 +177,39 @@ export const PRODUCTS: Product[] = [
     url: 'https://audioquill.rqai.co.uk',
     tagline: 'Write your story with your voice.',
     description:
-      'AudioQuill is a voice dictation tool: speak, and it turns your words into clean, structured text you can edit and export. Every recording keeps its original transcript untouched; the AI-cleaned versions are derived and non-destructive, so nothing is lost. It works offline for everything except the AI calls you make with your own key, which is encrypted in your browser and only ever sent to the provider you choose.',
+      'AudioQuill is a voice-to-writing studio: speak, and it turns your words into clean, structured text you can shape into finished documents. Transcription can run entirely on your device with a local Whisper model, free and offline, or through your own key to a provider you choose. Every recording keeps its original transcript untouched: the AI-cleaned versions are layered on top and non-destructive, so nothing is lost. Guided templates and spoken commands structure a dictation as you talk, and topics collect scattered recordings into one compiled document.',
     features: [
-      'Speak and get clean, structured text back, ready to edit and export.',
-      'The original transcript is always preserved; every AI-cleaned version is derived and non-destructive.',
-      'Local-first and offline for everything except your own AI calls.',
-      'Bring your own key: it is encrypted in your browser and only sent to the provider you choose.',
-      'A library of templates and voice commands, with document export.',
+      'On-device transcription with a local Whisper model: free, no key, and nothing leaves your device.',
+      'The original transcript is always preserved; switch between raw, clean, structured and other versions at any time.',
+      '44 guided templates and 49 spoken commands shape a dictation while you talk.',
+      'Topics gather scattered recordings, then compile them into one document; export to DOCX, PDF or Markdown.',
+      'Bring your own AI key, encrypted in your browser and sent only to the provider you choose. No account, no tracking.',
     ],
     price: '£30 a year',
+    offer: { price: '30', currency: 'GBP', period: 'year' },
+    category: 'Productivity software',
+    platforms: 'Web (installable)',
+    flagship: false,
     Demo: AudioQuillDemo,
   },
   {
     name: 'Scribble',
     slug: 'scribble',
     url: 'https://scribble.rqai.co.uk',
-    tagline: 'A private, on-device notebook.',
+    tagline: 'A private notebook that stays on your device.',
     description:
-      'Scribble is a private, on-device notebook. Your notes, notebooks and keys live on your device. Nothing is collected, and there is no Scribble server. Write in a block editor with text, headings, images, stickers and interactive playgrounds, and see a live preview as you go. Add AI writing help with your own key, publish a note straight to your own site’s repository, and sync across devices through a private GitHub repo, all bring-your-own, with conflicts surfaced rather than silently overwritten.',
+      'Scribble is a private notebook that lives entirely on your device: no server, no account, and nothing collected. Notes are built from typed blocks, with text, headings, quotes, images, figures, 211 stickers and sandboxed interactive playgrounds, and a live preview as you write. AI help is optional and bring-your-own-key across seven providers. A note can publish straight to your own site\'s repository, and your devices sync through a private repository you control, with conflicts surfaced rather than silently overwritten. There is also a calendar planner and a video-reel maker that renders on your device.',
     features: [
-      'Private and offline-first: notes, notebooks and keys stay on your device, with no account and no server.',
-      'A block editor with text, headings, quotes, images, stickers, figures and interactive playgrounds, and a live preview.',
-      'Optional AI writing help using your own key, stored only in the device keychain.',
-      'Publish a note straight to your own site’s repository, and sync across devices via a private GitHub repo.',
-      'Runs in any browser and installs natively on iOS and Android, and includes a calendar planner.',
+      'On-device and offline-first: notes, notebooks and keys stay with you; there is no Scribble server and no account.',
+      'A typed block editor with images, figures, 211 stickers and interactive playgrounds, plus a live preview.',
+      'Optional AI with your own key, across seven providers; keys never enter your notes and go nowhere but the provider you choose.',
+      'Publish a note to your own site\'s repository and sync devices through a private repository, with explicit conflict choices.',
+      'Runs in any browser, installs on iOS and Android, and includes a calendar planner and on-device video reels.',
     ],
+    category: 'Productivity software',
+    platforms: 'Web, iOS, Android',
+    flagship: false,
     Demo: ScribbleDemo,
-  },
-  {
-    name: 'ResearchAssistant',
-    slug: 'researchassistant',
-    url: 'https://researchassistant.rqai.co.uk',
-    tagline: 'Research papers made clear, still in development.',
-    description:
-      'ResearchAssistant is an early, in-development project. It is designed to turn a research paper into a short, honest, interactive article a busy reader can take in quickly and share, with a planned AI step that extracts a paper’s structure (its arms, outcomes and harms) into a reviewable summary, always behind a human review. A critical-appraisal layer, grounded in the source and the wider evidence, is central to the idea. The work is still taking shape, and nothing here is claimed as finished.',
-    features: [
-      'Designed to turn a research paper into a short, interactive article you can read quickly and share.',
-      'A planned AI step to extract a paper’s structure (arms, outcomes and harms) into a reviewable summary, always behind human review.',
-      'A critical-appraisal layer intended to be grounded in the source paper and the wider evidence.',
-      'Built on firm commitments: never fabricate data, keep every figure traceable to its source, and cite DOIs.',
-    ],
-    Demo: ResearchAssistantDemo,
   },
 ]
 
