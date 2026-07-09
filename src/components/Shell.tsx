@@ -26,17 +26,17 @@ function Wordmark({ className = '' }: { className?: string }) {
       <span className="grid h-8 w-8 place-items-center rounded-[9px] border border-hairline bg-card text-accent shadow-soft transition-transform duration-300 ease-out-soft group-hover:-translate-y-0.5">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path
-            d="M5.5 17.5 12 6.5l7 6.5-5.5 5.5z M12 6.5l1.5 12"
+            d="M5.5 17 L11 12 L18 6.5 M11 12 L14.5 18"
             stroke="currentColor"
-            strokeWidth="1.1"
+            strokeWidth="1.7"
             strokeLinecap="round"
             strokeLinejoin="round"
-            opacity="0.55"
+            opacity="0.8"
           />
-          <circle cx="5.5" cy="17.5" r="1.7" fill="currentColor" />
-          <circle cx="12" cy="6.5" r="2.1" fill="currentColor" />
-          <circle cx="19" cy="13" r="1.7" fill="currentColor" />
-          <circle cx="13.5" cy="18.5" r="1.5" fill="currentColor" />
+          <circle cx="5.5" cy="17" r="1.9" fill="currentColor" />
+          <circle cx="11" cy="12" r="2" fill="currentColor" />
+          <circle cx="18" cy="6.5" r="2.5" fill="currentColor" />
+          <circle cx="14.5" cy="18" r="1.8" fill="currentColor" />
         </svg>
       </span>
       <span className="font-display text-xl font-semibold leading-none tracking-tight text-inkStrong">
