@@ -31,9 +31,14 @@ export function Home() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rqai.co.uk/" />
         <meta property="og:site_name" content="RQAI" />
-        <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={HOME_TITLE} />
         <meta name="twitter:description" content={HOME_DESCRIPTION} />
+        <link rel="canonical" href="https://rqai.co.uk/" />
+        <meta property="og:image" content="https://rqai.co.uk/og.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://rqai.co.uk/og.png" />
       </Head>
 
       <section className="relative overflow-hidden">

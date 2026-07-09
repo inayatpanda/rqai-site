@@ -193,11 +193,16 @@ export function AppPage() {
         <meta property="og:title" content={metaTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://rqai.co.uk/${product.slug}`} />
+        <meta property="og:url" content={`https://rqai.co.uk/${product.slug}/`} />
         <meta property="og:site_name" content="RQAI" />
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={metaTitle} />
         <meta name="twitter:description" content={metaDescription} />
+        <link rel="canonical" href={`https://rqai.co.uk/${product.slug}/`} />
+        <meta property="og:image" content="https://rqai.co.uk/og.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content="https://rqai.co.uk/og.png" />
       </Head>
 
       {/* Hero */}
