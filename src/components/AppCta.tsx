@@ -13,7 +13,7 @@ import { isLive, type Product } from '../data/products'
  * All authored copy here is British and free of em-dashes.
  */
 
-/** Hostname only (e.g. "topp.rqai.co.uk"), used in the coming-soon state. */
+/** Hostname only (e.g. "orthoportfolio.rqai.co.uk"), used in the coming-soon state. */
 function hostOf(url: string): string {
   try {
     return new URL(url).host

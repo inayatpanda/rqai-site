@@ -33,7 +33,7 @@
   submission-ready GMC Portfolio Pathway application for Trauma and
   Orthopaedics: redaction with PII detection and verification, automatic
   filing against the T&O requirements, indexed section bundles, readiness
-  dashboard. £49 a year. App: https://topp.rqai.co.uk
+  dashboard. £49 a year. App: https://orthoportfolio.rqai.co.uk
 - [OrthoConsultantPrep](https://rqai.co.uk/consultantprep/): preparation for
   the UK T&O consultant interview: 237 questions with model answers, timed
   three-minute mock interviews, Trust Prep matched to 20 real trust

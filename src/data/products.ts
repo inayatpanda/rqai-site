@@ -134,7 +134,7 @@ export const PRODUCTS: Product[] = [
   {
     name: 'OrthoPortfolio',
     slug: 'orthoportfolio',
-    url: 'https://topp.rqai.co.uk',
+    url: 'https://orthoportfolio.rqai.co.uk',
     tagline: 'Compile a submission-ready Portfolio Pathway application.',
     description:
       'OrthoPortfolio turns a pile of raw evidence documents into a submission-ready GMC Portfolio Pathway application for Trauma and Orthopaedics. It knows the T&O curriculum: 13 index procedures, 14 critical conditions and the CiP structured reports. It redacts patient details from your documents and verifies nothing recoverable remains, files each document against the right requirement, and compiles indexed, bundled section PDFs with cover pages and page numbering. A dashboard tracks readiness, lists the gaps and prints a submission checklist. Everything runs locally on your own device.',
