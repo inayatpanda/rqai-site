@@ -26,16 +26,17 @@ import { PRODUCTS, isLive, type Product } from '../data/products'
  * width to close the 2-column grid cleanly.
  */
 
-// Column spans on the lg six-column grid, in PRODUCTS order — a balanced
-// 2 / 3 / 2 sandwich that leaves no empty cell.
+// Column spans on the lg six-column grid, in PRODUCTS order. Flagships lead:
+// ResearchAssistant + ClinicalPROMs share row one, Chapbook anchors row two
+// at width 4, and the remaining projects close the grid in balanced rows.
 const LG_SPAN = [
   'lg:col-span-3',
   'lg:col-span-3',
+  'lg:col-span-4',
   'lg:col-span-2',
   'lg:col-span-2',
   'lg:col-span-2',
-  'lg:col-span-3',
-  'lg:col-span-3',
+  'lg:col-span-2',
 ] as const
 
 const MAX_TILT = 6 // degrees — small, so text never becomes hard to read
@@ -79,7 +80,7 @@ function ProjectCard({
   index: number
   interactive: boolean
 }) {
-  const { name, slug, tagline, Demo } = product
+  const { name, slug, tagline, hook, flagship, Demo } = product
   const live = isLive(slug)
 
   // Pointer position within the card, normalised to -0.5..0.5.
@@ -126,7 +127,7 @@ function ProjectCard({
         <Link
           to={`/${slug}`}
           aria-label={`${name}: ${tagline}`}
-          className="pgrid-card group relative flex h-full min-h-[13.5rem] flex-col overflow-hidden rounded-2xl border border-hairline bg-card p-6 shadow-soft"
+          className={`pgrid-card group relative flex h-full ${flagship ? 'min-h-[15.5rem]' : 'min-h-[13.5rem]'} flex-col overflow-hidden rounded-2xl border border-hairline bg-card p-6 shadow-soft`}
         >
           {/* Cursor spotlight — enhancement only, hidden until hover. */}
           {interactive && (
@@ -149,6 +150,9 @@ function ProjectCard({
             {name}
           </h3>
           <p className="relative mt-2 text-sm leading-relaxed text-inkMuted">{tagline}</p>
+          {flagship && hook && (
+            <p className="relative mt-3 text-sm leading-relaxed text-ink">{hook}</p>
+          )}
 
           <div className="relative mt-auto flex items-center gap-2 pt-6 text-sm font-medium text-ink">
             <span className="transition-colors duration-300 group-hover:text-accent">
@@ -198,7 +202,8 @@ export function PerspectiveShowcase() {
           className="reveal mt-4 max-w-[52ch] text-base leading-relaxed text-ink"
           style={{ ['--reveal-delay' as string]: '0.06s' }}
         >
-          Open any project to see what it does, how it works and where to get it.
+          Each one is its own tool, made for one audience and one job. Open a
+          project to see what it does, how it works and where to get it.
         </p>
 
         <ul className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-6">
