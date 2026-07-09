@@ -5,6 +5,16 @@ import { PROJECTS, PROJECT_SLUGS } from '../App'
 
 const CONTACT_EMAIL = 'hello@rqai.co.uk'
 
+/* Restores scroll to the top whenever the route changes (SPA navigation
+   keeps the previous scroll position otherwise). */
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+  return null
+}
+
 /* RQAI wordmark (never expanded) with a small static constellation mark. */
 function Wordmark({ className = '' }: { className?: string }) {
   return (
@@ -65,7 +75,7 @@ function ProjectsMenu({ active }: { active: boolean }) {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm transition-colors hover:text-accent ${
+        className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm transition-colors hover:text-accent lg:hidden ${
           active || open ? 'text-accent' : 'text-ink'
         }`}
       >
@@ -176,6 +186,29 @@ function Header() {
             />
           </span>
         </button>
+      </div>
+
+      {/* Slim project rail: every project one click away, no dropdown. Visible
+          from lg up only; below lg the "Projects" dropdown covers this. */}
+      <div className="hidden border-b border-hairline lg:block">
+        <nav
+          aria-label="All projects"
+          className="no-scrollbar container-edge flex h-10 items-center gap-x-5 overflow-x-auto text-sm"
+        >
+          {PROJECTS.map((project) => (
+            <NavLink
+              key={project.slug}
+              to={`/${project.slug}`}
+              className={({ isActive }) =>
+                `whitespace-nowrap transition-colors hover:text-accent ${
+                  isActive ? 'text-accent' : 'text-inkMuted'
+                }`
+              }
+            >
+              {project.name}
+            </NavLink>
+          ))}
+        </nav>
       </div>
 
       <AnimatePresence>
@@ -301,6 +334,7 @@ function Footer() {
 export function Shell() {
   return (
     <div className="flex min-h-dvh flex-col">
+      <ScrollToTop />
       <a
         href="#main"
         className="sr-only rounded-lg bg-inkStrong px-4 py-2 text-canvas focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50"

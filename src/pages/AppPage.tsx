@@ -40,15 +40,12 @@ function tidyForMeta(text: string): string {
   return text.replace(/\s*[—–]\s*/g, ', ')
 }
 
-/* Live / coming-soon status, shown once in the hero (the page's only eyebrow). */
+/* Coming-soon status, shown once in the hero (the page's only eyebrow). All
+   seven projects are live, so a "Live" pill would be decorative noise; only
+   the meaningful "coming soon" state renders. */
 function StatusPill({ live }: { live: boolean }) {
   if (live) {
-    return (
-      <span className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1.5 font-mono text-[0.65rem] font-medium uppercase tracking-label text-accent">
-        <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_6px_currentColor]" />
-        Live
-      </span>
-    )
+    return null
   }
   return (
     <span className="inline-flex items-center gap-2 rounded-full border border-accentWarm/40 bg-accentWarm/10 px-3 py-1.5 font-mono text-[0.65rem] font-medium uppercase tracking-label text-accentWarm">
@@ -360,17 +357,9 @@ export function AppPage() {
                 to={`/${other.slug}`}
                 className="group flex h-full flex-col rounded-2xl border border-hairline bg-card p-5 transition-colors duration-300 ease-out-soft hover:border-accent/50"
               >
-                <div className="flex items-center justify-between gap-3">
-                  <h3 className="font-display text-lg font-semibold text-inkStrong">
-                    {other.name}
-                  </h3>
-                  {isLive(other.slug) && (
-                    <span
-                      aria-hidden="true"
-                      className="h-1.5 w-1.5 flex-none rounded-full bg-accent shadow-[0_0_6px_#45d5f2]"
-                    />
-                  )}
-                </div>
+                <h3 className="font-display text-lg font-semibold text-inkStrong">
+                  {other.name}
+                </h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-inkMuted">
                   {other.tagline}
                 </p>

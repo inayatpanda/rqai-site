@@ -8,7 +8,7 @@ import {
   useSpring,
   useTransform,
 } from 'framer-motion'
-import { PRODUCTS, isLive, type Product } from '../data/products'
+import { PRODUCTS, type Product } from '../data/products'
 
 /*
  * PerspectiveShowcase — the seven RQAI projects as a perspective-grid of cards
@@ -41,15 +41,6 @@ const LG_SPAN = [
 
 const MAX_TILT = 6 // degrees — small, so text never becomes hard to read
 
-function LivePill() {
-  return (
-    <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-2.5 py-1 font-mono text-[0.625rem] font-medium uppercase tracking-label text-accent">
-      <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_6px_currentColor]" />
-      Live
-    </span>
-  )
-}
-
 function Arrow() {
   return (
     <svg
@@ -81,7 +72,6 @@ function ProjectCard({
   interactive: boolean
 }) {
   const { name, slug, tagline, hook, flagship, Demo } = product
-  const live = isLive(slug)
 
   // Pointer position within the card, normalised to -0.5..0.5.
   const px = useMotionValue(0)
@@ -143,7 +133,6 @@ function ProjectCard({
             <div className="flex h-14 min-w-0 flex-1 items-center">
               <Demo />
             </div>
-            {live && <LivePill />}
           </div>
 
           <h3 className="relative mt-6 font-display text-xl font-semibold text-inkStrong">

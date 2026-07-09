@@ -63,6 +63,16 @@
   .eyebrow {
     @apply inline-flex items-center gap-2 font-mono text-[0.7rem] font-medium uppercase tracking-label text-accent;
   }
+
+  /* Hides the scrollbar on an overflow-x-auto row (e.g. the header's project
+     rail) while keeping it scrollable/swipeable. */
+  .no-scrollbar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* old Edge/IE */
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
 }
 
 /* ---- Constellation house motif (hand-built SVG, not a graph library) ---- */
