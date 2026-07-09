@@ -42,4 +42,11 @@
 - Chapbook: price now confirmed £49/yr (owner's Stripe payment link) and
   shown on the site (products.ts + llms.txt). What remains is the live
   link swap.
+- International buyers: keep all prices in GBP, and when creating the LIVE
+  payment links enable Stripe Adaptive Pricing (Settings, Payments, Checkout
+  and Payment Links) so US/EU visitors see the price in their own currency
+  at checkout while you settle in GBP. Optionally add a manual round USD
+  price (e.g. $129/yr) to the ResearchAssistant link, the most
+  international product. Do NOT switch the site to dollars: the clinical
+  products sell to a UK audience that expects pounds.
 - Helm: set RESEND_API_KEY so licence emails send automatically.
