@@ -4,32 +4,34 @@ import { motion, useReducedMotion } from 'framer-motion'
  * Scribble: a note assembles from typed blocks (heading, text, a sticker
  * tile) and an on-device pulse settles beside it: block editor, nothing
  * leaving the device. Replaces the old pen-stroke squiggle, which wrongly
- * implied handwriting. Abstract, no real text.
+ * implied handwriting.
  */
 export function ScribbleDemo() {
   const reduce = useReducedMotion()
 
   return (
     <div className="flex items-center gap-3" aria-hidden="true">
-      {/* The note, block by block */}
+      {/* The note, block by block. Illustrative mock content. */}
       <div className="flex min-w-0 flex-1 flex-col gap-1.5">
         <motion.span
-          className="block h-2 w-2/3 rounded-full bg-ink/40"
-          style={{ transformOrigin: 'left' }}
-          initial={reduce ? false : { scaleX: 0, opacity: 0 }}
-          whileInView={{ scaleX: 1, opacity: 1 }}
+          className="block text-[0.5rem] font-semibold leading-tight text-inkStrong"
+          initial={reduce ? false : { opacity: 0, y: 3 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={reduce ? undefined : { duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        />
+        >
+          Ideas
+        </motion.span>
         <div className="flex items-center gap-1.5">
           <motion.span
-            className="block h-1.5 flex-1 rounded-full bg-ink/25"
-            style={{ transformOrigin: 'left' }}
-            initial={reduce ? false : { scaleX: 0, opacity: 0 }}
-            whileInView={{ scaleX: 1, opacity: 1 }}
+            className="min-w-0 flex-1 text-[0.45rem] leading-tight text-ink"
+            initial={reduce ? false : { opacity: 0, y: 3 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
             transition={reduce ? undefined : { duration: 0.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          />
+          >
+            Paint the hallway green?
+          </motion.span>
           {/* Sticker tile */}
           <motion.span
             className="block h-4 w-4 flex-none rounded-[4px] border border-accentWarm/50 bg-accentWarm/25"
@@ -40,13 +42,14 @@ export function ScribbleDemo() {
           />
         </div>
         <motion.span
-          className="block h-1.5 w-1/2 rounded-full bg-ink/25"
-          style={{ transformOrigin: 'left' }}
-          initial={reduce ? false : { scaleX: 0, opacity: 0 }}
-          whileInView={{ scaleX: 1, opacity: 1 }}
+          className="block text-[0.45rem] leading-tight text-inkMuted"
+          initial={reduce ? false : { opacity: 0, y: 3 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={reduce ? undefined : { duration: 0.4, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        />
+        >
+          Call the framers on Tuesday.
+        </motion.span>
       </div>
 
       {/* On-device pulse: a dot held inside its ring */}

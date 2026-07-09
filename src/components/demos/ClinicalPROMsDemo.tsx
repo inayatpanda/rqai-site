@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 /**
  * ClinicalPROMs: a recovery trajectory draws itself across follow-up
  * timepoints and crosses a dashed reference line (the MCID), the moment a
- * score change becomes clinically meaningful. Abstract, no real data.
+ * score change becomes clinically meaningful.
  */
 const POINTS = [
   { x: 8, y: 44 },
@@ -18,7 +18,7 @@ export function ClinicalPROMsDemo() {
 
   return (
     <div className="w-full max-w-[10rem]" aria-hidden="true">
-      <svg viewBox="0 0 120 52" fill="none" className="block w-full">
+      <svg viewBox="0 0 120 56" fill="none" className="block w-full">
         {/* Dashed MCID reference line */}
         <motion.line
           x1="4"
@@ -61,6 +61,32 @@ export function ClinicalPROMsDemo() {
             }
           />
         ))}
+        {/* Axis and reference labels. Illustrative mock content. */}
+        <text
+          x="116"
+          y="17"
+          textAnchor="end"
+          fontSize="5"
+          fontFamily="inherit"
+          fill="#f4b05a"
+          opacity="0.8"
+        >
+          MCID
+        </text>
+        <text x="8" y="51" fontSize="5" fontFamily="inherit" fill="#9fb2d9" opacity="0.7">
+          Pre-op
+        </text>
+        <text
+          x="112"
+          y="51"
+          textAnchor="end"
+          fontSize="5"
+          fontFamily="inherit"
+          fill="#9fb2d9"
+          opacity="0.7"
+        >
+          12 months
+        </text>
       </svg>
     </div>
   )

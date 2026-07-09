@@ -3,9 +3,12 @@ import { motion, useReducedMotion } from 'framer-motion'
 /**
  * OrthoPortfolio: a scatter of loose documents files itself into a neat
  * grid of section slots, and a readiness tick lands. Evidence in,
- * submission-ready sections out. Abstract, no real data.
+ * submission-ready sections out.
  */
 const DOCS = [-8, 0, 8]
+/* Illustrative mock content. */
+const SLOTS = ['PBA', 'CBD', 'CPD', 'MSF'] as const
+const DOC_LINES = ['80%', '100%', '60%']
 
 export function OrthoPortfolioDemo() {
   const reduce = useReducedMotion()
@@ -17,7 +20,7 @@ export function OrthoPortfolioDemo() {
         {DOCS.map((r, i) => (
           <motion.span
             key={i}
-            className="absolute inset-x-1 top-1 block h-8 rounded-[3px] border border-hairline bg-ink/15"
+            className="absolute inset-x-1 top-1 flex h-8 flex-col justify-center gap-[3px] rounded-[3px] border border-hairline bg-ink/15 p-1"
             style={{ rotate: r }}
             initial={reduce ? false : { opacity: 0, y: 6 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -25,18 +28,26 @@ export function OrthoPortfolioDemo() {
             transition={
               reduce ? undefined : { duration: 0.35, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }
             }
-          />
+          >
+            {DOC_LINES.map((w, j) => (
+              <span
+                key={j}
+                className="block h-[2px] rounded-full bg-ink/30"
+                style={{ width: w }}
+              />
+            ))}
+          </motion.span>
         ))}
       </div>
 
       <span className="flex-none text-accent/60">&rarr;</span>
 
-      {/* Section slots filling */}
+      {/* Section slots filling. Illustrative mock content. */}
       <div className="grid flex-1 grid-cols-2 gap-1.5">
-        {[0, 1, 2, 3].map((i) => (
+        {SLOTS.map((label, i) => (
           <motion.span
             key={i}
-            className="block h-4 rounded-[4px] border border-accent/30 bg-accent/15"
+            className="flex h-4 items-center justify-center rounded-[4px] border border-accent/30 bg-accent/15 font-mono text-[0.4rem] uppercase tracking-wide text-accent/90"
             initial={reduce ? false : { opacity: 0, scale: 0.7 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.6 }}
@@ -45,7 +56,9 @@ export function OrthoPortfolioDemo() {
                 ? undefined
                 : { duration: 0.3, delay: 0.45 + i * 0.12, ease: [0.16, 1, 0.3, 1] }
             }
-          />
+          >
+            {label}
+          </motion.span>
         ))}
       </div>
 

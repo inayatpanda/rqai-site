@@ -2,8 +2,8 @@ import { motion, useReducedMotion } from 'framer-motion'
 
 /**
  * ResearchAssistant: scattered evidence (a loose cluster of source dots)
- * condenses into manuscript lines that write themselves, finished by a tiny
- * citation chip. Evidence in, cited draft out. Abstract, no real text.
+ * condenses into a single grounded finding, finished by an inline citation
+ * chip. Evidence in, cited draft out.
  */
 const DOTS = [
   { x: 0, y: -10 },
@@ -12,7 +12,6 @@ const DOTS = [
   { x: -10, y: 2 },
   { x: -4, y: -2 },
 ]
-const LINES = ['100%', '92%', '58%']
 
 export function ResearchAssistantDemo() {
   const reduce = useReducedMotion()
@@ -38,35 +37,30 @@ export function ResearchAssistantDemo() {
 
       <span className="flex-none text-accent/60">&rarr;</span>
 
-      {/* Manuscript lines writing themselves */}
-      <div className="flex min-w-0 flex-1 flex-col gap-1.5">
-        {LINES.map((w, i) => (
-          <motion.span
-            key={i}
-            className="block h-1.5 rounded-full bg-ink/25"
-            style={{ width: w, transformOrigin: 'left' }}
-            initial={reduce ? false : { scaleX: 0, opacity: 0 }}
-            whileInView={{ scaleX: 1, opacity: 1 }}
-            viewport={{ once: true, amount: 0.6 }}
-            transition={
-              reduce
-                ? undefined
-                : { duration: 0.45, delay: 0.5 + i * 0.16, ease: [0.16, 1, 0.3, 1] }
-            }
-          />
-        ))}
-      </div>
-
-      {/* Citation chip: the claim is grounded */}
-      <motion.span
-        className="flex-none rounded-md border border-accent/40 bg-accent/10 px-1.5 py-0.5 font-mono text-[0.55rem] font-medium text-accent"
+      {/* The grounded finding, written and cited. Illustrative mock content. */}
+      <motion.div
+        className="min-w-0 max-w-[9rem] rounded-md border border-hairline bg-canvas/60 p-1.5"
         initial={reduce ? false : { opacity: 0, y: 4 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.6 }}
-        transition={reduce ? undefined : { duration: 0.4, delay: 1.15, ease: [0.16, 1, 0.3, 1] }}
+        transition={reduce ? undefined : { duration: 0.45, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
       >
-        [1]
-      </motion.span>
+        <p className="text-[0.5rem] leading-tight text-ink">
+          Early mobilisation reduced pain at 24 hours
+          {/* Citation chip: the claim is grounded */}
+          <motion.span
+            className="ml-1 inline-block rounded-md border border-accent/40 bg-accent/10 px-1 align-baseline font-mono text-[0.5rem] font-medium text-accent"
+            initial={reduce ? false : { opacity: 0, y: 4 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={
+              reduce ? undefined : { duration: 0.4, delay: 1.15, ease: [0.16, 1, 0.3, 1] }
+            }
+          >
+            [1]
+          </motion.span>
+        </p>
+      </motion.div>
     </div>
   )
 }

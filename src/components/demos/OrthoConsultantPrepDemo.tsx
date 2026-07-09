@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 /**
  * OrthoConsultantPrep: a question line sits on a live interview clock; the
  * ring runs down and shifts to the urgency colour, the way the real timed
- * mock does. Abstract, no real text.
+ * mock does.
  */
 export function OrthoConsultantPrepDemo() {
   const reduce = useReducedMotion()
@@ -41,9 +41,13 @@ export function OrthoConsultantPrepDemo() {
         viewport={{ once: true, amount: 0.6 }}
         transition={reduce ? undefined : { duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       >
-        <span className="block h-1.5 w-5/6 rounded-full bg-ink/40" />
-        <span className="mt-1.5 block h-1 w-full rounded-full bg-ink/25" />
-        <span className="mt-1 block h-1 w-1/2 rounded-full bg-ink/25" />
+        {/* Illustrative mock content. */}
+        <span className="block text-[0.5rem] font-medium leading-tight text-ink">
+          Your unit keeps missing the 4-hour target.
+        </span>
+        <span className="mt-1 block text-[0.45rem] leading-tight text-inkMuted">
+          As the new consultant, what do you do?
+        </span>
       </motion.div>
     </div>
   )
