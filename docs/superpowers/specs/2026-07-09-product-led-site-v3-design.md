@@ -33,10 +33,11 @@ Date: 2026-07-09. Owner-approved direction from the findings review of seven cod
 ## 5. Per-product copy directions (from the research briefs)
 
 ### ResearchAssistant (flagship)
-- Identity RULING: a **medical research manuscript assistant** — offline desktop workbench (Mac/Windows) taking a clinical research project from question to finished manuscript. Current products.ts copy is WRONG (describes the separate Literature Decoded project) — full rewrite.
-- Drop "still in development" (owner: ready to sell). Verified facts usable now: runs entirely on-device, encrypted-at-rest local DB, on-device figure generation (bundled matplotlib), offline buy-once Ed25519 key, optional self-hosted sync.
-- Feature list to be enriched after the source repo (owner's old Mac) is studied — BLOCKED on repo access; write the page from verified facts, extend later.
-- Known sales gaps (separate follow-up tasks, not site copy): no `research` entry in fulfil-sales PRODUCT_URLS; no price; spoke site is a placeholder shell.
+- Identity (source-audited): local-first clinical-research workbench — "Evidence, from search to submission." Current products.ts copy is WRONG (describes the separate Literature Decoded project) — full rewrite. Drop "still in development."
+- Hub page = summary + link to the (fully built, client-rendered) spoke site. Lead features, all code-verified: 52 statistical tests validated value-for-value against R (0 failures, committed proof); grounded systematic-review pipeline (30,956-descriptor offline MeSH index, live PubMed counts, PRESS lint, dual screening with live Cohen's κ); synthesis beyond basics (IPD, network MA, survival MA, GRADE); Strict AI with sentence-level citation grounding + integrity flags; local-first (SQLite on your Mac, fully-offline Ollama AI, Tailscale device sync/collaboration). Platforms Mac/Win/Linux. $60/yr, 5 devices, 30-day trial (LemonSqueezy; product creation pending = go-live task).
+- Reuse spoke assets instead of building new demos: port `WorkflowReel.tsx` (self-contained, framer-motion-light, ~1h port) as the page demo; embed/link 1–2 of the 34 self-contained walkthrough HTMLs (best: meta-analysis-walkthrough, systematic-review-from-scratch). Ignore apps/reels + apps/extension in copy.
+- Claim guards: NEVER say "open source" (LICENSE is a proprietary EULA — spoke site's claim is wrong and needs separate fixing); say "simulated Reviewer 2 pass" not "review panel"; don't claim automated end-to-end PRISMA reproduction.
+- Known sales gaps (separate follow-up tasks, not site copy): no `research` entry in fulfil-sales PRODUCT_URLS; LemonSqueezy product not created; spoke "open source" copy correction.
 
 ### ClinicalPROMs (flagship)
 - Name RULING: company site keeps **ClinicalPROMs**, with one "also known as Ortho Outcomes" note (the desktop app + spoke brand).
