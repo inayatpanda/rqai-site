@@ -1,6 +1,7 @@
 import { Head } from 'vite-react-ssg'
 import { Link, useParams } from 'react-router-dom'
 import { Constellation } from '../components/Constellation'
+import { HeroShot } from '../components/HeroShot'
 import { AppCta } from '../components/AppCta'
 import { PRODUCTS, isLive, type Product } from '../data/products'
 import { NotFound } from './NotFound'
@@ -136,7 +137,7 @@ export function AppPage() {
 
   if (!product) return <NotFound />
 
-  const { name, tagline, description, features, price, url, whereLine, Showcase } =
+  const { name, tagline, description, features, price, url, whereLine, Showcase, heroImage } =
     product
   const live = isLive(product.slug)
   const host = (() => {
@@ -147,8 +148,10 @@ export function AppPage() {
     }
   })()
 
-  // One system, alternating rhythm.
-  const demoInBand = index % 2 === 1
+  // One system, alternating rhythm. A phone-framed screenshot reads best beside
+  // the copy, so it never goes in the full-width band.
+  const forceSide = heroImage?.frame === 'phone'
+  const demoInBand = forceSide ? false : index % 2 === 1
   const puncTone: 'accent' | 'ink' = index % 2 === 0 ? 'ink' : 'accent'
 
   const metaTitle = `${name}: ${tidyForMeta(tagline)}`
@@ -177,9 +180,9 @@ export function AppPage() {
   }
 
   const heroText = (
-    <div className={demoInBand ? 'max-w-3xl' : ''}>
+    <div className={demoInBand ? 'max-w-3xl' : 'min-w-0'}>
       <h1
-        className="reveal text-[clamp(2.25rem,6vw,3.75rem)] leading-[1.04]"
+        className="reveal break-words text-[clamp(2rem,5vw,3.25rem)] leading-[1.04]"
         style={{ ['--reveal-delay' as string]: '0.04s' }}
       >
         {name}
@@ -240,25 +243,41 @@ export function AppPage() {
               className="reveal"
               style={{ ['--reveal-delay' as string]: '0.24s' }}
             >
-              <DemoStage
-                product={product}
-                tone={puncTone}
-                className="min-h-[13rem] sm:min-h-[14rem] lg:min-h-[17rem]"
-              />
+              {heroImage ? (
+                <HeroShot
+                  image={heroImage}
+                  tone={puncTone}
+                  className="min-h-[13rem] sm:min-h-[14rem] lg:min-h-[17rem]"
+                />
+              ) : (
+                <DemoStage
+                  product={product}
+                  tone={puncTone}
+                  className="min-h-[13rem] sm:min-h-[14rem] lg:min-h-[17rem]"
+                />
+              )}
             </div>
           </div>
         )}
       </section>
 
-      {/* Full-width demo band (alternating rhythm) */}
+      {/* Full-width visual band (alternating rhythm) */}
       {demoInBand && (
         <section className="container-edge py-8 md:py-10">
-          <DemoStage
-            product={product}
-            tone={puncTone}
-            wide
-            className="min-h-[13rem] md:min-h-[15rem]"
-          />
+          {heroImage ? (
+            <HeroShot
+              image={heroImage}
+              tone={puncTone}
+              className="min-h-[13rem] md:min-h-[15rem]"
+            />
+          ) : (
+            <DemoStage
+              product={product}
+              tone={puncTone}
+              wide
+              className="min-h-[13rem] md:min-h-[15rem]"
+            />
+          )}
         </section>
       )}
 
