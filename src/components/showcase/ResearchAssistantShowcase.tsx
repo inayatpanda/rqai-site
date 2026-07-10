@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { WorkflowReel } from './WorkflowReel'
 
 /*
@@ -22,6 +23,12 @@ const TOURS = [
 ]
 
 export function ResearchAssistantShowcase() {
+  // The reel is a verbatim port from the product's own client-only site and
+  // is not hydration-safe under SSG, so it mounts client-side into a
+  // fixed-height slot (decorative content; the tour links below are SSR'd).
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+
   return (
     <div>
       <h2 className="reveal text-2xl leading-tight md:text-3xl">See the workflow</h2>
@@ -30,7 +37,7 @@ export function ResearchAssistantShowcase() {
         highlight, compile, analyse and write, step by step.
       </p>
       <div className="reveal mt-8 overflow-hidden rounded-2xl border border-hairline bg-[#f8fafc] p-4 md:p-6">
-        <WorkflowReel />
+        {mounted ? <WorkflowReel /> : <div aria-hidden="true" className="h-[22rem]" />}
       </div>
 
       <h3 className="reveal mt-12 text-xl leading-tight md:text-2xl">
