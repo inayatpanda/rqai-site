@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useReducedMotion } from 'framer-motion'
 import { HeroFrame } from './HeroFrame'
+import type { HeroSceneProps, ProductTheme } from '../../data/products'
 
 /*
  * ResearchAssistantHero: an animated project-page hero. A PubMed search
@@ -10,8 +11,24 @@ import { HeroFrame } from './HeroFrame'
  * with reduced motion (and in the prerendered HTML) that whole frame shows
  * statically with no timers.
  *
+ * The scene panel adopts the ResearchAssistant spoke-site palette (a light
+ * workspace with a blue primary and slate ink) so the hand-off to the external
+ * site reads as one continuous surface. Colours arrive as a `theme` prop from
+ * products.ts, with a matching fallback so the component is safe to render bare.
+ *
  * Illustrative mock content.
  */
+
+const RA_THEME: ProductTheme = {
+  accent: '#2563eb',
+  accentInk: '#ffffff',
+  accentBright: '#3b82f6',
+  panelBg: '#fafafa',
+  panelInk: '#1e293b',
+  panelMuted: '#475569',
+  panelLine: '#e2e8f0',
+  panelTint: '#eff6ff',
+}
 
 const BEATS = 4
 const LAST = BEATS - 1
@@ -27,7 +44,19 @@ const MESH_ROWS = [
 ]
 
 /** One MeSH row whose count animates up from zero when it mounts (each cycle). */
-function MeshRow({ term, count, delay, animate }: { term: string; count: number; delay: number; animate: boolean }) {
+function MeshRow({
+  term,
+  count,
+  delay,
+  animate,
+  t,
+}: {
+  term: string
+  count: number
+  delay: number
+  animate: boolean
+  t: ProductTheme
+}) {
   const [shown, setShown] = useState(count)
 
   useEffect(() => {
@@ -36,9 +65,9 @@ function MeshRow({ term, count, delay, animate }: { term: string; count: number;
     let started = 0
     const duration = 680
     setShown(0)
-    const frame = (t: number) => {
-      if (!started) started = t
-      const k = Math.min(1, (t - started) / duration)
+    const frame = (time: number) => {
+      if (!started) started = time
+      const k = Math.min(1, (time - started) / duration)
       const eased = 1 - Math.pow(1 - k, 3)
       setShown(Math.round(count * eased))
       if (k < 1) raf = requestAnimationFrame(frame)
@@ -50,25 +79,31 @@ function MeshRow({ term, count, delay, animate }: { term: string; count: number;
 
   return (
     <div
-      className="ra-mesh flex items-center justify-between gap-3 rounded-md border border-hairline bg-card/60 px-3 py-1"
-      style={{ ['--d' as string]: `${delay}ms` }}
+      className="ra-mesh flex items-center justify-between gap-3 rounded-md border px-3 py-1"
+      style={{ ['--d' as string]: `${delay}ms`, backgroundColor: '#ffffff', borderColor: t.panelLine }}
     >
-      <span className="min-w-0 truncate font-mono text-xs text-ink">{term}</span>
-      <span className="flex-none font-mono text-xs font-semibold tabular-nums text-accent">
+      <span className="min-w-0 truncate font-mono text-xs" style={{ color: t.panelInk }}>
+        {term}
+      </span>
+      <span
+        className="flex-none font-mono text-xs font-semibold tabular-nums"
+        style={{ color: t.accent }}
+      >
         {groupDigits(shown)}
       </span>
     </div>
   )
 }
 
-export function ResearchAssistantHero() {
+export function ResearchAssistantHero({ theme = RA_THEME }: HeroSceneProps = {}) {
+  const t = theme
   const reduce = useReducedMotion() === true
   const [step, setStep] = useState(LAST) // prerender + first paint show the complete final beat
 
   useEffect(() => {
     if (reduce) return
-    const t = window.setTimeout(() => setStep((s) => s + 1), DURATIONS[step % BEATS])
-    return () => window.clearTimeout(t)
+    const timer = window.setTimeout(() => setStep((s) => s + 1), DURATIONS[step % BEATS])
+    return () => window.clearTimeout(timer)
   }, [step, reduce])
 
   const beat = step % BEATS
@@ -78,54 +113,70 @@ export function ResearchAssistantHero() {
     <HeroFrame frame="browser" host="researchassistant.rqai.co.uk" tone="accent">
       <div
         aria-hidden="true"
-        className={`ra-root relative h-[19rem] overflow-hidden bg-canvas p-4 md:h-[21rem] md:p-5 ${reduce ? '' : 'ra-play'}`}
+        className={`ra-root relative h-[19rem] overflow-hidden p-4 md:h-[21rem] md:p-5 ${reduce ? '' : 'ra-play'}`}
+        style={{ backgroundColor: t.panelBg }}
       >
-        <style>{RA_CSS}</style>
+        <style>{raCss(t.accent)}</style>
 
         <div key={cycle} className="flex h-full flex-col gap-2 md:gap-2.5">
-          <div className="ra-eyebrow font-mono text-[0.65rem] uppercase tracking-label text-inkMuted">
+          <div className="ra-eyebrow font-mono text-[0.65rem] uppercase tracking-label" style={{ color: t.panelMuted }}>
             Term Workbench
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <div className="ra-chip flex items-baseline gap-2 rounded-md border border-hairline bg-card px-3 py-1" style={{ ['--d' as string]: '80ms' }}>
-              <span className="flex-none text-xs font-semibold text-accent">Population:</span>
-              <span className="text-xs text-ink">adults undergoing knee replacement</span>
+            <div
+              className="ra-chip flex items-baseline gap-2 rounded-md border px-3 py-1"
+              style={{ ['--d' as string]: '80ms', backgroundColor: '#ffffff', borderColor: t.panelLine }}
+            >
+              <span className="flex-none text-xs font-semibold" style={{ color: t.accent }}>Population:</span>
+              <span className="text-xs" style={{ color: t.panelInk }}>adults undergoing knee replacement</span>
             </div>
-            <div className="ra-chip flex items-baseline gap-2 rounded-md border border-hairline bg-card px-3 py-1" style={{ ['--d' as string]: '220ms' }}>
-              <span className="flex-none text-xs font-semibold text-accent">Intervention:</span>
-              <span className="text-xs text-ink">tranexamic acid</span>
+            <div
+              className="ra-chip flex items-baseline gap-2 rounded-md border px-3 py-1"
+              style={{ ['--d' as string]: '220ms', backgroundColor: '#ffffff', borderColor: t.panelLine }}
+            >
+              <span className="flex-none text-xs font-semibold" style={{ color: t.accent }}>Intervention:</span>
+              <span className="text-xs" style={{ color: t.panelInk }}>tranexamic acid</span>
             </div>
           </div>
 
           {beat >= 1 && (
             <div className="flex flex-col gap-1">
               {MESH_ROWS.map((row) => (
-                <MeshRow key={row.term} term={row.term} count={row.count} delay={row.delay} animate={!reduce} />
+                <MeshRow key={row.term} term={row.term} count={row.count} delay={row.delay} animate={!reduce} t={t} />
               ))}
             </div>
           )}
 
           {beat >= 2 && (
             <div className="flex flex-col gap-1.5">
-              <div className="ra-query flex items-center justify-between gap-2 rounded-md border border-hairline bg-card px-3 py-1">
-                <span className="font-mono text-sm text-ink">#1 AND #2 AND #3</span>
-                <span className="ra-run flex-none rounded-full bg-accent px-2.5 py-1 text-xs font-semibold text-canvas">
+              <div
+                className="ra-query flex items-center justify-between gap-2 rounded-md border px-3 py-1"
+                style={{ backgroundColor: '#ffffff', borderColor: t.panelLine }}
+              >
+                <span className="font-mono text-sm" style={{ color: t.panelInk }}>#1 AND #2 AND #3</span>
+                <span
+                  className="ra-run flex-none rounded-full px-2.5 py-1 text-xs font-semibold"
+                  style={{ backgroundColor: t.accent, color: t.accentInk }}
+                >
                   Run on PubMed
                 </span>
               </div>
-              <div className="font-mono text-xs text-inkMuted">
+              <div className="font-mono text-xs" style={{ color: t.panelMuted }}>
                 <span className="ra-type">428 records retrieved</span>
               </div>
             </div>
           )}
 
           {beat >= 3 && (
-            <div className="ra-strip mt-auto flex items-center gap-2 rounded-md border border-accent/30 bg-accent/10 px-3 py-1.5">
+            <div
+              className="ra-strip mt-auto flex items-center gap-2 rounded-md border px-3 py-1.5"
+              style={{ backgroundColor: t.panelTint, borderColor: t.accent }}
+            >
               <svg viewBox="0 0 16 16" className="ra-tick h-4 w-4 flex-none" fill="none" aria-hidden="true">
-                <path d="M3 8.5 6.3 12 13 5" stroke="#45d5f2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M3 8.5 6.3 12 13 5" stroke={t.accent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span className="text-xs text-ink">Screened 428 &middot; Included 12 &middot; Cohen&apos;s kappa 0.82</span>
+              <span className="text-xs" style={{ color: t.panelInk }}>Screened 428 &middot; Included 12 &middot; Cohen&apos;s kappa 0.82</span>
             </div>
           )}
         </div>
@@ -134,7 +185,7 @@ export function ResearchAssistantHero() {
   )
 }
 
-const RA_CSS = `
+const raCss = (accent: string) => `
 .ra-play .ra-eyebrow{animation:raIn .5s ease both}
 .ra-play .ra-chip{animation:raSlide .5s cubic-bezier(.16,1,.3,1) both;animation-delay:var(--d,0ms)}
 .ra-play .ra-mesh{animation:raSlide .5s cubic-bezier(.16,1,.3,1) both;animation-delay:var(--d,0ms)}
@@ -149,6 +200,6 @@ const RA_CSS = `
 @keyframes raSlide{from{opacity:0;transform:translateY(10px)}}
 @keyframes raPop{from{opacity:0;transform:scale(.9)}}
 @keyframes raType{from{width:0}}
-@keyframes raCaret{0%,100%{border-color:transparent}50%{border-color:#45d5f2}}
+@keyframes raCaret{0%,100%{border-color:transparent}50%{border-color:${accent}}}
 @keyframes raPulse{0%,100%{transform:scale(1)}45%{transform:scale(1.07)}}
 `

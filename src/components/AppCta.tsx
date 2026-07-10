@@ -48,11 +48,19 @@ export function AppCta({ product, className = '' }: { product: Product; classNam
   const { name, slug, url } = product
 
   if (isLive(slug)) {
+    // Where a project has a spoke-site palette, the CTA adopts its accent so the
+    // hand-off to that site is unmistakable. The accent + accentInk pair is
+    // WCAG AA verified as a solid button (see products.ts ProductTheme).
     return (
       <a
         href={url}
         target="_blank"
         rel="noopener noreferrer"
+        style={
+          product.theme
+            ? { backgroundColor: product.theme.accent, color: product.theme.accentInk }
+            : undefined
+        }
         className={`group inline-flex items-center gap-2.5 rounded-full bg-accent px-6 py-3.5 text-base font-semibold text-canvas shadow-lift transition-transform duration-300 ease-out-soft hover:-translate-y-0.5 ${className}`}
       >
         Open {name}

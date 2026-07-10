@@ -8,45 +8,58 @@
 
 ## Projects
 
-- [ResearchAssistant](https://rqai.co.uk/researchassistant/): a local-first
-  clinical research workbench for Mac, Windows and Linux. Carries a study
-  from question to submitted manuscript: PubMed-wired library, guided
-  systematic reviews (offline MeSH search builder, dual screening with live
-  Cohen's kappa, risk of bias, meta-analysis, GRADE), 52 statistical tests
-  validated value for value against R, strict AI drafting that grounds every
-  claim to a sentence in the user's library, offline AI via Ollama, and
-  one-click submission packets. £99 a year. Full site:
-  https://researchassistant.rqai.co.uk
+- [ResearchAssistant](https://rqai.co.uk/researchassistant/): one desktop app
+  for Mac, Windows and Linux that carries a clinical research project from
+  question to submitted manuscript. Build a PubMed search from an offline MeSH
+  index of 30,956 terms, screen with a live Cohen's kappa, then run risk of
+  bias, meta-analysis and GRADE; 52 statistical tests validated value for value
+  against R; strict AI drafting that grounds every claim to a sentence in the
+  user's library; a simulated Reviewer 2 critique and one-click submission
+  packets; AI can run fully offline via Ollama. Projects stay on the user's own
+  machine. £99 a year. Full site: https://researchassistant.rqai.co.uk
 - [ClinicalPROMs](https://rqai.co.uk/clinicalproms/): self-hosted software
-  (also known as Ortho Outcomes) for collecting and tracking validated
-  patient-reported outcome measures in orthopaedics. Twenty validated
-  instruments scored exactly as published with MCID thresholds, photo
-  capture of theatre lists, end-to-end encrypted patient questionnaires,
-  outcome trajectories over time. Runs on the surgeon's own Mac or Windows
-  PC; one licence, no per-seat fees. £199 a year. Full site:
-  https://clinicalproms.rqai.co.uk
+  (also known as Ortho Outcomes) for orthopaedic surgeons and departments to
+  collect and track validated patient-reported outcomes. Photograph a theatre
+  or clinic list to create structured cases; twenty validated instruments from
+  the Oxford scores to EQ-5D-5L scored exactly as published, with MCID
+  thresholds and concern bands and each patient's recovery plotted as a
+  trajectory; end-to-end encrypted patient questionnaires whose key never
+  reaches a server. Runs on the surgeon's own Mac or Windows PC; one licence,
+  no per-seat fees. £199 a year. Full site: https://clinicalproms.rqai.co.uk
 - [Chapbook](https://rqai.co.uk/chapbook/): write a blog from a phone in a
-  chat-style composer, with photos, video embeds, 75 interactive widgets and
-  six themes; posts commit to the user's own repository and deploy to their
-  own domain. No platform holds the content. £49 a year. App:
+  chat-style composer where each message is a paragraph, with on-device photos,
+  video embeds, 75 interactive widgets and six reading surfaces; publishing is
+  a real commit to the user's own repository, deployed to their own domain with
+  no Chapbook server in between. An AI drafts in a voice learned from the user's
+  recent posts and never posts on its own. £49 a year. App:
   https://chapbook.rqai.co.uk
 - [OrthoPortfolio](https://rqai.co.uk/orthoportfolio/): compiles a
   submission-ready GMC Portfolio Pathway application for Trauma and
-  Orthopaedics: redaction with PII detection and verification, automatic
-  filing against the T&O requirements, indexed section bundles, readiness
-  dashboard. £49 a year. App: https://orthoportfolio.rqai.co.uk
+  Orthopaedics. It knows the T&O curriculum (13 index procedures, 14 critical
+  conditions, the CiP structured reports), files each document against the
+  right requirement, redacts patient details and verifies no recoverable text
+  remains, then builds indexed per-section PDF bundles with a readiness
+  dashboard, gap list and printable checklist. Runs on the user's own device.
+  £49 a year. App: https://orthoportfolio.rqai.co.uk
 - [OrthoConsultantPrep](https://rqai.co.uk/consultantprep/): preparation for
-  the UK T&O consultant interview: 237 questions with model answers, timed
-  three-minute mock interviews, Trust Prep matched to 20 real trust
-  profiles. £49 one-off. App: https://consultantprep.rqai.co.uk
-- [AudioQuill](https://rqai.co.uk/audioquill/): a voice-to-writing studio
-  with on-device Whisper transcription, non-destructive AI cleanup over a
-  preserved raw transcript, 44 templates and 49 voice commands. £29 a year.
+  the UK T&O substantive consultant interview: 237 questions across 15
+  categories with model answers, delivery advice and key statistics; a timed
+  ten-question mock on a three-minute clock; Trust Prep matched to 20 real
+  trust profiles using their published CQC, GIRFT and NHFD signals. £49 one-off.
+  App: https://consultantprep.rqai.co.uk
+- [AudioQuill](https://rqai.co.uk/audioquill/): turns speech into clean,
+  structured writing. On-device Whisper transcription (free and offline) or
+  bring-your-own-key AI; the raw transcript is preserved while cleaned versions
+  layer on top; 44 templates and 49 spoken commands; topics compile scattered
+  recordings into one document exported to DOCX, PDF or Markdown. £29 a year.
   App: https://audioquill.rqai.co.uk
-- [Scribble](https://rqai.co.uk/scribble/): a private, on-device notebook of
-  typed blocks with stickers, figures and interactive playgrounds; optional
-  bring-your-own-key AI; publishing and sync through the user's own
-  repositories. £29 a year. App: https://scribble.rqai.co.uk
+- [Scribble](https://rqai.co.uk/scribble/): a notebook built from typed blocks
+  (text, headings, quotes, images, figures, 211 stickers, sandboxed interactive
+  playgrounds) with a live preview; optional bring-your-own-key AI across seven
+  providers; publish a note to the user's own website repository and sync
+  devices through a private repository they control; plus a calendar planner and
+  on-device video reels. Runs in any browser and installs on iOS and Android.
+  £29 a year. App: https://scribble.rqai.co.uk
 
 ## About
 

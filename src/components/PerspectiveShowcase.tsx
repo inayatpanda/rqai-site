@@ -185,13 +185,13 @@ export function PerspectiveShowcase() {
 
       <div className="container-edge relative">
         <h2 id={headingId} className="reveal max-w-2xl text-3xl leading-tight md:text-4xl">
-          Seven projects, each doing one job well.
+          Seven projects, each built to do real work.
         </h2>
         <p
           className="reveal mt-4 max-w-[52ch] text-base leading-relaxed text-ink"
           style={{ ['--reveal-delay' as string]: '0.06s' }}
         >
-          Each one is its own tool, made for one audience and one job. Open a
+          Each one is its own tool, made for a specific person and moment. Open a
           project to see what it does, how it works and where to get it.
         </p>
 

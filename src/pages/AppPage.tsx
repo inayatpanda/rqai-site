@@ -128,7 +128,7 @@ export function AppPage() {
 
   if (!product) return <NotFound />
 
-  const { name, tagline, description, features, price, url, whereLine, Showcase, HeroScene } =
+  const { name, tagline, description, features, price, url, whereLine, Showcase, HeroScene, theme } =
     product
   const live = isLive(product.slug)
   const host = (() => {
@@ -237,7 +237,7 @@ export function AppPage() {
             style={{ ['--reveal-delay' as string]: '0.24s' }}
           >
             {HeroScene ? (
-              <HeroScene />
+              <HeroScene theme={theme} />
             ) : (
               <DemoStage
                 product={product}
@@ -277,6 +277,11 @@ export function AppPage() {
               <span
                 aria-hidden="true"
                 className="mt-2 h-2 w-2 flex-none rounded-full bg-accent shadow-[0_0_8px_#45d5f2]"
+                style={
+                  theme
+                    ? { backgroundColor: theme.accentBright, boxShadow: `0 0 8px ${theme.accentBright}` }
+                    : undefined
+                }
               />
               <p className="leading-relaxed text-ink">{feature}</p>
             </li>

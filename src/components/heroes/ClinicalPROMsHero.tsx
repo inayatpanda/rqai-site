@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useReducedMotion } from 'framer-motion'
 import { HeroFrame } from './HeroFrame'
+import type { HeroSceneProps, ProductTheme } from '../../data/products'
 
 /*
  * ClinicalPROMsHero: an animated project-page hero laid out as a landscape
@@ -11,8 +12,28 @@ import { HeroFrame } from './HeroFrame'
  * the final beat is that encryption card, so with reduced motion (and in the
  * prerendered HTML) the whole frame shows statically with no timers.
  *
+ * The scene panel adopts the ClinicalPROMs (Ortho Outcomes) spoke-site palette
+ * (a white clinical canvas, cyan primary, deep-teal ink and an emerald outcome
+ * cue) so the hand-off to the external site reads as one continuous surface.
+ * Colours arrive as a `theme` prop from products.ts, with a matching fallback so
+ * the component is safe to render bare.
+ *
  * Illustrative mock content.
  */
+
+const PROMS_THEME: ProductTheme = {
+  accent: '#0e7490',
+  accentInk: '#ffffff',
+  accentBright: '#22d3ee',
+  panelBg: '#ffffff',
+  panelInk: '#0c3a47',
+  panelMuted: '#3f5b65',
+  panelLine: '#d6eef5',
+  panelTint: '#ecfeff',
+}
+
+/** Emerald "outcome / improvement" cue, drawn from the spoke's accent colour. */
+const OUTCOME = '#047857'
 
 const BEATS = 3
 const LAST = BEATS - 1
@@ -33,14 +54,15 @@ const QUESTIONS = [
   },
 ]
 
-export function ClinicalPROMsHero() {
+export function ClinicalPROMsHero({ theme = PROMS_THEME }: HeroSceneProps = {}) {
+  const t = theme
   const reduce = useReducedMotion() === true
   const [step, setStep] = useState(LAST) // prerender + first paint show the complete final beat
 
   useEffect(() => {
     if (reduce) return
-    const t = window.setTimeout(() => setStep((s) => s + 1), DURATIONS[step % BEATS])
-    return () => window.clearTimeout(t)
+    const timer = window.setTimeout(() => setStep((s) => s + 1), DURATIONS[step % BEATS])
+    return () => window.clearTimeout(timer)
   }, [step, reduce])
 
   const beat = step % BEATS
@@ -52,46 +74,49 @@ export function ClinicalPROMsHero() {
     <HeroFrame frame="browser" host="clinicalproms.rqai.co.uk" tone="ink">
       <div
         aria-hidden="true"
-        className={`pm-root relative h-[19rem] overflow-hidden bg-canvas p-4 md:h-[21rem] md:p-5 ${reduce ? '' : 'pm-play'}`}
+        className={`pm-root relative h-[19rem] overflow-hidden p-4 md:h-[21rem] md:p-5 ${reduce ? '' : 'pm-play'}`}
+        style={{ backgroundColor: t.panelBg }}
       >
-        <style>{PM_CSS}</style>
+        <style>{pmCss(t.panelLine, t.panelMuted)}</style>
 
         <div key={cycle} className="flex h-full min-h-0 gap-4 md:gap-5">
           {/* Left pane: the questionnaire */}
           <div className="flex min-h-0 min-w-0 flex-col overflow-hidden flex-[58_1_0%]">
-            <div className="text-sm font-semibold text-inkStrong">Oxford Knee Score</div>
+            <div className="text-sm font-semibold" style={{ color: t.panelInk }}>Oxford Knee Score</div>
 
-            <div className="mt-2 flex items-center justify-between font-mono text-[0.62rem] text-inkMuted">
+            <div className="mt-2 flex items-center justify-between font-mono text-[0.62rem]" style={{ color: t.panelMuted }}>
               <span className="uppercase tracking-label">Progress</span>
               <span>{q.progress.label}</span>
             </div>
-            <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-hairline/60">
-              <span className="pm-bar block h-full rounded-full bg-accent" style={{ width: `${q.progress.pct}%` }} />
+            <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full" style={{ backgroundColor: t.panelLine }}>
+              <span className="pm-bar block h-full rounded-full" style={{ width: `${q.progress.pct}%`, backgroundColor: t.accent }} />
             </div>
 
             <div
               key={`q-${beat}`}
-              className="pm-card mt-3 flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl border border-hairline bg-card p-3"
+              className="pm-card mt-3 flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl border p-3"
+              style={{ backgroundColor: '#ffffff', borderColor: t.panelLine }}
             >
-              <p className="text-[0.82rem] font-medium leading-snug text-ink">{q.prompt}</p>
+              <p className="text-[0.82rem] font-medium leading-snug" style={{ color: t.panelInk }}>{q.prompt}</p>
               <div className="mt-3 flex flex-col gap-1.5">
                 {q.options.map((option, i) => {
                   const chosen = i === q.selected
                   return (
                     <div
                       key={option}
-                      className={`pm-opt flex items-center gap-2 rounded-lg border px-3 py-1.5 ${
-                        chosen ? 'pm-chosen border-accent/50 bg-accent/10' : 'border-hairline'
-                      }`}
+                      className={`pm-opt flex items-center gap-2 rounded-lg border px-3 py-1.5 ${chosen ? 'pm-chosen' : ''}`}
+                      style={{
+                        borderColor: chosen ? t.accent : t.panelLine,
+                        backgroundColor: chosen ? t.panelTint : 'transparent',
+                      }}
                     >
                       <span
-                        className={`pm-radio flex h-3.5 w-3.5 flex-none items-center justify-center rounded-full border-2 ${
-                          chosen ? 'border-accent' : 'border-inkMuted/50'
-                        }`}
+                        className="pm-radio flex h-3.5 w-3.5 flex-none items-center justify-center rounded-full border-2"
+                        style={{ borderColor: chosen ? t.accent : t.panelMuted }}
                       >
-                        {chosen && <span className="pm-dot h-1.5 w-1.5 rounded-full bg-accent" />}
+                        {chosen && <span className="pm-dot h-1.5 w-1.5 rounded-full" style={{ backgroundColor: t.accent }} />}
                       </span>
-                      <span className="text-[0.76rem] text-ink">{option}</span>
+                      <span className="text-[0.76rem]" style={{ color: t.panelInk }}>{option}</span>
                     </div>
                   )
                 })}
@@ -100,23 +125,32 @@ export function ClinicalPROMsHero() {
           </div>
 
           {/* Right pane: instrument summary + encryption */}
-          <div className="flex min-h-0 min-w-0 flex-col gap-3 overflow-hidden border-l border-hairline pl-4 flex-[42_1_0%] md:pl-5">
-            <div className="pm-sum rounded-xl border border-hairline bg-card p-3">
-              <span className="inline-flex items-center rounded-full border border-accent/40 bg-accent/10 px-2.5 py-0.5 text-[0.62rem] font-medium text-accent">
+          <div
+            className="flex min-h-0 min-w-0 flex-col gap-3 overflow-hidden border-l pl-4 flex-[42_1_0%] md:pl-5"
+            style={{ borderColor: t.panelLine }}
+          >
+            <div className="pm-sum rounded-xl border p-3" style={{ backgroundColor: '#ffffff', borderColor: t.panelLine }}>
+              <span
+                className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-[0.62rem] font-medium"
+                style={{ borderColor: t.accent, backgroundColor: t.panelTint, color: t.accent }}
+              >
                 Validated instrument
               </span>
-              <p className="mt-2 text-[0.74rem] leading-snug text-inkMuted">Scored exactly as published</p>
+              <p className="mt-2 text-[0.74rem] leading-snug" style={{ color: t.panelMuted }}>Scored exactly as published</p>
             </div>
 
             {complete && (
-              <div className="pm-enc flex min-h-0 flex-1 flex-col items-center justify-center gap-2 rounded-xl border border-accent/30 bg-accent/10 p-4 text-center">
+              <div
+                className="pm-enc flex min-h-0 flex-1 flex-col items-center justify-center gap-2 rounded-xl border p-4 text-center"
+                style={{ backgroundColor: t.panelTint, borderColor: t.accent }}
+              >
                 <svg viewBox="0 0 48 48" className="h-12 w-12" fill="none" aria-hidden="true">
                   <circle
                     className="pm-seal"
                     cx="24"
                     cy="24"
                     r="20"
-                    stroke="#45d5f2"
+                    stroke={t.accent}
                     strokeWidth="2.4"
                     strokeLinecap="round"
                     pathLength={100}
@@ -124,16 +158,19 @@ export function ClinicalPROMsHero() {
                   <path
                     className="pm-check"
                     d="M15 24.5 21.5 31 33 18"
-                    stroke="#45d5f2"
+                    stroke={t.accent}
                     strokeWidth="2.8"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     pathLength={100}
                   />
                 </svg>
-                <p className="text-[0.8rem] font-semibold text-inkStrong">Answers encrypted on this phone</p>
-                <p className="text-[0.68rem] leading-snug text-inkMuted">The key never leaves your device.</p>
-                <span className="pm-badge rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-[0.7rem] font-medium text-accent">
+                <p className="text-[0.8rem] font-semibold" style={{ color: t.panelInk }}>Answers encrypted on this phone</p>
+                <p className="text-[0.68rem] leading-snug" style={{ color: t.panelMuted }}>The key never leaves your device.</p>
+                <span
+                  className="pm-badge rounded-full px-3 py-1 text-[0.7rem] font-medium"
+                  style={{ backgroundColor: OUTCOME, color: '#ffffff' }}
+                >
                   Submitted &#10003;
                 </span>
               </div>
@@ -145,7 +182,7 @@ export function ClinicalPROMsHero() {
   )
 }
 
-const PM_CSS = `
+const pmCss = (line: string, muted: string) => `
 .pm-play .pm-bar{transition:width .6s cubic-bezier(.16,1,.3,1)}
 .pm-play .pm-card{animation:pmCard .5s cubic-bezier(.16,1,.3,1) both}
 .pm-play .pm-sum{animation:pmCard .5s cubic-bezier(.16,1,.3,1) both}
@@ -160,8 +197,8 @@ const PM_CSS = `
 .pm-play .pm-check{animation:pmDraw .4s ease .5s both}
 .pm-play .pm-badge{animation:pmPop .4s cubic-bezier(.16,1,.3,1) .95s both}
 @keyframes pmCard{from{opacity:0;transform:translateY(14px)}}
-@keyframes pmRow{from{background-color:transparent;border-color:#2e4374}}
-@keyframes pmRing{from{border-color:#93a2c8}}
+@keyframes pmRow{from{background-color:transparent;border-color:${line}}}
+@keyframes pmRing{from{border-color:${muted}}}
 @keyframes pmDot{from{transform:scale(0)}}
 @keyframes pmDraw{from{stroke-dashoffset:100}}
 @keyframes pmPop{from{opacity:0;transform:scale(.85)}}

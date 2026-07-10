@@ -263,7 +263,7 @@ function Footer() {
         <div className="max-w-sm">
           <Wordmark />
           <p className="mt-4 text-sm leading-relaxed text-ink">
-            Focused, local-first software for clinicians, researchers and writers.
+            Tools that respect your work, for clinicians, researchers and writers.
           </p>
           <a
             href={`mailto:${CONTACT_EMAIL}`}

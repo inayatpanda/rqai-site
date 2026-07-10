@@ -28,7 +28,7 @@ export function Home() {
     url: 'https://rqai.co.uk/',
     email: 'hello@rqai.co.uk',
     description:
-      'Focused, local-first software for clinicians, researchers and writers.',
+      'Tools that respect your work: software for clinicians, researchers and writers, built carefully and kept on your own device.',
   }
 
   return (
@@ -108,9 +108,9 @@ export function Home() {
           />
           <div className="relative flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <p className="max-w-2xl text-lg leading-relaxed text-ink">
-              Every project here is built the same way: local-first, honest about what
-              it does, and careful with your data. Nothing is claimed on these pages
-              that is not already in the software.
+              Every project here is built the same way: real features, honest about
+              what they do, kept on your own device and careful with your data.
+              Nothing is claimed on these pages that is not already in the software.
             </p>
             <Link
               to="/about"

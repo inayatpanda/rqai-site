@@ -3,7 +3,7 @@ import { Constellation } from '../components/Constellation'
 
 const ABOUT_TITLE = 'About RQAI: how these projects are built'
 const ABOUT_DESCRIPTION =
-  'The principles behind every RQAI project: one job done well, local-first, no tracking, and nothing claimed that is not built.'
+  'The principles behind every RQAI project: real, shipping features, your data kept on your own device, no tracking, and nothing claimed that is not built.'
 
 /*
  * About — the page that carries RQAI's voice: principles over persona.
@@ -21,8 +21,8 @@ const ABOUT_DESCRIPTION =
 
 const COMMITMENTS: Array<{ title: string; body: string }> = [
   {
-    title: 'One job, done well.',
-    body: 'Each project sets out to do one thing and do it properly, then stay out of your way. Nothing here grows into a suite you have to manage or a platform you never finish learning. A tool you understand in an afternoon is worth more than one you never master.',
+    title: 'Real tools, not demos.',
+    body: 'Each project is a complete tool for the work in front of you, with the range its users actually need. Every feature described on these pages is built and shipping, not a mock-up or a promise. A tool you understand in an afternoon and still grow into is worth more than a suite you never finish learning.',
   },
   {
     title: 'Local-first. Your data stays with you.',
