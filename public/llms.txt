@@ -12,8 +12,8 @@
   for Mac, Windows and Linux that carries a clinical research project from
   question to submitted manuscript. Build a PubMed search from an offline MeSH
   index of 30,956 terms, screen with a live Cohen's kappa, then run risk of
-  bias, meta-analysis and GRADE; 52 statistical tests validated value for value
-  against R; strict AI drafting that grounds every claim to a sentence in the
+  bias, meta-analysis and GRADE; 52 statistical tests, each validated
+  against the same run in R; strict AI drafting that grounds every claim to a sentence in the
   user's library; a simulated Reviewer 2 critique and one-click submission
   packets; AI can run fully offline via Ollama. Projects stay on the user's own
   machine. £99 a year. Full site: https://researchassistant.rqai.co.uk
