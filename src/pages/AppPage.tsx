@@ -8,15 +8,16 @@ import { NotFound } from './NotFound'
 /*
  * AppPage — one data-driven template for all seven project pages.
  *
- * Per product it renders: a factual pitch paragraph (description), 3–5 feature
- * bullets, the micro-demo ENLARGED as the visual centrepiece, a price line when
+ * Per product it renders: a factual pitch paragraph (description), 3-5 feature
+ * bullets, the animated hero scene beside the title, a price line when
  * a price is verified, the AppCta ("Open <name>" when live, an on-brand
  * "coming soon" state otherwise), a back-link home and a strip cross-linking the
  * other six projects.
  *
- * One coherent system, varied rhythm: the demo alternates between a hero-side
- * stage (even index) and a full-width band (odd index), and the constellation
- * punctuation alternates tone, so no two consecutive pages read identically.
+ * One coherent system, uniform layout: every page renders the hero as the same
+ * two-column grid, the title and animated scene side by side, so the container
+ * size reads identically across all seven projects. The constellation
+ * punctuation alternates tone so no two consecutive pages read identically.
  *
  * No-JS legibility: every piece of page COPY uses the pure-CSS `.reveal` class
  * (its hidden start state lives only inside a prefers-reduced-motion:no-preference
@@ -92,13 +93,10 @@ function BackLink() {
 function DemoStage({
   product,
   tone,
-  wide = false,
   className = '',
 }: {
   product: Product
   tone: 'accent' | 'ink'
-  /** Full-width band variant: the demo gets a larger stage presence. */
-  wide?: boolean
   className?: string
 }) {
   const { Demo } = product
@@ -116,13 +114,7 @@ function DemoStage({
       />
       {/* Scaled up from its natural size; the wrapper width x scale is kept
           within the smallest stage so nothing is clipped. */}
-      <div
-        className={
-          wide
-            ? 'relative w-48 scale-[1.5] sm:w-72 sm:scale-[2.0] lg:w-[22rem] lg:scale-[2.2]'
-            : 'relative w-48 scale-[1.5] sm:w-56 sm:scale-[1.7] lg:w-60 lg:scale-[1.9]'
-        }
-      >
+      <div className="relative w-48 scale-[1.5] sm:w-56 sm:scale-[1.7] lg:w-60 lg:scale-[1.9]">
         <Demo />
       </div>
     </div>
@@ -147,10 +139,8 @@ export function AppPage() {
     }
   })()
 
-  // One system, alternating rhythm. A phone-framed scene reads best beside the
-  // copy, so it never goes in the full-width band.
-  const forceSide = product.heroAside === true
-  const demoInBand = forceSide ? false : index % 2 === 1
+  // One system, uniform layout: every hero is the same title-beside-scene grid.
+  // The pitch-section constellation still alternates tone by index.
   const puncTone: 'accent' | 'ink' = index % 2 === 0 ? 'ink' : 'accent'
 
   const metaTitle = `${name}: ${tidyForMeta(tagline)}`
@@ -178,10 +168,17 @@ export function AppPage() {
     publisher: { '@type': 'Organization', name: 'RQAI', url: 'https://rqai.co.uk/' },
   }
 
+  // Size the H1 by name length so long single-word names (OrthoConsultantPrep,
+  // ResearchAssistant) never break mid-word beside the scene.
+  const heroTitleSize =
+    name.length > 14
+      ? 'text-[clamp(1.7rem,3.4vw,2.7rem)]'
+      : 'text-[clamp(2rem,5vw,3.25rem)]'
+
   const heroText = (
-    <div className={demoInBand ? 'max-w-3xl' : 'min-w-0'}>
+    <div className="min-w-0">
       <h1
-        className="reveal break-words text-[clamp(2rem,5vw,3.25rem)] leading-[1.04]"
+        className={`reveal ${heroTitleSize} leading-[1.04]`}
         style={{ ['--reveal-delay' as string]: '0.04s' }}
       >
         {name}
@@ -226,51 +223,31 @@ export function AppPage() {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Head>
 
-      {/* Hero */}
-      <section className="container-edge pb-4 pt-10 md:pb-8 md:pt-14">
+      {/* Hero: uniform title-beside-scene grid on every project page */}
+      <section className="container-edge pb-4 pt-5 md:pb-8 md:pt-7">
         <div className="flex items-center justify-between gap-4">
           <BackLink />
           <StatusPill live={live} />
         </div>
 
-        {demoInBand ? (
-          <div className="mt-9 md:mt-12">{heroText}</div>
-        ) : (
-          <div className="mt-9 grid items-center gap-10 md:mt-12 lg:grid-cols-2 lg:gap-14">
-            {heroText}
-            <div
-              className="reveal"
-              style={{ ['--reveal-delay' as string]: '0.24s' }}
-            >
-              {HeroScene ? (
-                <HeroScene />
-              ) : (
-                <DemoStage
-                  product={product}
-                  tone={puncTone}
-                  className="min-h-[13rem] sm:min-h-[14rem] lg:min-h-[17rem]"
-                />
-              )}
-            </div>
+        <div className="mt-5 grid items-center gap-10 md:mt-7 lg:grid-cols-2 lg:gap-14">
+          {heroText}
+          <div
+            className="reveal"
+            style={{ ['--reveal-delay' as string]: '0.24s' }}
+          >
+            {HeroScene ? (
+              <HeroScene />
+            ) : (
+              <DemoStage
+                product={product}
+                tone={puncTone}
+                className="min-h-[13rem] sm:min-h-[14rem] lg:min-h-[17rem]"
+              />
+            )}
           </div>
-        )}
+        </div>
       </section>
-
-      {/* Full-width visual band (alternating rhythm) */}
-      {demoInBand && (
-        <section className="container-edge py-8 md:py-10">
-          {HeroScene ? (
-            <HeroScene />
-          ) : (
-            <DemoStage
-              product={product}
-              tone={puncTone}
-              wide
-              className="min-h-[13rem] md:min-h-[15rem]"
-            />
-          )}
-        </section>
-      )}
 
       {/* Pitch — the factual one-paragraph description */}
       <section className="container-edge py-10 md:py-14">

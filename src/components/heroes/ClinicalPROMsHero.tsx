@@ -58,11 +58,11 @@ export function ClinicalPROMsHero() {
 
         {!complete && (
           <>
-            <div className="mt-2 flex items-center justify-between font-mono text-[0.62rem] text-inkMuted">
+            <div className="mt-1.5 flex items-center justify-between font-mono text-[0.62rem] text-inkMuted">
               <span className="uppercase tracking-label">Progress</span>
               <span>{q.progress.label}</span>
             </div>
-            <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-hairline/60">
+            <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-hairline/60">
               <span
                 className="pm-bar block h-full rounded-full bg-accent"
                 style={{ width: `${q.progress.pct}%` }}
@@ -72,7 +72,7 @@ export function ClinicalPROMsHero() {
         )}
 
         {complete ? (
-          <div className="pm-card mt-4 flex flex-1 flex-col items-center justify-center gap-3 rounded-xl border border-hairline bg-card p-4 text-center">
+          <div className="pm-card mt-3 flex flex-1 flex-col items-center justify-center gap-3 rounded-xl border border-hairline bg-card p-4 text-center">
             <svg viewBox="0 0 48 48" className="h-14 w-14" fill="none" aria-hidden="true">
               <circle
                 className="pm-seal"
@@ -101,15 +101,15 @@ export function ClinicalPROMsHero() {
             </span>
           </div>
         ) : (
-          <div key={`q-${beat}`} className="pm-card mt-4 flex flex-1 flex-col rounded-xl border border-hairline bg-card p-3">
-            <p className="text-[0.82rem] font-medium leading-snug text-ink">{q.prompt}</p>
-            <div className="mt-3 flex flex-col gap-1.5">
+          <div key={`q-${beat}`} className="pm-card mt-3 flex flex-1 flex-col rounded-xl border border-hairline bg-card p-3">
+            <p className="text-[0.78rem] font-medium leading-snug text-ink">{q.prompt}</p>
+            <div className="mt-2.5 flex flex-col gap-1">
               {q.options.map((option, i) => {
                 const chosen = i === q.selected
                 return (
                   <div
                     key={option}
-                    className={`pm-opt flex items-center gap-2 rounded-lg border px-2.5 py-2 ${
+                    className={`pm-opt flex items-center gap-2 rounded-lg border px-2.5 py-1.5 ${
                       chosen ? 'pm-chosen border-accent/50 bg-accent/10' : 'border-hairline'
                     }`}
                   >

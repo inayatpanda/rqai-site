@@ -40,7 +40,7 @@ export function HeroFrame({
           tone={tone}
           className="pointer-events-none absolute bottom-2 left-1/2 h-20 w-[120%] -translate-x-1/2 opacity-[0.10]"
         />
-        <div className="relative w-[13rem] rounded-[2rem] border border-hairline bg-card p-1.5 shadow-lift sm:w-[14.5rem]">
+        <div className="relative w-[13rem] rounded-[2rem] border border-hairline bg-card p-1.5 shadow-lift">
           <div className="relative aspect-[9/16] overflow-hidden rounded-[1.6rem] bg-canvas">
             <div
               aria-hidden="true"
@@ -63,7 +63,7 @@ export function HeroFrame({
         tone={tone}
         className="pointer-events-none absolute -bottom-6 left-1/2 h-24 w-[130%] -translate-x-1/2 opacity-[0.10]"
       />
-      <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-hairline bg-card shadow-lift">
+      <div className="relative w-full overflow-hidden rounded-2xl border border-hairline bg-card shadow-lift">
         <div className="flex items-center gap-2 border-b border-hairline bg-canvas/50 px-4 py-2.5">
           <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-inkMuted/40" />
           <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-inkMuted/40" />

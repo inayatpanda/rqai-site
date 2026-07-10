@@ -66,8 +66,6 @@ export type Product = {
   Demo: ComponentType
   /** An animated product scene framed as the project page hero. */
   HeroScene?: ComponentType
-  /** Phone-framed scenes sit beside the copy. */
-  heroAside?: boolean
   /** Optional full-width showcase band on the project page. */
   Showcase?: ComponentType
 }
@@ -123,7 +121,6 @@ export const PRODUCTS: Product[] = [
       'ClinicalPROMs is self-hosted software for your own Mac or Windows PC. Learn more and get it at clinicalproms.rqai.co.uk.',
     Demo: ClinicalPROMsDemo,
     HeroScene: ClinicalPROMsHero,
-    heroAside: true,
   },
   {
     name: 'Chapbook',
@@ -149,7 +146,6 @@ export const PRODUCTS: Product[] = [
       'Chapbook runs in your browser at chapbook.rqai.co.uk and installs to your phone. Your posts live in your own repository; your keys stay in your browser.',
     Demo: ChapbookDemo,
     HeroScene: ChapbookHero,
-    heroAside: true,
   },
   {
     name: 'OrthoPortfolio',
@@ -238,7 +234,6 @@ export const PRODUCTS: Product[] = [
     flagship: false,
     Demo: ScribbleDemo,
     HeroScene: ScribbleHero,
-    heroAside: true,
   },
 ]
 
