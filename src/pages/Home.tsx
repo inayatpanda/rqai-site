@@ -5,7 +5,7 @@ import { PerspectiveShowcase } from '../components/PerspectiveShowcase'
 
 const HOME_TITLE = 'RQAI: focused software for clinicians, researchers and writers'
 const HOME_DESCRIPTION =
-  'Tools that respect your work. Software for clinicians, researchers and writers. Built carefully, runs locally, never tracks you.'
+  'Streamline the work. Keep the hours. A clinical research workbench, clean dictation, a blog you run from your phone and a feature-rich note taker.'
 
 /*
  * Home — the front door of the site.
@@ -28,7 +28,7 @@ export function Home() {
     url: 'https://rqai.co.uk/',
     email: 'hello@rqai.co.uk',
     description:
-      'Tools that respect your work: software for clinicians, researchers and writers, built carefully and kept on your own device.',
+      'Streamline the work and keep the hours: organised, clutter-free tools for clinicians, researchers and writers, with AI only where it genuinely helps.',
   }
 
   return (
@@ -73,14 +73,14 @@ export function Home() {
             className="reveal mt-6 max-w-4xl text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.03]"
             style={{ ['--reveal-delay' as string]: '0.07s' }}
           >
-            Tools that respect your work.
+            Streamline the work. Keep the hours.
           </h1>
 
           <p
             className="reveal mt-6 max-w-[54ch] text-lg leading-relaxed text-ink"
             style={{ ['--reveal-delay' as string]: '0.15s' }}
           >
-            Software for clinicians, researchers and writers. Built carefully, runs locally, never tracks you.
+            A clinical research workbench, dictation that writes cleanly, a blog you control from your phone, and a feature-rich note taker. Organised, clutter-free, with AI only where it genuinely helps and always under your control.
           </p>
 
           {/* The Constellation is the hero signature: ideas linking into insight. */}

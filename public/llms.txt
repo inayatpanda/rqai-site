@@ -1,9 +1,10 @@
 # RQAI
 
-> RQAI (rqai.co.uk) makes tools that respect your work: software for
-> clinicians, researchers and writers, built carefully, running locally,
-> and never tracking you. Each project keeps data on the user's own
-> device or hardware.
+> RQAI (rqai.co.uk) makes organised, clutter-free software that streamlines
+> the working week for clinicians, researchers and writers: a clinical
+> research workbench, clean dictation, a blog controlled from your phone
+> and a feature-rich note taker, with AI used only where it genuinely
+> helps. Each project keeps data on the user's own device or hardware.
 > Contact: hello@rqai.co.uk
 
 ## Projects
