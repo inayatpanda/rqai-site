@@ -104,7 +104,7 @@ function DemoStage({
   const { Demo } = product
   return (
     <div
-      className={`relative flex items-center justify-center overflow-hidden rounded-2xl border border-hairline bg-card shadow-soft ${className}`}
+      className={`relative flex items-center justify-center overflow-hidden rounded-2xl border border-hairline bg-card px-6 shadow-soft ${className}`}
     >
       <div
         aria-hidden="true"
@@ -119,8 +119,8 @@ function DemoStage({
       <div
         className={
           wide
-            ? 'relative w-44 scale-[1.3] sm:w-64 sm:scale-[1.7] lg:w-80 lg:scale-[1.9]'
-            : 'relative w-44 scale-[1.3] sm:w-52 sm:scale-[1.55] lg:w-56 lg:scale-[1.7]'
+            ? 'relative w-48 scale-[1.5] sm:w-72 sm:scale-[2.0] lg:w-[22rem] lg:scale-[2.2]'
+            : 'relative w-48 scale-[1.5] sm:w-56 sm:scale-[1.7] lg:w-60 lg:scale-[1.9]'
         }
       >
         <Demo />
@@ -243,7 +243,7 @@ export function AppPage() {
               <DemoStage
                 product={product}
                 tone={puncTone}
-                className="min-h-[17rem] sm:min-h-[19rem] lg:min-h-[24rem]"
+                className="min-h-[13rem] sm:min-h-[14rem] lg:min-h-[17rem]"
               />
             </div>
           </div>
@@ -257,7 +257,7 @@ export function AppPage() {
             product={product}
             tone={puncTone}
             wide
-            className="min-h-[19rem] md:min-h-[23rem]"
+            className="min-h-[13rem] md:min-h-[15rem]"
           />
         </section>
       )}
