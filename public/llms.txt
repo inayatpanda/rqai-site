@@ -1,8 +1,9 @@
 # RQAI
 
-> RQAI (rqai.co.uk) makes focused, local-first software for clinicians,
-> researchers and writers. Each project does one job, keeps data on the
-> user's own device or hardware, and does not track its users.
+> RQAI (rqai.co.uk) makes tools that respect your work: software for
+> clinicians, researchers and writers, built carefully, running locally,
+> and never tracking you. Each project keeps data on the user's own
+> device or hardware.
 > Contact: hello@rqai.co.uk
 
 ## Projects
@@ -22,7 +23,7 @@
   instruments scored exactly as published with MCID thresholds, photo
   capture of theatre lists, end-to-end encrypted patient questionnaires,
   outcome trajectories over time. Runs on the surgeon's own Mac or Windows
-  PC; one licence, no per-seat fees. £200 a year. Full site:
+  PC; one licence, no per-seat fees. £199 a year. Full site:
   https://clinicalproms.rqai.co.uk
 - [Chapbook](https://rqai.co.uk/chapbook/): write a blog from a phone in a
   chat-style composer, with photos, video embeds, 75 interactive widgets and

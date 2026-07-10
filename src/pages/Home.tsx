@@ -5,7 +5,7 @@ import { PerspectiveShowcase } from '../components/PerspectiveShowcase'
 
 const HOME_TITLE = 'RQAI: focused software for clinicians, researchers and writers'
 const HOME_DESCRIPTION =
-  'Seven focused, local-first projects: ResearchAssistant, ClinicalPROMs, Chapbook, OrthoPortfolio, OrthoConsultantPrep, AudioQuill and Scribble. Your data stays on your device.'
+  'Tools that respect your work. Software for clinicians, researchers and writers. Built carefully, runs locally, never tracks you.'
 
 /*
  * Home — the front door of the site.
@@ -73,14 +73,14 @@ export function Home() {
             className="reveal mt-6 max-w-4xl text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.03]"
             style={{ ['--reveal-delay' as string]: '0.07s' }}
           >
-            Software that does one job well.
+            Tools that respect your work.
           </h1>
 
           <p
             className="reveal mt-6 max-w-[54ch] text-lg leading-relaxed text-ink"
             style={{ ['--reveal-delay' as string]: '0.15s' }}
           >
-            Seven focused projects for clinicians, researchers and writers. Each one is local-first: your data stays with you, and nothing you do is tracked.
+            Software for clinicians, researchers and writers. Built carefully, runs locally, never tracks you.
           </p>
 
           {/* The Constellation is the hero signature: ideas linking into insight. */}

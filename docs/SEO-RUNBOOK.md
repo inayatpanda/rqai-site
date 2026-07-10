@@ -26,7 +26,7 @@
 
 ## Go-live checklist (commerce, tracked outside this site)
 - Swap ALL test Stripe links to live (all seven projects; see rqai-sales/LINKS.md).
-- ClinicalPROMs: price now confirmed £200/yr (owner's Stripe payment link)
+- ClinicalPROMs: price now confirmed £199/yr (owner's Stripe payment link)
   and shown on the site (products.ts + llms.txt). What remains: fix the
   spoke site's Terms page, which still contradicts this with a stale GBP 49
   lifetime figure, and swap the test Stripe link to the live one.
