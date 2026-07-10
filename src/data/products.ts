@@ -11,6 +11,10 @@ import { ResearchAssistantShowcase } from '../components/showcase/ResearchAssist
 import { ResearchAssistantHero } from '../components/heroes/ResearchAssistantHero'
 import { ClinicalPROMsHero } from '../components/heroes/ClinicalPROMsHero'
 import { OrthoConsultantPrepHero } from '../components/heroes/OrthoConsultantPrepHero'
+import { ChapbookHero } from '../components/heroes/ChapbookHero'
+import { OrthoPortfolioHero } from '../components/heroes/OrthoPortfolioHero'
+import { AudioQuillHero } from '../components/heroes/AudioQuillHero'
+import { ScribbleHero } from '../components/heroes/ScribbleHero'
 
 /**
  * The single source of truth for the seven RQAI projects.
@@ -144,6 +148,8 @@ export const PRODUCTS: Product[] = [
     whereLine:
       'Chapbook runs in your browser at chapbook.rqai.co.uk and installs to your phone. Your posts live in your own repository; your keys stay in your browser.',
     Demo: ChapbookDemo,
+    HeroScene: ChapbookHero,
+    heroAside: true,
   },
   {
     name: 'OrthoPortfolio',
@@ -165,6 +171,7 @@ export const PRODUCTS: Product[] = [
     platforms: 'Web, macOS, Windows',
     flagship: false,
     Demo: OrthoPortfolioDemo,
+    HeroScene: OrthoPortfolioHero,
   },
   {
     name: 'OrthoConsultantPrep',
@@ -208,6 +215,7 @@ export const PRODUCTS: Product[] = [
     platforms: 'Web (installable)',
     flagship: false,
     Demo: AudioQuillDemo,
+    HeroScene: AudioQuillHero,
   },
   {
     name: 'Scribble',
@@ -229,6 +237,8 @@ export const PRODUCTS: Product[] = [
     platforms: 'Web, iOS, Android',
     flagship: false,
     Demo: ScribbleDemo,
+    HeroScene: ScribbleHero,
+    heroAside: true,
   },
 ]
 
