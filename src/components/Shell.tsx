@@ -23,7 +23,7 @@ function Wordmark({ className = '' }: { className?: string }) {
       aria-label="RQAI home"
       className={`group inline-flex items-center gap-2.5 ${className}`}
     >
-      <span className="grid h-8 w-8 place-items-center rounded-[9px] border border-hairline bg-card text-accent shadow-soft transition-transform duration-300 ease-out-soft group-hover:-translate-y-0.5">
+      <span className="grid h-8 w-8 place-items-center rounded-[9px] border border-[#2e4374] bg-gradient-to-br from-[#0c1a3a] to-[#1a3468] text-accent shadow-soft transition-transform duration-300 ease-out-soft group-hover:-translate-y-0.5">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path
             d="M5.5 17 L11 12 L18 6.5 M11 12 L14.5 18"
