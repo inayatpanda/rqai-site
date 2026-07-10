@@ -1,7 +1,6 @@
 import { Head } from 'vite-react-ssg'
 import { Link, useParams } from 'react-router-dom'
 import { Constellation } from '../components/Constellation'
-import { HeroShot } from '../components/HeroShot'
 import { AppCta } from '../components/AppCta'
 import { PRODUCTS, isLive, type Product } from '../data/products'
 import { NotFound } from './NotFound'
@@ -137,7 +136,7 @@ export function AppPage() {
 
   if (!product) return <NotFound />
 
-  const { name, tagline, description, features, price, url, whereLine, Showcase, heroImage } =
+  const { name, tagline, description, features, price, url, whereLine, Showcase, HeroScene } =
     product
   const live = isLive(product.slug)
   const host = (() => {
@@ -148,9 +147,9 @@ export function AppPage() {
     }
   })()
 
-  // One system, alternating rhythm. A phone-framed screenshot reads best beside
-  // the copy, so it never goes in the full-width band.
-  const forceSide = heroImage?.frame === 'phone'
+  // One system, alternating rhythm. A phone-framed scene reads best beside the
+  // copy, so it never goes in the full-width band.
+  const forceSide = product.heroAside === true
   const demoInBand = forceSide ? false : index % 2 === 1
   const puncTone: 'accent' | 'ink' = index % 2 === 0 ? 'ink' : 'accent'
 
@@ -243,12 +242,8 @@ export function AppPage() {
               className="reveal"
               style={{ ['--reveal-delay' as string]: '0.24s' }}
             >
-              {heroImage ? (
-                <HeroShot
-                  image={heroImage}
-                  tone={puncTone}
-                  className="min-h-[13rem] sm:min-h-[14rem] lg:min-h-[17rem]"
-                />
+              {HeroScene ? (
+                <HeroScene />
               ) : (
                 <DemoStage
                   product={product}
@@ -264,12 +259,8 @@ export function AppPage() {
       {/* Full-width visual band (alternating rhythm) */}
       {demoInBand && (
         <section className="container-edge py-8 md:py-10">
-          {heroImage ? (
-            <HeroShot
-              image={heroImage}
-              tone={puncTone}
-              className="min-h-[13rem] md:min-h-[15rem]"
-            />
+          {HeroScene ? (
+            <HeroScene />
           ) : (
             <DemoStage
               product={product}

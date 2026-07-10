@@ -8,7 +8,9 @@ import { OrthoPortfolioDemo } from '../components/demos/OrthoPortfolioDemo'
 import { ResearchAssistantDemo } from '../components/demos/ResearchAssistantDemo'
 import { ScribbleDemo } from '../components/demos/ScribbleDemo'
 import { ResearchAssistantShowcase } from '../components/showcase/ResearchAssistantShowcase'
-import type { HeroImage } from '../components/HeroShot'
+import { ResearchAssistantHero } from '../components/heroes/ResearchAssistantHero'
+import { ClinicalPROMsHero } from '../components/heroes/ClinicalPROMsHero'
+import { OrthoConsultantPrepHero } from '../components/heroes/OrthoConsultantPrepHero'
 
 /**
  * The single source of truth for the seven RQAI projects.
@@ -56,10 +58,12 @@ export type Product = {
   /** Flagships get larger home cards and the hook line. */
   flagship: boolean
   whereLine?: string
-  /** The animated micro-demo for this project (home card, and project page where no screenshot exists). */
+  /** The animated micro-demo for this project (home card, and project page where no scene exists). */
   Demo: ComponentType
-  /** A real product screenshot framed as the project page hero, where one exists. */
-  heroImage?: HeroImage
+  /** An animated product scene framed as the project page hero. */
+  HeroScene?: ComponentType
+  /** Phone-framed scenes sit beside the copy. */
+  heroAside?: boolean
   /** Optional full-width showcase band on the project page. */
   Showcase?: ComponentType
 }
@@ -88,14 +92,7 @@ export const PRODUCTS: Product[] = [
     whereLine:
       'ResearchAssistant is desktop software for Mac, Windows and Linux. Walkthroughs, documentation and downloads are at researchassistant.rqai.co.uk.',
     Demo: ResearchAssistantDemo,
-    heroImage: {
-      src: '/screens/ra-app.png',
-      alt: 'The ResearchAssistant search-strategy workbench',
-      frame: 'browser',
-      aspect: '20 / 9',
-      position: 'left top',
-      host: 'researchassistant.rqai.co.uk',
-    },
+    HeroScene: ResearchAssistantHero,
     Showcase: ResearchAssistantShowcase,
   },
   {
@@ -121,12 +118,8 @@ export const PRODUCTS: Product[] = [
     whereLine:
       'ClinicalPROMs is self-hosted software for your own Mac or Windows PC. Learn more and get it at clinicalproms.rqai.co.uk.',
     Demo: ClinicalPROMsDemo,
-    heroImage: {
-      src: '/screens/cpr-form.png',
-      alt: 'A patient completing an encrypted outcome questionnaire on their phone',
-      frame: 'phone',
-      position: 'top',
-    },
+    HeroScene: ClinicalPROMsHero,
+    heroAside: true,
   },
   {
     name: 'Chapbook',
@@ -193,14 +186,7 @@ export const PRODUCTS: Product[] = [
     platforms: 'Web (installable)',
     flagship: false,
     Demo: OrthoConsultantPrepDemo,
-    heroImage: {
-      src: '/screens/cp-app.png',
-      alt: 'The OrthoConsultantPrep dashboard',
-      frame: 'browser',
-      aspect: '16 / 9',
-      position: 'left top',
-      host: 'consultantprep.rqai.co.uk',
-    },
+    HeroScene: OrthoConsultantPrepHero,
   },
   {
     name: 'AudioQuill',
@@ -222,14 +208,6 @@ export const PRODUCTS: Product[] = [
     platforms: 'Web (installable)',
     flagship: false,
     Demo: AudioQuillDemo,
-    heroImage: {
-      src: '/screens/aq-app.png',
-      alt: 'AudioQuill turning spoken words into clean, structured writing',
-      frame: 'browser',
-      aspect: '16 / 9',
-      position: 'top',
-      host: 'audioquill.rqai.co.uk',
-    },
   },
   {
     name: 'Scribble',
@@ -251,12 +229,6 @@ export const PRODUCTS: Product[] = [
     platforms: 'Web, iOS, Android',
     flagship: false,
     Demo: ScribbleDemo,
-    heroImage: {
-      src: '/screens/scribble-editor.png',
-      alt: 'A note in the Scribble editor',
-      frame: 'phone',
-      position: 'top',
-    },
   },
 ]
 
