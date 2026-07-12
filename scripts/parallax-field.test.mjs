@@ -169,3 +169,21 @@ test('ConsultantPrep uses smoked bronze without a yellow card override', async (
   assert.match(consultant, /#FAF3E8/)
   assert.doesNotMatch(styles, /project-card\[data-slug="consultantprep"\]/)
 })
+
+test('ClinicalPROMs and Chapbook occupy distinct green and petrol palettes', async () => {
+  const identities = await readFile(identitiesPath, 'utf8')
+  const clinical = identities.slice(
+    identities.indexOf('clinicalproms:'),
+    identities.indexOf('chapbook:'),
+  )
+  const chapbook = identities.slice(
+    identities.indexOf('chapbook:'),
+    identities.indexOf('orthoportfolio:'),
+  )
+
+  assert.match(clinical, /#2B7668/)
+  assert.match(clinical, /#164A43/)
+  assert.match(chapbook, /#287D91/)
+  assert.match(chapbook, /#183F5A/)
+  assert.notEqual(clinical, chapbook)
+})
