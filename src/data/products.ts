@@ -124,10 +124,10 @@ export const PRODUCTS: Product[] = [
     hook: 'One desktop app that carries a study from question to submitted manuscript.',
     description:
       'For the clinician running a systematic review or writing up a study, ResearchAssistant is one desktop app that carries the whole project from question to submitted manuscript. Build a PubMed search from an offline MeSH index of 30,956 terms, screen with a live Cohen’s kappa, then run risk of bias, meta-analysis and GRADE. The statistics module has 52 tests, each validated against the same run in R, and strict AI mode must ground every claim to a sentence in your library or say nothing. A simulated Reviewer 2 critiques the draft, and a one-click packet builds the submission zip. Your project stays in a database on your own Mac, Windows or Linux machine. Full walkthroughs and downloads are at researchassistant.rqai.co.uk.',
-    recognition: 'Tired of confident claims your evidence cannot support?',
-    storyHeadline: 'Research without surrendering control to AI.',
+    recognition: 'From the first search to the final submission.',
+    storyHeadline: 'One research workbench. Every stage connected.',
     promise:
-      'Run systematic reviews, statistics and health-economic analyses in one place. Ground every AI-assisted claim in your library—or complete the entire workflow without AI.',
+      'Build systematic reviews. Run validated statistics and health-economic analyses. Draft manuscripts, check the evidence and prepare submission files without changing tools.',
     featureMoments: [
       { title: 'Run the whole systematic review', body: 'Build the search, screen together, assess bias, pool results and produce GRADE summaries.' },
       { title: 'Use statistics you can defend', body: 'Choose from 52 tests validated against equivalent runs in R, with power and sample-size planning.' },

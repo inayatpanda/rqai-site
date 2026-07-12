@@ -218,3 +218,17 @@ test('ResearchAssistant no longer mounts the redundant workflow showcase', async
   assert.doesNotMatch(researchAssistant, /Showcase:/)
   assert.doesNotMatch(products, /ResearchAssistantShowcase/)
 })
+
+test('ResearchAssistant leads with the research workflow rather than AI', async () => {
+  const products = await readFile(productsPath, 'utf8')
+  const productStart = products.indexOf("slug: 'researchassistant'")
+  const start = products.indexOf('recognition:', productStart)
+  const features = products.indexOf('featureMoments:', start)
+  const opening = products.slice(start, features)
+
+  assert.match(opening, /Every stage connected/)
+  assert.match(opening, /systematic reviews/i)
+  assert.match(opening, /health-economic analyses/i)
+  assert.match(opening, /submission files/i)
+  assert.doesNotMatch(opening, /\bAI\b/)
+})
