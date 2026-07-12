@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type PointerEvent } from 'react'
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react'
 import { Link } from 'react-router-dom'
 import {
   motion,
@@ -9,7 +9,8 @@ import {
   useSpring,
   useTransform,
 } from 'framer-motion'
-import { PRODUCTS, type Product } from '../data/products'
+import { PRODUCTS, type Product, type Slug } from '../data/products'
+import { ProductGlyph } from './ProductGlyph'
 
 /*
  * PerspectiveShowcase — the seven RQAI projects as a perspective-grid of cards
@@ -42,6 +43,26 @@ const LG_SPAN = [
 
 const MAX_TILT = 6 // degrees — small, so text never becomes hard to read
 
+type CardTheme = {
+  from: string
+  to: string
+  ink: string
+  muted: string
+  highlight: string
+  border: string
+  warm?: string
+}
+
+const CARD_THEMES: Record<Slug, CardTheme> = {
+  researchassistant: { from: '#2563EB', to: '#172E72', ink: '#F1F6FF', muted: '#C7D9FF', highlight: '#8CC8FF', border: '#77B7FF' },
+  clinicalproms: { from: '#0E7490', to: '#087F68', ink: '#F0FFFF', muted: '#C4F1EC', highlight: '#67F1E0', border: '#7DE9E2' },
+  chapbook: { from: '#13B8B2', to: '#075B67', ink: '#F2FFFF', muted: '#C8F2F0', highlight: '#FFAC8F', border: '#76E5DC', warm: '#FFAC8F' },
+  orthoportfolio: { from: '#4338CA', to: '#28205F', ink: '#F5F3FF', muted: '#D7D2FF', highlight: '#67E8F9', border: '#9B95FF' },
+  consultantprep: { from: '#D58A22', to: '#8A4E13', ink: '#111C32', muted: '#2B3142', highlight: '#FFF0A6', border: '#FFD278', warm: '#FFF0A6' },
+  audioquill: { from: '#E95F78', to: '#733FA8', ink: '#FFF5FA', muted: '#F7D4E5', highlight: '#FFD0B8', border: '#FFA8C2', warm: '#FFD0B8' },
+  scribble: { from: '#16B8B0', to: '#355DAD', ink: '#F2FFFF', muted: '#CDECF4', highlight: '#8CF8EF', border: '#86DDEB' },
+}
+
 function Arrow() {
   return (
     <svg
@@ -50,7 +71,7 @@ function Arrow() {
       viewBox="0 0 16 16"
       fill="none"
       aria-hidden="true"
-      className="text-inkMuted transition-all duration-300 ease-out-soft group-hover:translate-x-1 group-hover:text-accent"
+      className="project-card__arrow transition-transform duration-300 ease-out-soft group-hover:translate-x-1"
     >
       <path
         d="M2 8h11M9 4l4 4-4 4"
@@ -72,7 +93,8 @@ function ProjectCard({
   index: number
   interactive: boolean
 }) {
-  const { name, slug, tagline, hook, flagship, Demo } = product
+  const { name, slug, tagline, hook, flagship } = product
+  const theme = CARD_THEMES[slug]
 
   // Pointer position within the card, normalised to -0.5..0.5.
   const px = useMotionValue(0)
@@ -88,7 +110,16 @@ function ProjectCard({
   // Spotlight follows the cursor (raw percentages, no spring needed).
   const gx = useTransform(px, [-0.5, 0.5], ['0%', '100%'])
   const gy = useTransform(py, [-0.5, 0.5], ['0%', '100%'])
-  const spotlight = useMotionTemplate`radial-gradient(20rem 20rem at ${gx} ${gy}, rgba(69,213,242,0.14), transparent 60%)`
+  const spotlight = useMotionTemplate`radial-gradient(22rem 22rem at ${gx} ${gy}, color-mix(in srgb, ${theme.highlight} 30%, transparent), transparent 62%)`
+  const cardStyle = {
+    '--card-from': theme.from,
+    '--card-to': theme.to,
+    '--card-ink': theme.ink,
+    '--card-muted': theme.muted,
+    '--card-highlight': theme.highlight,
+    '--card-border': theme.border,
+    '--card-warm': theme.warm ?? theme.highlight,
+  } as CSSProperties
 
   function handleMove(e: PointerEvent<HTMLDivElement>) {
     if (!interactive) return
@@ -118,7 +149,9 @@ function ProjectCard({
         <Link
           to={`/${slug}`}
           aria-label={`${name}: ${tagline}`}
-          className={`pgrid-card group relative flex h-full ${flagship ? 'min-h-[15.5rem]' : 'min-h-[13.5rem]'} flex-col overflow-hidden rounded-2xl border border-hairline bg-card p-6 shadow-soft`}
+          data-slug={slug}
+          style={cardStyle}
+          className={`project-card pgrid-card group relative flex h-full ${flagship ? 'min-h-[15.5rem]' : 'min-h-[13.5rem]'} flex-col overflow-hidden rounded-2xl border p-6`}
         >
           {/* Cursor spotlight — enhancement only, hidden until hover. */}
           {interactive && (
@@ -130,22 +163,22 @@ function ProjectCard({
           )}
 
           <div className="relative flex items-start justify-between gap-4">
-            {/* Micro-demo, given a settled frame so cards align. */}
+            {/* Product-specific workflow glyph, given a settled frame so cards align. */}
             <div className="flex h-14 min-w-0 flex-1 items-center">
-              <Demo />
+              <ProductGlyph slug={slug} />
             </div>
           </div>
 
-          <h3 className="relative mt-6 font-display text-xl font-semibold text-inkStrong">
+          <h3 className="relative mt-6 font-display text-xl font-semibold">
             {name}
           </h3>
-          <p className="relative mt-2 text-sm leading-relaxed text-inkMuted">{tagline}</p>
+          <p className="project-card__tagline relative mt-2 text-sm leading-relaxed">{tagline}</p>
           {flagship && hook && (
-            <p className="relative mt-3 text-sm leading-relaxed text-ink">{hook}</p>
+            <p className="project-card__hook relative mt-3 text-sm leading-relaxed">{hook}</p>
           )}
 
-          <div className="relative mt-auto flex items-center gap-2 pt-6 text-sm font-medium text-ink">
-            <span className="transition-colors duration-300 group-hover:text-accent">
+          <div className="project-card__cta relative mt-auto flex items-center gap-2 pt-6 text-sm font-medium">
+            <span>
               Open project
             </span>
             <Arrow />
