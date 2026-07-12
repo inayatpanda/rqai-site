@@ -10,7 +10,11 @@ Reduce the visual intensity of every RQAI project identity while keeping each pr
 - Reduce saturation and brightness moderately, approximately 15–20% by visual comparison rather than mechanical HSL conversion.
 - AudioQuill becomes a deep violet-to-aubergine gradient with lavender highlights and borders.
 - Soften coloured borders and shadows slightly so the card colour feels rich rather than luminous.
-- Maintain WCAG-readable foreground contrast, including ConsultantPrep’s dark-ink treatment.
+- Maintain WCAG-readable foreground contrast on every project treatment.
+
+### ConsultantPrep correction
+
+The initial ochre calibration remained too bright and yellow at full hero scale. Replace it with a smoked-bronze-to-deep-umber gradient (`#8A643A → #4E3525`), warm off-white ink and a muted sand accent. Remove the special yellow gradient origin from the shared card CSS so the calmer identity tokens control every ConsultantPrep surface directly.
 
 ## Shared Application
 
@@ -29,4 +33,3 @@ Do not alter page copy, routes, prices, external URLs, checkout hand-offs or ani
 - Confirm all seven identities remain present in the shared source.
 - Run tests, type-check and production build.
 - Visually compare the home cards and AudioQuill page against the current build.
-
