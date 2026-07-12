@@ -6,6 +6,9 @@ const componentPath = new URL('../src/components/ParallaxField.tsx', import.meta
 const orbitPath = new URL('../src/components/ProductOrbit.tsx', import.meta.url)
 const homePath = new URL('../src/pages/Home.tsx', import.meta.url)
 const glyphPath = new URL('../src/components/ProductGlyph.tsx', import.meta.url)
+const identitiesPath = new URL('../src/data/productIdentities.ts', import.meta.url)
+const showcasePath = new URL('../src/components/PerspectiveShowcase.tsx', import.meta.url)
+const appPagePath = new URL('../src/pages/AppPage.tsx', import.meta.url)
 
 test('parallax field is decorative and contains a reduced-motion-safe layer contract', async () => {
   const source = await readFile(componentPath, 'utf8')
@@ -49,4 +52,19 @@ test('product glyph supports every RQAI project slug', async () => {
     assert.match(source, new RegExp(slug))
   }
   assert.match(source, /aria-hidden="true"/)
+})
+
+test('home and project pages consume one shared product identity source', async () => {
+  const identities = await readFile(identitiesPath, 'utf8')
+  const showcase = await readFile(showcasePath, 'utf8')
+  const appPage = await readFile(appPagePath, 'utf8')
+
+  for (const slug of [
+    'researchassistant', 'clinicalproms', 'chapbook', 'orthoportfolio',
+    'consultantprep', 'audioquill', 'scribble',
+  ]) {
+    assert.match(identities, new RegExp(slug))
+  }
+  assert.match(showcase, /productIdentities/)
+  assert.match(appPage, /productIdentities/)
 })

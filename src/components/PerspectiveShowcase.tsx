@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react'
+import { useEffect, useRef, useState, type PointerEvent } from 'react'
 import { Link } from 'react-router-dom'
 import {
   motion,
@@ -9,7 +9,8 @@ import {
   useSpring,
   useTransform,
 } from 'framer-motion'
-import { PRODUCTS, type Product, type Slug } from '../data/products'
+import { PRODUCTS, type Product } from '../data/products'
+import { PRODUCT_IDENTITIES, identityStyle } from '../data/productIdentities'
 import { ProductGlyph } from './ProductGlyph'
 
 /*
@@ -43,26 +44,6 @@ const LG_SPAN = [
 
 const MAX_TILT = 6 // degrees — small, so text never becomes hard to read
 
-type CardTheme = {
-  from: string
-  to: string
-  ink: string
-  muted: string
-  highlight: string
-  border: string
-  warm?: string
-}
-
-const CARD_THEMES: Record<Slug, CardTheme> = {
-  researchassistant: { from: '#2563EB', to: '#172E72', ink: '#F1F6FF', muted: '#C7D9FF', highlight: '#8CC8FF', border: '#77B7FF' },
-  clinicalproms: { from: '#0E7490', to: '#087F68', ink: '#F0FFFF', muted: '#C4F1EC', highlight: '#67F1E0', border: '#7DE9E2' },
-  chapbook: { from: '#13B8B2', to: '#075B67', ink: '#F2FFFF', muted: '#C8F2F0', highlight: '#FFAC8F', border: '#76E5DC', warm: '#FFAC8F' },
-  orthoportfolio: { from: '#4338CA', to: '#28205F', ink: '#F5F3FF', muted: '#D7D2FF', highlight: '#67E8F9', border: '#9B95FF' },
-  consultantprep: { from: '#D58A22', to: '#8A4E13', ink: '#111C32', muted: '#2B3142', highlight: '#FFF0A6', border: '#FFD278', warm: '#FFF0A6' },
-  audioquill: { from: '#E95F78', to: '#733FA8', ink: '#FFF5FA', muted: '#F7D4E5', highlight: '#FFD0B8', border: '#FFA8C2', warm: '#FFD0B8' },
-  scribble: { from: '#16B8B0', to: '#355DAD', ink: '#F2FFFF', muted: '#CDECF4', highlight: '#8CF8EF', border: '#86DDEB' },
-}
-
 function Arrow() {
   return (
     <svg
@@ -94,7 +75,7 @@ function ProjectCard({
   interactive: boolean
 }) {
   const { name, slug, tagline, hook, flagship } = product
-  const theme = CARD_THEMES[slug]
+  const theme = PRODUCT_IDENTITIES[slug]
 
   // Pointer position within the card, normalised to -0.5..0.5.
   const px = useMotionValue(0)
@@ -111,15 +92,7 @@ function ProjectCard({
   const gx = useTransform(px, [-0.5, 0.5], ['0%', '100%'])
   const gy = useTransform(py, [-0.5, 0.5], ['0%', '100%'])
   const spotlight = useMotionTemplate`radial-gradient(22rem 22rem at ${gx} ${gy}, color-mix(in srgb, ${theme.highlight} 30%, transparent), transparent 62%)`
-  const cardStyle = {
-    '--card-from': theme.from,
-    '--card-to': theme.to,
-    '--card-ink': theme.ink,
-    '--card-muted': theme.muted,
-    '--card-highlight': theme.highlight,
-    '--card-border': theme.border,
-    '--card-warm': theme.warm ?? theme.highlight,
-  } as CSSProperties
+  const cardStyle = identityStyle(slug)
 
   function handleMove(e: PointerEvent<HTMLDivElement>) {
     if (!interactive) return
