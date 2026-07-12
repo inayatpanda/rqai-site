@@ -1,4 +1,5 @@
-import type { ReactNode } from 'react'
+import { useRef, type ReactNode } from 'react'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { Constellation } from '../Constellation'
 
 /*
@@ -28,17 +29,24 @@ export function HeroFrame({
   className?: string
   children: ReactNode
 }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const reduce = useReducedMotion()
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const backgroundY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [9, -9])
+  const frameY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [5, -11])
+
   return (
-    <div className={`relative flex items-center justify-center ${className}`}>
-      <div
+    <div ref={ref} className={`relative flex items-center justify-center ${className}`}>
+      <motion.div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_40%,rgba(69,213,242,0.10),transparent_70%)]"
+        style={{ y: backgroundY }}
       />
       <Constellation
         tone={tone}
         className="pointer-events-none absolute -bottom-6 left-1/2 h-24 w-[130%] -translate-x-1/2 opacity-[0.10]"
       />
-      <div className="relative w-full overflow-hidden rounded-2xl border border-hairline bg-card shadow-lift">
+      <motion.div style={{ y: frameY }} className="relative w-full overflow-hidden rounded-2xl border border-hairline bg-card shadow-lift">
         <div className="flex items-center gap-2 border-b border-hairline bg-canvas/50 px-4 py-2.5">
           <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-inkMuted/40" />
           <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-inkMuted/40" />
@@ -50,7 +58,7 @@ export function HeroFrame({
           )}
         </div>
         {children}
-      </div>
+      </motion.div>
     </div>
   )
 }

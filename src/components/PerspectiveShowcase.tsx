@@ -5,6 +5,7 @@ import {
   useMotionTemplate,
   useMotionValue,
   useReducedMotion,
+  useScroll,
   useSpring,
   useTransform,
 } from 'framer-motion'
@@ -159,6 +160,10 @@ export function PerspectiveShowcase() {
   const reduce = useReducedMotion()
   const [interactive, setInteractive] = useState(false)
   const headingId = useRef('showcase-heading').current
+  const sectionRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] })
+  const planeY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [18, -24])
+  const bloomY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [28, -42])
 
   // Enable the 3D tilt only on fine-pointer, motion-friendly devices, and only
   // after mount — so SSR / first paint / touch / reduced-motion stay flat and
@@ -173,18 +178,20 @@ export function PerspectiveShowcase() {
   }, [reduce])
 
   return (
-    <section aria-labelledby={headingId} className="relative overflow-hidden py-16 md:py-24">
+    <section ref={sectionRef} aria-labelledby={headingId} className="relative overflow-hidden py-16 md:py-24">
       {/* Perspective-grid horizon behind the showcase (decorative). */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-[26rem]">
+      <motion.div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-[26rem]" style={{ y: planeY }}>
         <div className="pgrid-plane" />
-      </div>
-      <div
+      </motion.div>
+      <motion.div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(48rem_24rem_at_50%_-8%,rgba(69,213,242,0.08),transparent_60%)]"
+        style={{ y: bloomY }}
       />
 
       <div className="container-edge relative">
-        <h2 id={headingId} className="reveal max-w-2xl text-3xl leading-tight md:text-4xl">
+        <p className="eyebrow reveal" aria-hidden="true"><span>01</span><span>Projects</span></p>
+        <h2 id={headingId} className="reveal mt-4 max-w-2xl text-3xl leading-tight md:text-4xl">
           Seven projects, each built to do real work.
         </h2>
         <p

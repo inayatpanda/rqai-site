@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite-react-ssg dev",
+    "test": "node --test scripts/*.test.mjs",
     "check-links": "node scripts/check-links.mjs",
     "prebuild": "node scripts/check-links.mjs --ci-only",
     "build": "tsc -b && vite-react-ssg build",

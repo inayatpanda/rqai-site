@@ -1,6 +1,7 @@
 import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
 import { Constellation } from '../components/Constellation'
+import { ParallaxField } from '../components/ParallaxField'
 import { PerspectiveShowcase } from '../components/PerspectiveShowcase'
 
 const HOME_TITLE = 'RQAI: focused software for clinicians, researchers and writers'
@@ -83,21 +84,23 @@ export function Home() {
             A clinical research workbench, dictation that writes cleanly, a blog you control from your phone, and a feature-rich note taker. Organised, clutter-free, with AI only where it genuinely helps and always under your control.
           </p>
 
-          {/* The Constellation is the hero signature: ideas linking into insight. */}
+          {/* The constellation opens into the product field as the visitor scrolls. */}
           <div
             className="reveal relative mt-14 md:mt-16"
             style={{ ['--reveal-delay' as string]: '0.24s' }}
           >
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 top-1/2 -z-10 h-40 -translate-y-1/2 bg-[radial-gradient(60%_80%_at_50%_50%,rgba(69,213,242,0.10),transparent_70%)]"
-            />
-            <Constellation tone="accent" className="h-24 md:h-32" />
+            <ParallaxField className="h-28 md:h-36" />
+            <a href="#projects" className="hero-scroll-cue group mt-6 inline-flex items-center gap-3 text-sm text-inkMuted transition-colors hover:text-accent">
+              <span className="hero-scroll-cue__line" />
+              Explore projects
+            </a>
           </div>
         </div>
       </section>
 
-      <PerspectiveShowcase />
+      <div id="projects">
+        <PerspectiveShowcase />
+      </div>
 
       {/* Principles note — two sentences into the About page. */}
       <section className="container-edge pb-20 md:pb-28">
