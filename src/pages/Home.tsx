@@ -1,8 +1,8 @@
 import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
 import { Constellation } from '../components/Constellation'
-import { ParallaxField } from '../components/ParallaxField'
 import { PerspectiveShowcase } from '../components/PerspectiveShowcase'
+import { ProductOrbit } from '../components/ProductOrbit'
 
 const HOME_TITLE = 'RQAI: focused software for clinicians, researchers and writers'
 const HOME_DESCRIPTION =
@@ -54,49 +54,7 @@ export function Home() {
         <script type="application/ld+json">{JSON.stringify(orgJsonLd)}</script>
       </Head>
 
-      <section className="relative overflow-hidden">
-        {/* Restrained luminous wash behind the hero. */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(54rem_32rem_at_72%_-12%,rgba(69,213,242,0.10),transparent_62%)]"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(40rem_26rem_at_8%_0%,rgba(244,176,90,0.05),transparent_60%)]"
-        />
-
-        <div className="container-edge relative pb-14 pt-16 md:pb-20 md:pt-24">
-          <p className="reveal font-display text-lg font-semibold tracking-[0.12em] text-inkStrong">
-            RQAI
-          </p>
-
-          <h1
-            className="reveal mt-6 max-w-4xl text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.03]"
-            style={{ ['--reveal-delay' as string]: '0.07s' }}
-          >
-            Streamline the work. Keep the hours.
-          </h1>
-
-          <p
-            className="reveal mt-6 max-w-[54ch] text-lg leading-relaxed text-ink"
-            style={{ ['--reveal-delay' as string]: '0.15s' }}
-          >
-            A clinical research workbench, dictation that writes cleanly, a blog you control from your phone, and a feature-rich note taker. Organised, clutter-free, with AI only where it genuinely helps and always under your control.
-          </p>
-
-          {/* The constellation opens into the product field as the visitor scrolls. */}
-          <div
-            className="reveal relative mt-14 md:mt-16"
-            style={{ ['--reveal-delay' as string]: '0.24s' }}
-          >
-            <ParallaxField className="h-28 md:h-36" />
-            <a href="#projects" className="hero-scroll-cue group mt-6 inline-flex items-center gap-3 text-sm text-inkMuted transition-colors hover:text-accent">
-              <span className="hero-scroll-cue__line" />
-              Explore projects
-            </a>
-          </div>
-        </div>
-      </section>
+      <ProductOrbit />
 
       <div id="projects">
         <PerspectiveShowcase />
