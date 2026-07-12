@@ -7,7 +7,6 @@ import { OrthoConsultantPrepDemo } from '../components/demos/OrthoConsultantPrep
 import { OrthoPortfolioDemo } from '../components/demos/OrthoPortfolioDemo'
 import { ResearchAssistantDemo } from '../components/demos/ResearchAssistantDemo'
 import { ScribbleDemo } from '../components/demos/ScribbleDemo'
-import { ResearchAssistantShowcase } from '../components/showcase/ResearchAssistantShowcase'
 import { ResearchAssistantHero } from '../components/heroes/ResearchAssistantHero'
 import { ClinicalPROMsHero } from '../components/heroes/ClinicalPROMsHero'
 import { OrthoConsultantPrepHero } from '../components/heroes/OrthoConsultantPrepHero'
@@ -114,8 +113,6 @@ export type Product = {
   Demo: ComponentType
   /** An animated product scene framed as the project page hero. */
   HeroScene?: ComponentType<HeroSceneProps>
-  /** Optional full-width showcase band on the project page. */
-  Showcase?: ComponentType
 }
 
 export const PRODUCTS: Product[] = [
@@ -163,7 +160,6 @@ export const PRODUCTS: Product[] = [
     },
     Demo: ResearchAssistantDemo,
     HeroScene: ResearchAssistantHero,
-    Showcase: ResearchAssistantShowcase,
   },
   {
     name: 'ClinicalPROMs',

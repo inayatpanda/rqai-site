@@ -132,7 +132,7 @@ export function AppPage() {
 
   const {
     name, tagline, description, recognition, storyHeadline, promise, featureMoments, proof,
-    controlNote, price, url, whereLine, Showcase, HeroScene, theme,
+    controlNote, price, url, whereLine, HeroScene, theme,
   } = product
   const live = isLive(product.slug)
   const host = (() => {
@@ -314,13 +314,6 @@ export function AppPage() {
           ))}
         </dl>
       </section>
-
-      {/* Showcase band (only where a product defines one, e.g. ResearchAssistant) */}
-      {Showcase && (
-        <section className="container-edge py-8 md:py-12">
-          <Showcase />
-        </section>
-      )}
 
       {/* Where to find it */}
       <section className="container-edge py-8 md:py-12">

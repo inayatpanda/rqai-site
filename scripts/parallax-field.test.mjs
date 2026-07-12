@@ -208,3 +208,13 @@ test('every project story uses a large short headline and concise supporting cop
     }
   }
 })
+
+test('ResearchAssistant no longer mounts the redundant workflow showcase', async () => {
+  const products = await readFile(productsPath, 'utf8')
+  const start = products.indexOf("slug: 'researchassistant'")
+  const end = products.indexOf("slug: 'clinicalproms'")
+  const researchAssistant = products.slice(start, end)
+
+  assert.doesNotMatch(researchAssistant, /Showcase:/)
+  assert.doesNotMatch(products, /ResearchAssistantShowcase/)
+})
