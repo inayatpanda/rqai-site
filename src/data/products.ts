@@ -72,6 +72,9 @@ export type ProductTheme = {
 /** Props a hero scene may receive; the two spoke heroes consume `theme`. */
 export type HeroSceneProps = { theme?: ProductTheme }
 
+export type FeatureMoment = { title: string; body: string }
+export type ProofPoint = { value: string; label: string }
+
 export type Product = {
   name: string
   slug: Slug
@@ -82,8 +85,16 @@ export type Product = {
   hook?: string
   /** One paragraph, factual. */
   description: string
-  /** 3-5 bullets, each verifiable against the product. */
-  features: string[]
+  /** The human problem or possibility that opens the visible project story. */
+  recognition: string
+  /** A concise outcome-led visible pitch; detailed description remains metadata. */
+  promise: string
+  /** 3-5 titled, verifiable capabilities. */
+  featureMoments: FeatureMoment[]
+  /** Scannable product facts, not adjectives. */
+  proof: ProofPoint[]
+  /** Compact ownership, privacy or optional-AI statement. */
+  controlNote: string
   /** Display price, only where verified in the product's own source. */
   price?: string
   /** Machine-readable price for JSON-LD; present iff `price` is present. */
@@ -114,13 +125,22 @@ export const PRODUCTS: Product[] = [
     hook: 'One desktop app that carries a study from question to submitted manuscript.',
     description:
       'For the clinician running a systematic review or writing up a study, ResearchAssistant is one desktop app that carries the whole project from question to submitted manuscript. Build a PubMed search from an offline MeSH index of 30,956 terms, screen with a live Cohen’s kappa, then run risk of bias, meta-analysis and GRADE. The statistics module has 52 tests, each validated against the same run in R, and strict AI mode must ground every claim to a sentence in your library or say nothing. A simulated Reviewer 2 critiques the draft, and a one-click packet builds the submission zip. Your project stays in a database on your own Mac, Windows or Linux machine. Full walkthroughs and downloads are at researchassistant.rqai.co.uk.',
-    features: [
-      '52 statistical tests, each validated against the same run in R, with the full comparison published, plus power and sample-size planning.',
-      'A guided systematic review: an offline MeSH builder of 30,956 descriptors with live PubMed counts, dual screening with a live Cohen’s kappa, then risk of bias, meta-analysis and GRADE.',
-      'Synthesis beyond the basics: individual-participant data pooling, network meta-analysis and survival meta-analysis, with forest and funnel plots.',
-      'Strict AI drafting that grounds every claim to a sentence in your library, flags weak paraphrases and uncited paragraphs, then a simulated Reviewer 2 critiques the draft before you submit.',
-      'Runs on your own Mac, Windows or Linux machine; AI can work fully offline through Ollama, and your phone, iPad and co-authors connect over your private Tailscale network.',
+    recognition: 'Tired of confident claims your evidence cannot support?',
+    promise:
+      'Research without surrendering control to AI. Simplify the small steps, trace generated claims to your own library, or switch AI off entirely. Take a project through systematic review, statistical or economic analysis, writing and submission in one serious research workbench.',
+    featureMoments: [
+      { title: 'Run the whole systematic review', body: 'Build the search, screen together, assess bias, pool results and produce GRADE summaries.' },
+      { title: 'Use statistics you can defend', body: 'Choose from 52 tests validated against equivalent runs in R, with power and sample-size planning.' },
+      { title: 'Make the economics visible', body: 'Run QALY, ICER, NMB, CEAC and sensitivity analyses, then produce CHEERS-style reporting.' },
+      { title: 'Keep AI on a short lead', body: 'Ground drafts in your evidence, inspect every claim, use local Ollama—or write without AI.' },
+      { title: 'Meet Reviewer 2 early', body: 'Stress-test the manuscript, resolve criticism and build the final submission package.' },
     ],
+    proof: [
+      { value: '52', label: 'validated statistical tests' },
+      { value: '30,956', label: 'offline MeSH descriptors' },
+      { value: '1', label: 'workflow from search to submission' },
+    ],
+    controlNote: 'Your library and project database stay on your own computer. Generative AI is optional, inspectable and can run locally.',
     price: '£99 a year',
     offer: { price: '99', currency: 'GBP', period: 'year' },
     category: 'Research software',
@@ -150,13 +170,22 @@ export const PRODUCTS: Product[] = [
     hook: 'Twenty validated instruments, scored as published, on hardware you control.',
     description:
       'For the orthopaedic surgeon or department that wants to know how patients actually do after surgery, ClinicalPROMs (also known as Ortho Outcomes) collects and tracks validated patient-reported outcomes without a vendor cloud. Photograph a theatre or clinic list and it becomes structured cases with no retyping. Patients answer end-to-end encrypted questionnaires on their own phone, and the key never touches a server. Twenty validated instruments, from the Oxford scores to EQ-5D-5L, are scored exactly as published, each with the MCID thresholds and concern bands that make a change clinically meaningful, and every patient’s recovery plots as a trajectory over time. It runs on your own Mac or Windows PC with an embedded database: one licence, no per-seat fees. The full detail is at clinicalproms.rqai.co.uk.',
-    features: [
-      'Twenty validated instruments, from the Oxford scores to EQ-5D-5L, each scored exactly as published and checked by its own test.',
-      'MCID thresholds and concern bands built in, so a score change reads as improvement met, not just a different number.',
-      'Capture cases from a photograph of a theatre or clinic list; patients answer in any phone browser and their recovery plots as a trajectory over time.',
-      'End-to-end encrypted patient links: answers are encrypted on the patient’s device and the key never reaches a server.',
-      'Self-hosted on your own Mac or Windows PC with an embedded database, an audit log and data-rights tooling: one licence, unlimited patients.',
+    recognition: 'Collecting scores is easy. Understanding recovery is the real work.',
+    promise:
+      'See whether patients are actually improving—not just whether a number changed. ClinicalPROMs turns validated outcome measures into meaningful recovery trajectories, while keeping identifiable answers away from a vendor cloud.',
+    featureMoments: [
+      { title: 'See recovery, not isolated scores', body: 'Follow every patient over time with MCID thresholds and concern bands already interpreted.' },
+      { title: 'Use measures clinicians recognise', body: 'Twenty validated instruments are scored as published, from Oxford scores to EQ-5D-5L.' },
+      { title: 'Turn a list into a clinic', body: 'Photograph a theatre or clinic list and create structured cases without retyping them.' },
+      { title: 'Let patients answer anywhere', body: 'Send a secure link that works in the patient’s own phone browser.' },
+      { title: 'Keep the key out of the cloud', body: 'Answers are encrypted on the patient’s device before they travel.' },
     ],
+    proof: [
+      { value: '20', label: 'validated outcome measures' },
+      { value: '∞', label: 'patients on one licence' },
+      { value: '0', label: 'vendor-held encryption keys' },
+    ],
+    controlNote: 'Self-hosted on your Mac or Windows PC, with an embedded database, audit log and data-rights tools.',
     price: '£199 a year',
     offer: { price: '199', currency: 'GBP', period: 'year' },
     category: 'Medical software',
@@ -185,13 +214,22 @@ export const PRODUCTS: Product[] = [
     hook: 'A chat-style composer that publishes to a blog you own.',
     description:
       'For the writer who wants to publish from a phone without renting an audience, Chapbook makes blogging as quick as sending a message. Type into a chat-style composer where each message becomes a paragraph, and edit any block by tapping it and carrying on the conversation. Drop in photos processed on your device, embed a video, or add one of 75 interactive widgets, and choose from six reading surfaces for how the blog looks. Publishing is a real commit to your own repository, deployed to your own site on your own domain, with no Chapbook server in between. An AI can draft in a voice it learns from your recent posts, and nothing posts without your say-so.',
-    features: [
-      'A chat-style composer: write a post the way you send messages, one paragraph at a time, and edit any block by chatting to it.',
-      'Photos processed on your device, video embeds, and 75 interactive widgets you can drop straight into a post.',
-      'Six reading surfaces (Observatory, Parchment, Manuscript, Newsprint, Slate and Focus), custom accents, topics and your own domain.',
-      'Publishing is a real commit to your own repository; your blog deploys to your own site and belongs to you.',
-      'AI drafting that learns your voice from your recent posts, with your own key, and never posts on your behalf.',
+    recognition: 'What if owning a beautiful blog felt as easy as sending a message?',
+    promise:
+      'Skip the server rituals and the theme you eventually grow tired of. Write conversationally from your phone, fill posts with images, video and interactive ideas, then publish to a blog, repository and domain that belong to you.',
+    featureMoments: [
+      { title: 'Write by chatting', body: 'Each message becomes a paragraph; tap any block and continue editing the conversation.' },
+      { title: 'Change the whole atmosphere', body: 'Cycle through six distinctive reading surfaces with one choice—not a site rebuild.' },
+      { title: 'Make the page playful', body: 'Mix photos, video and 75 interactive widgets into the story.' },
+      { title: 'Publish somewhere you own', body: 'A real repository commit deploys the post to your website and domain.' },
+      { title: 'Borrow a spark, keep your voice', body: 'Optional AI can learn from recent posts, but nothing publishes without you.' },
     ],
+    proof: [
+      { value: '6', label: 'reading surfaces' },
+      { value: '75', label: 'interactive widgets' },
+      { value: '1 tap', label: 'to change the reading mood' },
+    ],
+    controlNote: 'Your posts live in your repository and publish to your domain. Chapbook has no publishing server in between.',
     price: '£49 a year',
     offer: { price: '49', currency: 'GBP', period: 'year' },
     category: 'Publishing software',
@@ -209,13 +247,22 @@ export const PRODUCTS: Product[] = [
     tagline: 'Compile a submission-ready Portfolio Pathway application.',
     description:
       'For the SAS or overseas-trained T&O surgeon assembling a GMC Portfolio Pathway application, the hard part is not storage but shaping a pile of certificates, WBAs and letters into what the GMC asks for. OrthoPortfolio knows the Trauma and Orthopaedics curriculum, its 13 index procedures, 14 critical conditions and CiP structured reports, so it files each document against the right requirement, redacts patient details and verifies no recoverable text remains, then compiles indexed per-section PDF bundles with cover pages and continuous numbering. A dashboard tracks readiness, lists the gaps and prints a submission checklist. Everything runs on your own device.',
-    features: [
-      'Built on the published T&O requirements: 13 index procedures, 14 critical conditions, the CiP structured reports and the MSF and appraisal minimums.',
-      'Redaction that rasterises each page and detects NHS numbers, postcodes, phone numbers and dates of birth, then verifies no recoverable text remains.',
-      'Files each document against the right requirement automatically, with an offline keyword fallback when no AI key is set.',
-      'Compiles indexed section bundles: cover band, document index, per-document reflection pages and continuous page numbering.',
-      'A readiness dashboard, a prioritised gap list and a printable submission checklist, plus logbook and CPD trackers checked against the indicative requirements.',
+    recognition: 'A Portfolio Pathway application should not feel like organising a warehouse.',
+    promise:
+      'Turn years of certificates, WBAs, letters and reflections into a coherent application. OrthoPortfolio understands the T&O requirements, shows what is missing, protects patient details and builds the indexed bundles the submission needs.',
+    featureMoments: [
+      { title: 'Know where every document belongs', body: 'Match evidence to the curriculum, index procedures, critical conditions and CiP reports.' },
+      { title: 'Find the gaps before the GMC does', body: 'See readiness by section and work from a prioritised missing-evidence list.' },
+      { title: 'Redact beyond the black rectangle', body: 'Rasterise pages, detect common identifiers and verify that text cannot be recovered.' },
+      { title: 'Build submission-ready bundles', body: 'Generate cover pages, indexes, reflection sheets and continuous page numbering.' },
+      { title: 'Keep the wider portfolio moving', body: 'Track logbook evidence, CPD and the final printable submission checklist.' },
     ],
+    proof: [
+      { value: '13', label: 'index procedures mapped' },
+      { value: '14', label: 'critical conditions mapped' },
+      { value: '0', label: 'recoverable text after verified redaction' },
+    ],
+    controlNote: 'The application and its evidence stay on your own device. Classification still works offline when no AI key is configured.',
     price: '£49 a year',
     offer: { price: '49', currency: 'GBP', period: 'year' },
     category: 'Medical software',
@@ -231,13 +278,22 @@ export const PRODUCTS: Product[] = [
     tagline: 'Structured preparation for the consultant interview.',
     description:
       'For the T&O registrar, fellow or locum consultant facing a substantive consultant interview, OrthoConsultantPrep is a self-contained way to rehearse. It ships with 237 questions across 15 categories, each carrying a model answer, delivery advice, key statistics, references and follow-ups. A daily five-card flow keeps revision moving, a timed mock runs ten questions on a real three-minute clock, and Trust Prep reads a named trust’s published CQC, GIRFT and NHFD signals to show which scenarios that panel is likely to probe. All content is built in, your notes and progress stay on your device, and it is £49 once with no subscription.',
-    features: [
-      '237 questions across 15 categories, each with a model answer, delivery advice, key statistics, clickable references and follow-ups.',
-      'Trust Prep: pick from 20 real trust profiles and 13 interview scenarios are matched to that trust’s published signals, with the triggering evidence shown.',
-      'A timed mock interview: ten questions, three minutes each, with an end-of-run review of what you answered, skipped or timed out.',
-      'A daily five-card flow that weights what you have not seen and what you flagged for review, and keeps a streak.',
-      '28 hot-topic briefings linked to their questions and checked against current NHS source documents. Everything stays on your device.',
+    recognition: 'A consultant interview is never generic. Your preparation should not be either.',
+    promise:
+      'Prepare for the Trust, panel and NHS context in front of you. Build stronger answers, rehearse against the clock and connect published local signals to the scenarios you are most likely to face.',
+    featureMoments: [
+      { title: 'Prepare for this Trust', body: 'Match interview scenarios to published CQC, GIRFT and NHFD signals from real Trust profiles.' },
+      { title: 'Build answers with substance', body: 'Use model answers, delivery advice, statistics, references and follow-up questions.' },
+      { title: 'Feel the three-minute clock', body: 'Run a ten-question mock and review what you answered, skipped or timed out.' },
+      { title: 'Revise what needs attention', body: 'A daily five-card flow prioritises unseen and flagged material.' },
+      { title: 'Stay fluent in the NHS conversation', body: 'Connect current hot-topic briefings directly to the questions they inform.' },
     ],
+    proof: [
+      { value: '237', label: 'interview questions' },
+      { value: '20', label: 'real Trust profiles' },
+      { value: '28', label: 'NHS hot-topic briefings' },
+    ],
+    controlNote: 'All core content is built in. Your notes and progress stay on your device, with one purchase and no subscription.',
     price: '£49 one-off',
     offer: { price: '49', currency: 'GBP', period: 'once' },
     category: 'Education software',
@@ -253,13 +309,22 @@ export const PRODUCTS: Product[] = [
     tagline: 'Speak, and get clean, structured writing.',
     description:
       'For anyone who thinks faster than they type, AudioQuill turns speech into clean, structured writing you can shape into a finished document. Transcription runs on your own device with a local Whisper model, free and offline, or through your own key to a provider you choose. Every recording keeps its raw transcript intact while AI-cleaned versions layer on top, so you can switch between raw, clean and structured without losing the original. 44 guided templates and 49 spoken commands shape a dictation as you talk, and topics gather scattered recordings into one compiled document you can export to DOCX, PDF or Markdown.',
-    features: [
-      'On-device transcription with a local Whisper model: free, no key, and nothing leaves your device.',
-      'The raw transcript is always preserved; AI-cleaned versions layer on top, so you can switch between raw, clean and structured at any time.',
-      '44 guided templates and 49 spoken commands shape a dictation while you talk.',
-      'Topics gather scattered recordings, then compile them into one document; export to DOCX, PDF or Markdown.',
-      'Bring your own AI key, encrypted in your browser and sent only to the provider you choose. No account, no tracking.',
+    recognition: 'Your best sentence should not have to wait for your fingers.',
+    promise:
+      'Speak while the thought is alive. AudioQuill turns recordings into clean, structured writing, gathers scattered dictations into finished documents and always keeps the untouched transcript beneath every edit.',
+    featureMoments: [
+      { title: 'Transcribe without sending audio away', body: 'Run a local Whisper model on your own device, free and offline.' },
+      { title: 'Never lose what you actually said', body: 'Move between raw, clean and structured versions while preserving the original transcript.' },
+      { title: 'Shape the document while speaking', body: 'Use guided templates and spoken commands to create structure in the moment.' },
+      { title: 'Gather fragments into something whole', body: 'Compile recordings by topic, then export one coherent document.' },
+      { title: 'Choose where intelligence comes from', body: 'Use local transcription or bring a key for the AI provider you prefer.' },
     ],
+    proof: [
+      { value: '44', label: 'guided templates' },
+      { value: '49', label: 'spoken commands' },
+      { value: '3', label: 'exports: DOCX, PDF, Markdown' },
+    ],
+    controlNote: 'Raw recordings and transcripts stay available. There is no AudioQuill account, tracking profile or required AI subscription.',
     price: '£29 a year',
     offer: { price: '29', currency: 'GBP', period: 'year' },
     category: 'Productivity software',
@@ -275,13 +340,22 @@ export const PRODUCTS: Product[] = [
     tagline: 'Typed notes in blocks, with AI and publishing.',
     description:
       'For the note-taker who wants more than plain text without the tracking, Scribble is a notebook built from typed blocks: text, headings, quotes, images, figures, 211 stickers and sandboxed interactive playgrounds, with a live preview as you write. Optional AI drafts with your own key across seven providers. A note can publish straight to your own website’s repository, and your devices sync through a private repository you control, with conflicts surfaced rather than silently overwritten. There is also a calendar planner and a video-reel maker that renders on your device. It runs in any browser, installs on iOS and Android, and keeps no account and collects nothing.',
-    features: [
-      'A typed block editor with text, headings, quotes, images, figures, 211 stickers and sandboxed interactive playgrounds, plus a live preview.',
-      'Optional AI with your own key across seven providers; keys never enter your notes and go nowhere but the provider you choose.',
-      'Publish a note straight to your own website’s repository, and sync devices through a private repository you control.',
-      'A calendar planner and an on-device video-reel maker; runs in any browser and installs on iOS and Android.',
-      'On-device and offline-first: notes and keys stay with you, there is no Scribble server and no account, and nothing is collected.',
+    recognition: 'Why should a note stop at words on a page?',
+    promise:
+      'Let an idea become a visual story, an interactive playground, a tiny flipbook or a published post. Scribble keeps the speed of typed notes while giving them room to move, connect and grow into something worth sharing.',
+    featureMoments: [
+      { title: 'Build with more than text', body: 'Combine headings, images, figures, stickers and sandboxed interactive playgrounds.' },
+      { title: 'Draw an idea into motion', body: 'Create frame-by-frame flipbooks and render caption, sketch or sticker reels on your device.' },
+      { title: 'Invite a stranger idea in', body: 'Use Goblin mode, Partner chat or other optional BYOK tools when the blank page feels too polite.' },
+      { title: 'Publish the note where you live', body: 'Send finished work directly to your own website repository.' },
+      { title: 'Carry the notebook across devices', body: 'Sync through a private repository you control, with conflicts shown rather than overwritten.' },
     ],
+    proof: [
+      { value: '211', label: 'stickers ready to use' },
+      { value: '7', label: 'supported AI providers' },
+      { value: '0', label: 'Scribble accounts required' },
+    ],
+    controlNote: 'Notes, keys and rendered media stay with you. AI is optional, uses your key and disappears from the workflow when you choose not to configure it.',
     price: '£29 a year',
     offer: { price: '29', currency: 'GBP', period: 'year' },
     category: 'Productivity software',

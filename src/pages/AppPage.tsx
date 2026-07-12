@@ -130,8 +130,10 @@ export function AppPage() {
 
   if (!product) return <NotFound />
 
-  const { name, tagline, description, features, price, url, whereLine, Showcase, HeroScene, theme } =
-    product
+  const {
+    name, tagline, description, recognition, promise, featureMoments, proof,
+    controlNote, price, url, whereLine, Showcase, HeroScene, theme,
+  } = product
   const live = isLive(product.slug)
   const host = (() => {
     try {
@@ -256,10 +258,13 @@ export function AppPage() {
         </div>
       </section>
 
-      {/* Pitch — the factual one-paragraph description */}
+      {/* Promise — recognition first, then the outcome in a compact paragraph. */}
       <section className="container-edge py-10 md:py-14">
-        <p className="reveal max-w-[60ch] text-lg leading-relaxed text-ink md:text-xl md:leading-relaxed">
-          {description}
+        <p className="reveal font-mono text-xs uppercase tracking-label text-accent">
+          {recognition}
+        </p>
+        <p className="reveal mt-5 max-w-[54ch] font-display text-2xl leading-snug text-inkStrong md:text-3xl md:leading-snug">
+          {promise}
         </p>
         <Constellation
           tone={puncTone}
@@ -267,15 +272,15 @@ export function AppPage() {
         />
       </section>
 
-      {/* Features */}
+      {/* Feature moments — benefits first, with one short proof sentence. */}
       <section className="container-edge py-8 md:py-12">
-        <h2 className="reveal text-2xl leading-tight md:text-3xl">What it does</h2>
+        <h2 className="reveal text-2xl leading-tight md:text-3xl">Look what you can do</h2>
         <ul className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline sm:grid-cols-2">
-          {features.map((feature, i) => (
+          {featureMoments.map((feature, i) => (
             <li
-              key={i}
+              key={feature.title}
               className={`reveal flex gap-4 bg-card p-6 md:p-7 ${
-                i === features.length - 1 && features.length % 2 === 1
+                i === featureMoments.length - 1 && featureMoments.length % 2 === 1
                   ? 'sm:col-span-2'
                   : ''
               }`}
@@ -285,10 +290,26 @@ export function AppPage() {
                 aria-hidden="true"
                 className="project-feature-marker mt-2 h-2 w-2 flex-none rounded-full"
               />
-              <p className="leading-relaxed text-ink">{feature}</p>
+              <div>
+                <h3 className="font-display text-xl font-semibold leading-tight text-inkStrong">
+                  {feature.title}
+                </h3>
+                <p className="mt-2 max-w-[48ch] leading-relaxed text-ink">{feature.body}</p>
+              </div>
             </li>
           ))}
         </ul>
+
+        <dl className="mt-6 grid overflow-hidden rounded-2xl border border-hairline bg-card sm:grid-cols-3 sm:divide-x sm:divide-hairline">
+          {proof.map((item) => (
+            <div key={item.label} className="p-6 md:p-7">
+              <dt className="text-sm leading-snug text-inkMuted">{item.label}</dt>
+              <dd className="project-proof-value mt-2 font-display text-3xl font-semibold leading-none">
+                {item.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       {/* Showcase band (only where a product defines one, e.g. ResearchAssistant) */}
@@ -307,9 +328,12 @@ export function AppPage() {
           />
           <div className="relative">
             <h2 className="text-2xl md:text-3xl">Where to find it</h2>
+            <p className="mt-3 max-w-prose font-medium leading-relaxed text-inkStrong">
+              {controlNote}
+            </p>
             {live ? (
               <>
-                <p className="mt-3 max-w-prose leading-relaxed text-ink">
+                <p className="mt-2 max-w-prose text-sm leading-relaxed text-ink">
                   {/* whereLine overrides the default where the web-app framing
                       would be untrue (e.g. self-hosted desktop software). */}
                   {whereLine ??

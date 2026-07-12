@@ -343,6 +343,7 @@
 .project-hero p,.project-hero a { color:var(--product-muted); }
 .project-hero .project-cta { color:var(--product-ink); }
 .project-price { color:var(--product-highlight); }
+.project-proof-value { color:var(--product-highlight); }
 .project-cta { color:var(--product-ink);background:linear-gradient(135deg,var(--product-from),var(--product-to));border:1px solid var(--product-border);box-shadow:0 14px 36px -18px var(--product-to); }
 .project-cta:hover { box-shadow:0 18px 44px -16px var(--product-highlight); }
 .project-feature-marker { background:var(--product-highlight);box-shadow:0 0 9px var(--product-highlight); }

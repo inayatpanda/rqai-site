@@ -67,7 +67,7 @@ export function Home() {
             className="reveal mt-6 max-w-[54ch] text-lg leading-relaxed text-ink"
             style={{ ['--reveal-delay' as string]: '0.15s' }}
           >
-            A clinical research workbench, dictation that writes cleanly, a blog you control from your phone, and a feature-rich note taker. Organised, clutter-free, with AI only where it genuinely helps and always under your control.
+            Seven focused tools for turning difficult work into forward motion—from evidence and patient outcomes to interviews, writing and publishing. Use AI where it helps. Stay in control everywhere.
           </p>
         </div>
       </section>
@@ -87,9 +87,8 @@ export function Home() {
           />
           <div className="relative flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <p className="max-w-2xl text-lg leading-relaxed text-ink">
-              Every project here is built the same way: real features, honest about
-              what they do, kept on your own device and careful with your data.
-              Nothing is claimed on these pages that is not already in the software.
+              Different jobs, one promise: useful features, honest claims and
+              control over your work and data.
             </p>
             <Link
               to="/about"

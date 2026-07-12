@@ -22,23 +22,23 @@ const ABOUT_DESCRIPTION =
 const COMMITMENTS: Array<{ title: string; body: string }> = [
   {
     title: 'Real tools, not demos.',
-    body: 'Each project is a complete tool for the work in front of you, with the range its users actually need. Every feature described on these pages is built and shipping, not a mock-up or a promise. A tool you understand in an afternoon and still grow into is worth more than a suite you never finish learning.',
+    body: 'Every feature described here exists in the project you can use. Each tool begins focused, goes deep where its audience needs it, and leaves the sprawling software suite behind.',
   },
   {
     title: 'Local-first. Your data stays with you.',
-    body: 'Your work lives on your own device by default. Nothing is uploaded, synced or stored on a server unless you ask for it, and where a project does sync, it uses storage you own and control. The surest way to keep data private is never to collect it in the first place.',
+    body: 'Your work stays on your device by default. When a project syncs or publishes, it uses storage you choose and control. Privacy begins by collecting less.',
   },
   {
     title: 'No tracking. Nothing collected.',
-    body: 'There is no analytics script trailing you from page to page, and none of these projects reports home. Where a project needs a licence key, or a sign-in that lives on your own server, that is all it is: nothing you do inside is measured, profiled or sold. A project should be useful the moment you open it, and mind its own business while you use it.',
+    body: 'No behavioural profile follows you between projects. Your writing, research and clinical work are not measured, mined or sold. The software does its job and minds its own business.',
   },
   {
     title: 'Nothing claimed that is not built.',
-    body: 'Every feature described on these pages exists in the shipping project, and the write-ups are checked against the code before they are published. Where something is still in progress, the page says so. If a claim here cannot be verified, it comes down.',
+    body: 'The write-ups are checked against the software. Work in progress is labelled; unverifiable claims come down. Trust is more useful than a dramatic feature list.',
   },
   {
     title: 'Buy once, or subscribe. Plainly.',
-    body: 'Pricing is one clear line. Some projects are a single purchase, others a straightforward subscription, and where a project is for sale, its page shows the price up front. No per-seat fees, no add-on tiers, and no upsell once you have paid.',
+    body: 'One price, shown before you leave the page. Some projects are bought once and others renew simply—without hidden tiers, per-seat surprises or an upsell maze.',
   },
 ]
 
@@ -77,8 +77,8 @@ export function About() {
             className="reveal mt-6 max-w-[52ch] text-lg leading-relaxed text-ink md:text-xl"
             style={{ ['--reveal-delay' as string]: '0.1s' }}
           >
-            Seven projects, one set of principles. Whatever the job, every RQAI
-            project is built the same way. Here is what that means in practice.
+            Seven different jobs, one way of building: useful depth, honest claims
+            and control that remains with the person doing the work.
           </p>
 
           <div
@@ -97,9 +97,8 @@ export function About() {
       {/* Lead — one paragraph that sets up the commitments. */}
       <section className="container-edge py-10 md:py-14">
         <p className="reveal max-w-[60ch] text-xl leading-relaxed text-inkStrong md:text-2xl md:leading-relaxed">
-          Each project is made for one audience and one job: a surgeon collecting
-          outcomes, a researcher writing a paper, a writer publishing a blog. They
-          share no platform and no login. What they share is a way of being built.
+          These projects do not force unrelated work into one platform. Each is
+          shaped around its own audience; the principles are what connect them.
         </p>
         <Constellation
           tone="ink"

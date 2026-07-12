@@ -10,6 +10,8 @@ const identitiesPath = new URL('../src/data/productIdentities.ts', import.meta.u
 const showcasePath = new URL('../src/components/PerspectiveShowcase.tsx', import.meta.url)
 const appPagePath = new URL('../src/pages/AppPage.tsx', import.meta.url)
 const shellPath = new URL('../src/components/Shell.tsx', import.meta.url)
+const productsPath = new URL('../src/data/products.ts', import.meta.url)
+const aboutPath = new URL('../src/pages/About.tsx', import.meta.url)
 
 test('parallax field is decorative and contains a reduced-motion-safe layer contract', async () => {
   const source = await readFile(componentPath, 'utf8')
@@ -98,4 +100,43 @@ test('desktop project navigation has a larger rail without changing project rout
   assert.match(source, /text-\[1\.0625rem\]/)
   assert.match(source, /gap-x-7/)
   assert.match(source, /to=\{`\/\$\{project\.slug\}`\}/)
+})
+
+test('project pages tell each story through a promise, feature moments and proof', async () => {
+  const products = await readFile(productsPath, 'utf8')
+  const appPage = await readFile(appPagePath, 'utf8')
+
+  assert.match(products, /type FeatureMoment/)
+  assert.match(products, /type ProofPoint/)
+  for (const field of ['recognition', 'promise', 'featureMoments', 'proof', 'controlNote']) {
+    assert.match(products, new RegExp(field))
+    assert.match(appPage, new RegExp(field))
+  }
+  assert.match(appPage, /feature\.title/)
+  assert.match(appPage, /feature\.body/)
+})
+
+test('ResearchAssistant foregrounds systematic review, statistics and economics', async () => {
+  const source = await readFile(productsPath, 'utf8')
+  const start = source.indexOf("slug: 'researchassistant'")
+  const end = source.indexOf("slug: 'clinicalproms'")
+  const researchAssistant = source.slice(start, end)
+
+  assert.match(researchAssistant, /systematic review/i)
+  assert.match(researchAssistant, /statistics/i)
+  assert.match(researchAssistant, /economic/i)
+  assert.match(researchAssistant, /Reviewer 2/i)
+})
+
+test('Home and About use concise supporting copy', async () => {
+  const home = await readFile(homePath, 'utf8')
+  const about = await readFile(aboutPath, 'utf8')
+
+  assert.match(home, /Seven focused tools/)
+
+  const commitmentBodies = [...about.matchAll(/body:\s*'([^']+)'/g)].map((match) => match[1])
+  assert.equal(commitmentBodies.length, 5)
+  for (const body of commitmentBodies) {
+    assert.ok(body.trim().split(/\s+/).length <= 45, `Commitment is too long: ${body}`)
+  }
 })
