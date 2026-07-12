@@ -12,6 +12,7 @@ const appPagePath = new URL('../src/pages/AppPage.tsx', import.meta.url)
 const shellPath = new URL('../src/components/Shell.tsx', import.meta.url)
 const productsPath = new URL('../src/data/products.ts', import.meta.url)
 const aboutPath = new URL('../src/pages/About.tsx', import.meta.url)
+const stylesPath = new URL('../src/index.css', import.meta.url)
 
 test('parallax field is decorative and contains a reduced-motion-safe layer contract', async () => {
   const source = await readFile(componentPath, 'utf8')
@@ -139,4 +140,19 @@ test('Home and About use concise supporting copy', async () => {
   for (const body of commitmentBodies) {
     assert.ok(body.trim().split(/\s+/).length <= 45, `Commitment is too long: ${body}`)
   }
+})
+
+test('project palettes are calmer and AudioQuill uses violet rather than coral', async () => {
+  const identities = await readFile(identitiesPath, 'utf8')
+  const styles = await readFile(stylesPath, 'utf8')
+  const audioStart = identities.indexOf('audioquill:')
+  const audioEnd = identities.indexOf('scribble:', audioStart)
+  const audio = identities.slice(audioStart, audioEnd)
+
+  assert.match(audio, /#6D4BC3/)
+  assert.match(audio, /#382460/)
+  assert.match(audio, /#CBBEFF/)
+  assert.doesNotMatch(audio, /#E95F78/)
+  assert.match(styles, /var\(--card-border\) 44%/)
+  assert.match(styles, /var\(--card-highlight\) 30%/)
 })
