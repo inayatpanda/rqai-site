@@ -78,3 +78,13 @@ test('internal project pages theme bounded regions and destination cross-links',
   assert.match(source, /<ProductGlyph slug=\{other\.slug\}/)
   assert.match(source, /identityStyle\(other\.slug\)/)
 })
+
+test('product orbit uses one spring-smoothed progress value and wider destinations', async () => {
+  const source = await readFile(orbitPath, 'utf8')
+
+  assert.match(source, /useSpring/)
+  assert.match(source, /smoothProgress/)
+  assert.match(source, /stiffness:\s*72/)
+  assert.match(source, /-42vw/)
+  assert.match(source, /42vw/)
+})
