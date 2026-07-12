@@ -188,12 +188,12 @@ function Header() {
         </button>
       </div>
 
-      {/* Slim project rail: every project one click away, no dropdown. Visible
+      {/* Project rail: every project one click away, no dropdown. Visible
           from lg up only; below lg the "Projects" dropdown covers this. */}
       <div className="hidden border-b border-hairline lg:block">
         <nav
           aria-label="All projects"
-          className="no-scrollbar container-edge flex h-10 items-center gap-x-5 overflow-x-auto text-sm"
+          className="no-scrollbar container-edge flex h-14 items-center gap-x-7 overflow-x-auto text-[1.0625rem] leading-none"
         >
           {PROJECTS.map((project) => (
             <NavLink

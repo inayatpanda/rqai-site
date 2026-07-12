@@ -9,6 +9,7 @@ const glyphPath = new URL('../src/components/ProductGlyph.tsx', import.meta.url)
 const identitiesPath = new URL('../src/data/productIdentities.ts', import.meta.url)
 const showcasePath = new URL('../src/components/PerspectiveShowcase.tsx', import.meta.url)
 const appPagePath = new URL('../src/pages/AppPage.tsx', import.meta.url)
+const shellPath = new URL('../src/components/Shell.tsx', import.meta.url)
 
 test('parallax field is decorative and contains a reduced-motion-safe layer contract', async () => {
   const source = await readFile(componentPath, 'utf8')
@@ -87,4 +88,14 @@ test('product orbit uses one spring-smoothed progress value and wider destinatio
   assert.match(source, /stiffness:\s*72/)
   assert.match(source, /-42vw/)
   assert.match(source, /42vw/)
+})
+
+test('desktop project navigation has a larger rail without changing project routes', async () => {
+  const source = await readFile(shellPath, 'utf8')
+
+  assert.match(source, /aria-label="All projects"/)
+  assert.match(source, /h-14/)
+  assert.match(source, /text-\[1\.0625rem\]/)
+  assert.match(source, /gap-x-7/)
+  assert.match(source, /to=\{`\/\$\{project\.slug\}`\}/)
 })
