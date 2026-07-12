@@ -187,3 +187,24 @@ test('ClinicalPROMs and Chapbook occupy distinct green and petrol palettes', asy
   assert.match(chapbook, /#183F5A/)
   assert.notEqual(clinical, chapbook)
 })
+
+test('every project story uses a large short headline and concise supporting copy', async () => {
+  const products = await readFile(productsPath, 'utf8')
+  const appPage = await readFile(appPagePath, 'utf8')
+
+  assert.match(products, /storyHeadline:/)
+  assert.match(appPage, /storyHeadline/)
+  assert.match(appPage, /text-\[clamp\(2\.5rem,5vw,4rem\)\]/)
+
+  const headlines = [...products.matchAll(/storyHeadline:\s*'([^']+)'/g)].map((match) => match[1])
+  const promises = [...products.matchAll(/promise:\s*\n?\s*'([^']+)'/g)].map((match) => match[1])
+  assert.equal(headlines.length, 7)
+  assert.equal(promises.length, 7)
+  for (const headline of headlines) assert.ok(headline.trim().split(/\s+/).length <= 10)
+  for (const promise of promises) {
+    assert.ok(promise.trim().split(/\s+/).length <= 35)
+    for (const sentence of promise.split(/[.!?]+/).filter(Boolean)) {
+      assert.ok(sentence.trim().split(/\s+/).length <= 18, `Sentence is too long: ${sentence}`)
+    }
+  }
+})

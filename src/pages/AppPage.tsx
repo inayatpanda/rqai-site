@@ -131,7 +131,7 @@ export function AppPage() {
   if (!product) return <NotFound />
 
   const {
-    name, tagline, description, recognition, promise, featureMoments, proof,
+    name, tagline, description, recognition, storyHeadline, promise, featureMoments, proof,
     controlNote, price, url, whereLine, Showcase, HeroScene, theme,
   } = product
   const live = isLive(product.slug)
@@ -260,10 +260,13 @@ export function AppPage() {
 
       {/* Promise — recognition first, then the outcome in a compact paragraph. */}
       <section className="container-edge py-10 md:py-14">
-        <p className="reveal font-mono text-xs uppercase tracking-label text-accent">
+        <p className="reveal max-w-[52ch] font-mono text-base font-medium uppercase leading-snug tracking-[0.14em] text-accent md:text-lg">
           {recognition}
         </p>
-        <p className="reveal mt-5 max-w-[54ch] font-display text-2xl leading-snug text-inkStrong md:text-3xl md:leading-snug">
+        <h2 className="reveal mt-6 max-w-[18ch] text-[clamp(2.5rem,5vw,4rem)] leading-[1.02] text-inkStrong">
+          {storyHeadline}
+        </h2>
+        <p className="reveal mt-5 max-w-[48ch] text-lg leading-relaxed text-ink md:text-xl md:leading-relaxed">
           {promise}
         </p>
         <Constellation
