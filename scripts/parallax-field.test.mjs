@@ -156,3 +156,16 @@ test('project palettes are calmer and AudioQuill uses violet rather than coral',
   assert.match(styles, /var\(--card-border\) 44%/)
   assert.match(styles, /var\(--card-highlight\) 30%/)
 })
+
+test('ConsultantPrep uses smoked bronze without a yellow card override', async () => {
+  const identities = await readFile(identitiesPath, 'utf8')
+  const styles = await readFile(stylesPath, 'utf8')
+  const start = identities.indexOf('consultantprep:')
+  const end = identities.indexOf('audioquill:', start)
+  const consultant = identities.slice(start, end)
+
+  assert.match(consultant, /#8A643A/)
+  assert.match(consultant, /#4E3525/)
+  assert.match(consultant, /#FAF3E8/)
+  assert.doesNotMatch(styles, /project-card\[data-slug="consultantprep"\]/)
+})

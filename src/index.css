@@ -235,12 +235,6 @@
   border-color:var(--card-border);
   box-shadow:0 0 0 1px color-mix(in srgb,var(--card-highlight) 30%,transparent),0 25px 52px -30px var(--card-to);
 }
-.project-card[data-slug="consultantprep"] {
-  background:
-    linear-gradient(145deg,rgba(255,255,255,.16),transparent 38%),
-    linear-gradient(145deg,#D5A14B 0%,var(--card-from) 62%,var(--card-to) 135%);
-}
-
 /* ---- Centre-outward parallax field -------------------------------------- */
 .parallax-field {
   isolation: isolate;
