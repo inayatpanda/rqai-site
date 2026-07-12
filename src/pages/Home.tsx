@@ -54,6 +54,24 @@ export function Home() {
         <script type="application/ld+json">{JSON.stringify(orgJsonLd)}</script>
       </Head>
 
+      <section className="home-intro relative overflow-hidden">
+        <div className="container-edge relative pb-16 pt-16 md:pb-24 md:pt-24">
+          <p className="reveal font-display text-lg font-semibold tracking-[0.12em] text-inkStrong">
+            RQAI
+          </p>
+          <h1
+            className="reveal mt-6 max-w-4xl text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.03]"
+            style={{ ['--reveal-delay' as string]: '0.07s' }}
+          >Streamline the work. Keep the hours.</h1>
+          <p
+            className="reveal mt-6 max-w-[54ch] text-lg leading-relaxed text-ink"
+            style={{ ['--reveal-delay' as string]: '0.15s' }}
+          >
+            A clinical research workbench, dictation that writes cleanly, a blog you control from your phone, and a feature-rich note taker. Organised, clutter-free, with AI only where it genuinely helps and always under your control.
+          </p>
+        </div>
+      </section>
+
       <ProductOrbit />
 
       <div id="projects">

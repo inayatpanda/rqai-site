@@ -22,15 +22,13 @@ export function ProductOrbit() {
   const ref = useRef<HTMLElement>(null)
   const reduce = useReducedMotion() === true
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
-  const titleY = useTransform(scrollYProgress, [0, 0.26, 0.55], reduce ? [0, 0, 0] : [0, -24, -78])
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.38, 0.58], [1, 1, 0])
   const gridY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [46, -76])
   const coreScale = useTransform(scrollYProgress, [0, 0.22, 0.58], reduce ? [1, 1, 1] : [0.32, 1, 0.55])
   const coreOpacity = useTransform(scrollYProgress, [0, 0.12, 0.68], [0.25, 1, 0])
   const promptOpacity = useTransform(scrollYProgress, [0.38, 0.6, 1], [0, 1, 1])
 
   return (
-    <section ref={ref} className="orbit-scroll relative h-[220vh] overflow-clip" aria-labelledby="orbit-heading">
+    <section ref={ref} className="orbit-scroll relative h-[220vh] overflow-clip" aria-label="RQAI system unfolding">
       <div className="sticky top-0 h-[100dvh] overflow-hidden">
         <motion.div aria-hidden="true" className="orbit-grid" style={{ y: gridY }} />
         <div aria-hidden="true" className="orbit-vignette" />
@@ -45,17 +43,12 @@ export function ProductOrbit() {
           </svg>
         </motion.div>
 
-        <motion.div className="container-edge relative z-10 pt-20 md:pt-28" style={{ y: titleY, opacity: titleOpacity }}>
-          <p className="eyebrow">RQAI / connected tools</p>
-          <h1 id="orbit-heading" className="mt-5 max-w-4xl text-[clamp(2.8rem,7.6vw,6.3rem)] leading-[0.91] tracking-[-0.055em]">
-            Work, in motion.<br />
-            <span className="text-accent">Hours, returned.</span>
-          </h1>
-          <p className="mt-7 max-w-[52ch] text-lg leading-relaxed text-ink md:text-xl">
-            Seven focused tools for research, clinical work and writing. Scroll through the system, then choose the surface that fits the job.
-          </p>
-          <span className="orbit-scroll-label mt-10 inline-flex items-center gap-3 text-sm text-inkMuted"><i /> Scroll to unfold</span>
-        </motion.div>
+        <div aria-hidden="true" className="container-edge relative z-10 pt-9 md:pt-12">
+          <div className="flex items-center justify-between gap-4">
+            <p className="eyebrow">RQAI / system unfolding</p>
+            <span className="orbit-scroll-label inline-flex items-center gap-3 text-xs text-inkMuted"><i /> Scroll</span>
+          </div>
+        </div>
 
         <div className="orbit-fragments" aria-label="RQAI projects">
           {PRODUCTS.map((product, index) => {

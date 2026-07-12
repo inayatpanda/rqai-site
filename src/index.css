@@ -260,6 +260,8 @@
 .hero-scroll-cue:hover .hero-scroll-cue__line { transform: scaleX(1.35); }
 
 /* ---- RQAI product orbit: one scroll-choreographed opening ---------------- */
+.home-intro { background:radial-gradient(54rem 32rem at 72% -12%,rgba(69,213,242,.10),transparent 62%),#07142f; }
+.home-intro::after { content:"";position:absolute;inset:auto 0 0;height:1px;background:linear-gradient(90deg,transparent,rgba(69,213,242,.35),transparent); }
 .orbit-scroll { background: #040b1b; }
 .orbit-grid { position:absolute; inset:-18% -20% -30%; background-image:linear-gradient(to right,rgba(100,143,197,.25) 1px,transparent 1px),linear-gradient(to bottom,rgba(100,143,197,.25) 1px,transparent 1px); background-size:4rem 4rem; transform:perspective(900px) rotateX(64deg) scale(1.25); transform-origin:50% 35%; -webkit-mask-image:radial-gradient(ellipse 58% 49% at 50% 45%,#000 0%,transparent 80%);mask-image:radial-gradient(ellipse 58% 49% at 50% 45%,#000 0%,transparent 80%); }
 .orbit-vignette { position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 48% 32% at 50% 52%,rgba(24,200,233,.15),transparent 68%),linear-gradient(180deg,#071634 0%,#071630ba 45%,#040b1b 100%); }
