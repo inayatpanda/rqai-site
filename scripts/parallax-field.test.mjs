@@ -68,3 +68,13 @@ test('home and project pages consume one shared product identity source', async 
   assert.match(showcase, /productIdentities/)
   assert.match(appPage, /productIdentities/)
 })
+
+test('internal project pages theme bounded regions and destination cross-links', async () => {
+  const source = await readFile(appPagePath, 'utf8')
+
+  assert.match(source, /project-page/)
+  assert.match(source, /project-hero/)
+  assert.match(source, /identityStyle\(product\.slug\)/)
+  assert.match(source, /<ProductGlyph slug=\{other\.slug\}/)
+  assert.match(source, /identityStyle\(other\.slug\)/)
+})

@@ -2,7 +2,9 @@ import { Head } from 'vite-react-ssg'
 import { Link, useParams } from 'react-router-dom'
 import { Constellation } from '../components/Constellation'
 import { AppCta } from '../components/AppCta'
+import { ProductGlyph } from '../components/ProductGlyph'
 import { PRODUCTS, isLive, type Product } from '../data/products'
+import { identityStyle } from '../data/productIdentities'
 import { NotFound } from './NotFound'
 
 /*
@@ -195,7 +197,7 @@ export function AppPage() {
       >
         <AppCta product={product} />
         {price && (
-          <p className="font-display text-lg font-semibold text-inkStrong">{price}</p>
+          <p className="project-price font-display text-lg font-semibold">{price}</p>
         )}
       </div>
     </div>
@@ -223,28 +225,33 @@ export function AppPage() {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Head>
 
-      {/* Hero: uniform title-beside-scene grid on every project page */}
-      <section className="container-edge pb-4 pt-5 md:pb-8 md:pt-7">
-        <div className="flex items-center justify-between gap-4">
-          <BackLink />
-          <StatusPill live={live} />
-        </div>
+      <div className="project-page" style={identityStyle(product.slug)}>
 
-        <div className="mt-5 grid items-center gap-10 md:mt-7 lg:grid-cols-2 lg:gap-14">
-          {heroText}
-          <div
-            className="reveal"
-            style={{ ['--reveal-delay' as string]: '0.24s' }}
-          >
-            {HeroScene ? (
-              <HeroScene theme={theme} />
-            ) : (
-              <DemoStage
-                product={product}
-                tone={puncTone}
-                className="min-h-[13rem] sm:min-h-[14rem] lg:min-h-[17rem]"
-              />
-            )}
+      {/* Hero: uniform title-beside-scene grid on every project page */}
+      <section className="project-hero relative overflow-hidden pb-6 pt-5 md:pb-10 md:pt-7">
+        <div aria-hidden="true" className="project-hero__glow" />
+        <div className="container-edge relative">
+          <div className="flex items-center justify-between gap-4">
+            <BackLink />
+            <StatusPill live={live} />
+          </div>
+
+          <div className="mt-5 grid items-center gap-10 md:mt-7 lg:grid-cols-2 lg:gap-14">
+            {heroText}
+            <div
+              className="reveal"
+              style={{ ['--reveal-delay' as string]: '0.24s' }}
+            >
+              {HeroScene ? (
+                <HeroScene theme={theme} />
+              ) : (
+                <DemoStage
+                  product={product}
+                  tone={puncTone}
+                  className="min-h-[13rem] sm:min-h-[14rem] lg:min-h-[17rem]"
+                />
+              )}
+            </div>
           </div>
         </div>
       </section>
@@ -276,12 +283,7 @@ export function AppPage() {
             >
               <span
                 aria-hidden="true"
-                className="mt-2 h-2 w-2 flex-none rounded-full bg-accent shadow-[0_0_8px_#45d5f2]"
-                style={
-                  theme
-                    ? { backgroundColor: theme.accentBright, boxShadow: `0 0 8px ${theme.accentBright}` }
-                    : undefined
-                }
+                className="project-feature-marker mt-2 h-2 w-2 flex-none rounded-full"
               />
               <p className="leading-relaxed text-ink">{feature}</p>
             </li>
@@ -316,7 +318,7 @@ export function AppPage() {
                 <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
                   <AppCta product={product} />
                   {price && (
-                    <p className="font-display text-lg font-semibold text-inkStrong">
+                    <p className="project-price font-display text-lg font-semibold">
                       {price}
                     </p>
                   )}
@@ -329,7 +331,7 @@ export function AppPage() {
                   straight to it as soon as it is live.
                 </p>
                 {price && (
-                  <p className="mt-6 font-display text-lg font-semibold text-inkStrong">
+                  <p className="project-price mt-6 font-display text-lg font-semibold">
                     {price}
                   </p>
                 )}
@@ -347,15 +349,17 @@ export function AppPage() {
             <li key={other.slug}>
               <Link
                 to={`/${other.slug}`}
-                className="group flex h-full flex-col rounded-2xl border border-hairline bg-card p-5 transition-colors duration-300 ease-out-soft hover:border-accent/50"
+                style={identityStyle(other.slug)}
+                className="project-cross-card group flex h-full flex-col rounded-2xl border p-5 transition-all duration-300 ease-out-soft"
               >
-                <h3 className="font-display text-lg font-semibold text-inkStrong">
+                <ProductGlyph slug={other.slug} className="h-10 w-14" />
+                <h3 className="mt-3 font-display text-lg font-semibold">
                   {other.name}
                 </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-inkMuted">
+                <p className="project-cross-card__tagline mt-2 flex-1 text-sm leading-relaxed">
                   {other.tagline}
                 </p>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-ink transition-colors duration-300 group-hover:text-accent">
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium">
                   Open project
                   <svg
                     width="15"
@@ -379,6 +383,7 @@ export function AppPage() {
           ))}
         </ul>
       </section>
+      </div>
     </>
   )
 }

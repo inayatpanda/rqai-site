@@ -39,15 +39,15 @@ export function HeroFrame({
     <div ref={ref} className={`relative flex items-center justify-center ${className}`}>
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_40%,rgba(69,213,242,0.10),transparent_70%)]"
+        className="hero-frame-glow pointer-events-none absolute inset-0"
         style={{ y: backgroundY }}
       />
       <Constellation
         tone={tone}
         className="pointer-events-none absolute -bottom-6 left-1/2 h-24 w-[130%] -translate-x-1/2 opacity-[0.10]"
       />
-      <motion.div style={{ y: frameY }} className="relative w-full overflow-hidden rounded-2xl border border-hairline bg-card shadow-lift">
-        <div className="flex items-center gap-2 border-b border-hairline bg-canvas/50 px-4 py-2.5">
+      <motion.div style={{ y: frameY }} className="hero-frame-window relative w-full overflow-hidden rounded-2xl border bg-card shadow-lift">
+        <div className="hero-frame-chrome flex items-center gap-2 border-b px-4 py-2.5">
           <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-inkMuted/40" />
           <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-inkMuted/40" />
           <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-inkMuted/40" />

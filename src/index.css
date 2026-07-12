@@ -328,3 +328,33 @@
   .glyph-draw { stroke-dashoffset:0; }
   .glyph-draw,.glyph-pop,.glyph-shift,.glyph-bars rect { transition:none;transform:none; }
 }
+
+/* ---- Internal project identities ---------------------------------------- */
+.project-page { --focus-colour:var(--product-highlight); }
+.project-hero {
+  color:var(--product-ink);
+  background:
+    linear-gradient(110deg,color-mix(in srgb,var(--product-from) 92%,#07142f),color-mix(in srgb,var(--product-to) 88%,#07142f));
+  border-bottom:1px solid color-mix(in srgb,var(--product-border) 42%,transparent);
+}
+.project-hero::after { content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.11),transparent 28%,transparent 72%,rgba(0,0,0,.15)); }
+.project-hero__glow { position:absolute;inset:-30% -10%;background:radial-gradient(ellipse at 74% 42%,color-mix(in srgb,var(--product-highlight) 24%,transparent),transparent 52%);filter:blur(12px); }
+.project-hero h1,.project-hero .project-price { color:var(--product-ink); }
+.project-hero p,.project-hero a { color:var(--product-muted); }
+.project-hero .project-cta { color:var(--product-ink); }
+.project-price { color:var(--product-highlight); }
+.project-cta { color:var(--product-ink);background:linear-gradient(135deg,var(--product-from),var(--product-to));border:1px solid var(--product-border);box-shadow:0 14px 36px -18px var(--product-to); }
+.project-cta:hover { box-shadow:0 18px 44px -16px var(--product-highlight); }
+.project-feature-marker { background:var(--product-highlight);box-shadow:0 0 9px var(--product-highlight); }
+.hero-frame-glow { background:radial-gradient(60% 60% at 50% 40%,color-mix(in srgb,var(--product-highlight) 24%,transparent),transparent 70%); }
+.hero-frame-window { border-color:color-mix(in srgb,var(--product-border) 65%,transparent);box-shadow:0 24px 65px -30px var(--product-to),0 0 0 1px color-mix(in srgb,var(--product-highlight) 14%,transparent); }
+.hero-frame-chrome { border-color:color-mix(in srgb,var(--product-border) 35%,transparent);background:color-mix(in srgb,var(--product-to) 28%,#07142f); }
+.project-cross-card { color:var(--product-ink);border-color:color-mix(in srgb,var(--product-border) 56%,transparent);background:linear-gradient(145deg,var(--product-from),var(--product-to));box-shadow:0 22px 48px -32px var(--product-to); }
+.project-cross-card h3,.project-cross-card span { color:var(--product-ink); }
+.project-cross-card__tagline { color:var(--product-muted); }
+.project-cross-card:hover,.project-cross-card:focus-visible { border-color:var(--product-border);transform:translateY(-3px);box-shadow:0 28px 58px -26px var(--product-to); }
+.project-cross-card .product-glyph { --card-ink:var(--product-ink);--card-highlight:var(--product-highlight);--card-warm:var(--product-warm); }
+
+@media (prefers-reduced-motion: reduce) {
+  .project-cross-card:hover,.project-cross-card:focus-visible { transform:none; }
+}
