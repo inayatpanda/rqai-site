@@ -46,5 +46,20 @@ jobs:
           # stays "./" and can never touch any other site. (The action mirrors
           # local-dir and deletes server files not present locally.)
           server-dir: ./
+          # clinicalproms.rqai.co.uk is a SEPARATE site (the ortho-outcomes
+          # marketing-site) whose document root IS public_html/clinicalproms.
+          # rqai.co.uk's /clinicalproms/ hub page renders to dist/clinicalproms/
+          # and, without this exclude, its index.html overwrites that site's
+          # homepage on every deploy (the shared-folder collision, 2026-07-15).
+          # Excluded paths are left untouched on the server (not uploaded, not
+          # deleted), so the marketing site owns the folder and rqai.co.uk's
+          # /clinicalproms(/) 301-redirects to the subdomain (Hostinger redirect).
+          # NB: the first three globs are the action's defaults, repeated here
+          # because setting `exclude` overrides them.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/clinicalproms/**
           state-name: .ftp-deploy-sync-state-rqai.json
           timeout: 180000
