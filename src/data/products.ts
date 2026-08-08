@@ -7,6 +7,7 @@ import { OrthoConsultantPrepDemo } from '../components/demos/OrthoConsultantPrep
 import { OrthoPortfolioDemo } from '../components/demos/OrthoPortfolioDemo'
 import { ResearchAssistantDemo } from '../components/demos/ResearchAssistantDemo'
 import { ScribbleDemo } from '../components/demos/ScribbleDemo'
+import { OrthoLogDemo } from '../components/demos/OrthoLogDemo'
 import { ResearchAssistantHero } from '../components/heroes/ResearchAssistantHero'
 import { ClinicalPROMsHero } from '../components/heroes/ClinicalPROMsHero'
 import { OrthoConsultantPrepHero } from '../components/heroes/OrthoConsultantPrepHero'
@@ -14,9 +15,10 @@ import { ChapbookHero } from '../components/heroes/ChapbookHero'
 import { OrthoPortfolioHero } from '../components/heroes/OrthoPortfolioHero'
 import { AudioQuillHero } from '../components/heroes/AudioQuillHero'
 import { ScribbleHero } from '../components/heroes/ScribbleHero'
+import { OrthoLogHero } from '../components/heroes/OrthoLogHero'
 
 /**
- * The single source of truth for the seven RQAI projects.
+ * The single source of truth for the RQAI projects.
  *
  * Copy is factual and verifiable against each product's own repo (README /
  * spec / marketing copy) — never exaggerated, British spelling, and the
@@ -34,6 +36,7 @@ import { ScribbleHero } from '../components/heroes/ScribbleHero'
 export type Slug =
   | 'researchassistant'
   | 'clinicalproms'
+  | 'ortholog'
   | 'chapbook'
   | 'orthoportfolio'
   | 'consultantprep'
@@ -205,6 +208,38 @@ export const PRODUCTS: Product[] = [
     },
     Demo: ClinicalPROMsDemo,
     HeroScene: ClinicalPROMsHero,
+  },
+  {
+    name: 'OrthoLog',
+    slug: 'ortholog',
+    url: 'https://ortholog.rqai.co.uk',
+    tagline: 'A surgical logbook for reflection and learning.',
+    description:
+      'For the surgeon or trainee keeping a personal record of operative experience, OrthoLog brings cases, reflections, procedural learning and optional follow-up notes into one encrypted vault. Cases can be entered manually, imported from a spreadsheet or drafted from a selected theatre-list or operation-note image using the user’s own Gemini, Groq or OpenAI key. Every AI suggestion remains a draft for review. The installable web app works across phone and desktop, with optional encrypted Google Drive synchronisation. Patient identifiers are optional, and the product directs users to mock or non-identifying data unless their organisation has expressly approved the processing.',
+    recognition: 'The useful part of a logbook is what you learn from the case.',
+    storyHeadline: 'Capture the operation. Keep the reflection.',
+    promise:
+      'Record cases on phone or desktop. Revisit learning points and build a reflective portfolio in an encrypted vault.',
+    featureMoments: [
+      { title: 'Start with the simplest route', body: 'Enter a case manually, import a spreadsheet or ask optional AI to draft fields from a selected image.' },
+      { title: 'Review before anything is kept', body: 'Work through each suggested case and check it against the source before saving.' },
+      { title: 'Keep the learning with the case', body: 'Add reflections, procedural steps, feedback, links, attachments and optional follow-up notes.' },
+      { title: 'Move between phone and desktop', body: 'Install the PWA and optionally synchronise the encrypted vault through Google Drive.' },
+      { title: 'Choose what leaves the device', body: 'Manual and spreadsheet workflows stay local; AI transmission is optional and explicitly disclosed.' },
+    ],
+    proof: [
+      { value: '0', label: 'required patient identifiers' },
+      { value: '3', label: 'optional AI providers' },
+      { value: '1', label: 'encrypted personal vault' },
+    ],
+    controlNote: 'Free to use. No OrthoLog account or central patient database; full legal, privacy, AI and security documents are published in the app and website.',
+    category: 'Education software',
+    platforms: 'Web, macOS, Android',
+    flagship: false,
+    whereLine:
+      'OrthoLog is available as an installable web app at ortholog.rqai.co.uk. Signed native downloads are published only after release verification.',
+    Demo: OrthoLogDemo,
+    HeroScene: OrthoLogHero,
   },
   {
     name: 'Chapbook',

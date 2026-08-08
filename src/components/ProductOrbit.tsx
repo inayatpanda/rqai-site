@@ -6,16 +6,17 @@ type Fragment = { x: string; y: string; rotate: number; delay: number }
 
 const FRAGMENTS: Fragment[] = [
   { x: '-42vw', y: '-19vh', rotate: -10, delay: 0.16 },
-  { x: '-17vw', y: '-31vh', rotate: -4, delay: 0.21 },
-  { x: '15vw', y: '-23vh', rotate: 8, delay: 0.26 },
-  { x: '42vw', y: '-5vh', rotate: 12, delay: 0.31 },
-  { x: '31vw', y: '22vh', rotate: 7, delay: 0.36 },
-  { x: '-2vw', y: '30vh', rotate: -3, delay: 0.41 },
-  { x: '-32vw', y: '20vh', rotate: -10, delay: 0.46 },
+  { x: '-20vw', y: '-31vh', rotate: -4, delay: 0.21 },
+  { x: '15vw', y: '-30vh', rotate: 8, delay: 0.26 },
+  { x: '42vw', y: '-16vh', rotate: 12, delay: 0.31 },
+  { x: '42vw', y: '15vh', rotate: 7, delay: 0.36 },
+  { x: '18vw', y: '30vh', rotate: 3, delay: 0.41 },
+  { x: '-16vw', y: '31vh', rotate: -5, delay: 0.46 },
+  { x: '-42vw', y: '15vh', rotate: -10, delay: 0.51 },
 ]
 
 /**
- * The hub's long-form opening: one signal becomes a field of seven tools as
+ * The hub's long-form opening: one signal becomes a field of focused tools as
  * scrolling progresses. Cards are links throughout; the canvas is decorative.
  */
 export function ProductOrbit() {

@@ -67,7 +67,7 @@ export function Home() {
             className="reveal mt-6 max-w-[54ch] text-lg leading-relaxed text-ink"
             style={{ ['--reveal-delay' as string]: '0.15s' }}
           >
-            Seven focused tools for turning difficult work into forward motion—from evidence and patient outcomes to interviews, writing and publishing. Use AI where it helps. Stay in control everywhere.
+            Eight focused tools for turning difficult work into forward motion—from evidence and patient outcomes to surgical learning, interviews, writing and publishing. Use AI where it helps. Stay in control everywhere.
           </p>
         </div>
       </section>

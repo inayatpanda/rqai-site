@@ -14,6 +14,7 @@ export type ProductIdentity = {
 export const PRODUCT_IDENTITIES: Record<Slug, ProductIdentity> = {
   researchassistant: { from: '#315FB5', to: '#1C3568', ink: '#F1F6FF', muted: '#CBD8EF', highlight: '#9BC5EC', border: '#789EC9' },
   clinicalproms: { from: '#2B7668', to: '#164A43', ink: '#F2FFF9', muted: '#C9E2D8', highlight: '#91C9B7', border: '#78A99A' },
+  ortholog: { from: '#C65A22', to: '#6F301B', ink: '#FFF8EC', muted: '#F1D3BD', highlight: '#F4B05A', border: '#D68C64', warm: '#F4B05A' },
   chapbook: { from: '#287D91', to: '#183F5A', ink: '#F2FBFF', muted: '#C8DFE8', highlight: '#E7A58F', border: '#769FB0', warm: '#E7A58F' },
   orthoportfolio: { from: '#5147A6', to: '#302A64', ink: '#F5F3FF', muted: '#D8D4ED', highlight: '#88CFD8', border: '#928DC4' },
   consultantprep: { from: '#8A643A', to: '#4E3525', ink: '#FAF3E8', muted: '#DDD0BF', highlight: '#D8BE96', border: '#A98A64', warm: '#D8BE96' },

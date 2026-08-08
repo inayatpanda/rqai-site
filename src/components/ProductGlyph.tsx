@@ -24,6 +24,16 @@ function PromsGlyph() {
   </>
 }
 
+function OrthoLogGlyph() {
+  return <>
+    <path className="glyph-primary glyph-shift" d="M8 12h14l4 5v23H8z" style={stroke} />
+    <path className="glyph-secondary glyph-draw" pathLength="1" d="M13 22h8m-8 6h8m-8 6h6" style={stroke} />
+    <circle className="glyph-warm glyph-pop" cx="44" cy="25" r="12" />
+    <path className="glyph-warm glyph-draw" pathLength="1" d="m38 25 4 4 8-9" style={stroke} />
+    <path className="glyph-secondary glyph-draw" pathLength="1" d="M27 18h8" style={stroke} />
+  </>
+}
+
 function ChapbookGlyph() {
   return <>
     <rect className="glyph-primary glyph-shift" x="4" y="7" width="22" height="9" rx="4.5" />
@@ -82,6 +92,7 @@ export function ProductGlyph({ slug, className = '' }: { slug: Slug; className?:
     switch (slug) {
       case 'researchassistant': return <ResearchGlyph />
       case 'clinicalproms': return <PromsGlyph />
+      case 'ortholog': return <OrthoLogGlyph />
       case 'chapbook': return <ChapbookGlyph />
       case 'orthoportfolio': return <PortfolioGlyph />
       case 'consultantprep': return <PrepGlyph />

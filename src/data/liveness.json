@@ -9,6 +9,11 @@
     "ok": true,
     "checkedAt": "2026-07-10T07:19:06.782Z"
   },
+  "ortholog": {
+    "url": "https://ortholog.rqai.co.uk",
+    "ok": true,
+    "checkedAt": "2026-08-08T20:55:00.000Z"
+  },
   "chapbook": {
     "url": "https://chapbook.rqai.co.uk",
     "ok": true,

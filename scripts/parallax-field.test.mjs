@@ -47,6 +47,7 @@ test('product glyph supports every RQAI project slug', async () => {
   for (const slug of [
     'researchassistant',
     'clinicalproms',
+    'ortholog',
     'chapbook',
     'orthoportfolio',
     'consultantprep',
@@ -64,7 +65,7 @@ test('home and project pages consume one shared product identity source', async 
   const appPage = await readFile(appPagePath, 'utf8')
 
   for (const slug of [
-    'researchassistant', 'clinicalproms', 'chapbook', 'orthoportfolio',
+    'researchassistant', 'clinicalproms', 'ortholog', 'chapbook', 'orthoportfolio',
     'consultantprep', 'audioquill', 'scribble',
   ]) {
     assert.match(identities, new RegExp(slug))
@@ -133,7 +134,7 @@ test('Home and About use concise supporting copy', async () => {
   const home = await readFile(homePath, 'utf8')
   const about = await readFile(aboutPath, 'utf8')
 
-  assert.match(home, /Seven focused tools/)
+  assert.match(home, /Eight focused tools/)
 
   const commitmentBodies = [...about.matchAll(/body:\s*'([^']+)'/g)].map((match) => match[1])
   assert.equal(commitmentBodies.length, 5)
@@ -198,8 +199,8 @@ test('every project story uses a large short headline and concise supporting cop
 
   const headlines = [...products.matchAll(/storyHeadline:\s*'([^']+)'/g)].map((match) => match[1])
   const promises = [...products.matchAll(/promise:\s*\n?\s*'([^']+)'/g)].map((match) => match[1])
-  assert.equal(headlines.length, 7)
-  assert.equal(promises.length, 7)
+  assert.equal(headlines.length, 8)
+  assert.equal(promises.length, 8)
   for (const headline of headlines) assert.ok(headline.trim().split(/\s+/).length <= 10)
   for (const promise of promises) {
     assert.ok(promise.trim().split(/\s+/).length <= 35)

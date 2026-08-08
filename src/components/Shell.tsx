@@ -46,7 +46,7 @@ function Wordmark({ className = '' }: { className?: string }) {
   )
 }
 
-/* Desktop "Projects" dropdown listing the seven project pages. */
+/* Desktop "Projects" dropdown listing the project pages. */
 function ProjectsMenu({ active }: { active: boolean }) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)

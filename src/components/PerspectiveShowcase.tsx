@@ -14,7 +14,7 @@ import { PRODUCT_IDENTITIES, identityStyle } from '../data/productIdentities'
 import { ProductGlyph } from './ProductGlyph'
 
 /*
- * PerspectiveShowcase — the seven RQAI projects as a perspective-grid of cards
+ * PerspectiveShowcase — the RQAI projects as a perspective-grid of cards
  * (the design's second house signature, styled for the dark-blue canvas).
  *
  * Legibility first: every card is a flat, fully readable, tappable <Link> to its
@@ -23,10 +23,8 @@ import { ProductGlyph } from './ProductGlyph'
  * soft cyan spotlight (Motion values, never React state, so it never re-renders
  * the tree). Touch, reduced-motion and no-JS all get the still, flat card.
  *
- * Odd count handled deliberately: on the widest breakpoint the seven cards sit
- * on a six-column grid in a 3-3 · 4-2 · 2-2-2 rhythm (flagships lead) so every
- * row fills exactly, no orphan tile. On tablet the trailing card spans the full
- * width to close the 2-column grid cleanly.
+ * On the widest breakpoint the eight cards sit on a six-column grid in a
+ * 3-3 · 4-2 · 2-2-2 · 3-3 rhythm so every row closes without an orphan.
  */
 
 // Column spans on the lg six-column grid, in PRODUCTS order. Flagships lead:
@@ -39,7 +37,8 @@ const LG_SPAN = [
   'lg:col-span-2',
   'lg:col-span-2',
   'lg:col-span-2',
-  'lg:col-span-2',
+  'lg:col-span-3',
+  'lg:col-span-3',
 ] as const
 
 const MAX_TILT = 6 // degrees — small, so text never becomes hard to read
@@ -108,9 +107,7 @@ function ProjectCard({
 
   return (
     <li
-      className={`reveal ${LG_SPAN[index]} ${
-        index === PRODUCTS.length - 1 ? 'md:col-span-2' : ''
-      }`}
+      className={`reveal ${LG_SPAN[index]}`}
       style={{ perspective: 900, ['--reveal-delay' as string]: `${index * 0.06}s` }}
     >
       <motion.div
@@ -198,7 +195,7 @@ export function PerspectiveShowcase() {
       <div className="container-edge relative">
         <p className="eyebrow reveal" aria-hidden="true"><span>01</span><span>Projects</span></p>
         <h2 id={headingId} className="reveal mt-4 max-w-2xl text-3xl leading-tight md:text-4xl">
-          Seven projects, each built to do real work.
+          Eight projects, each built to do real work.
         </h2>
         <p
           className="reveal mt-4 max-w-[52ch] text-base leading-relaxed text-ink"

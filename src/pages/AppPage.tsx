@@ -8,7 +8,7 @@ import { identityStyle } from '../data/productIdentities'
 import { NotFound } from './NotFound'
 
 /*
- * AppPage — one data-driven template for all seven project pages.
+ * AppPage — one data-driven template for all project pages.
  *
  * Per product it renders: a factual pitch paragraph (description), 3-5 feature
  * bullets, the animated hero scene beside the title, a price line when
@@ -18,7 +18,7 @@ import { NotFound } from './NotFound'
  *
  * One coherent system, uniform layout: every page renders the hero as the same
  * two-column grid, the title and animated scene side by side, so the container
- * size reads identically across all seven projects. The constellation
+ * size reads identically across all projects. The constellation
  * punctuation alternates tone so no two consecutive pages read identically.
  *
  * No-JS legibility: every piece of page COPY uses the pure-CSS `.reveal` class
@@ -44,7 +44,7 @@ function tidyForMeta(text: string): string {
 }
 
 /* Coming-soon status, shown once in the hero (the page's only eyebrow). All
-   seven projects are live, so a "Live" pill would be decorative noise; only
+   projects are live, so a "Live" pill would be decorative noise; only
    the meaningful "coming soon" state renders. */
 function StatusPill({ live }: { live: boolean }) {
   if (live) {

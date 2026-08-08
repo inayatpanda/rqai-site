@@ -27,6 +27,13 @@
   trajectory; end-to-end encrypted patient questionnaires whose key never
   reaches a server. Runs on the surgeon's own Mac or Windows PC; one licence,
   no per-seat fees. £199 a year. Full site: https://clinicalproms.rqai.co.uk
+- [OrthoLog](https://rqai.co.uk/ortholog/): a free personal surgical logbook
+  for operative cases, reflections, procedural learning and optional follow-up
+  notes. Manual entry and spreadsheet import run locally; selected images can
+  be sent to Gemini, Groq or OpenAI with the user's own key to draft fields for
+  human review. Patient identifiers are optional. The vault is encrypted on the
+  device and can optionally synchronise as an encrypted file through Google
+  Drive. Installable on phone and desktop. App: https://ortholog.rqai.co.uk
 - [Chapbook](https://rqai.co.uk/chapbook/): write a blog from a phone in a
   chat-style composer where each message is a paragraph, with on-device photos,
   video embeds, 75 interactive widgets and six reading surfaces; publishing is

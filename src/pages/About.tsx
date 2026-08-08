@@ -77,7 +77,7 @@ export function About() {
             className="reveal mt-6 max-w-[52ch] text-lg leading-relaxed text-ink md:text-xl"
             style={{ ['--reveal-delay' as string]: '0.1s' }}
           >
-            Seven different jobs, one way of building: useful depth, honest claims
+            Eight different jobs, one way of building: useful depth, honest claims
             and control that remains with the person doing the work.
           </p>
 

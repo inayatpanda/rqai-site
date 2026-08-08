@@ -2,7 +2,7 @@
 /*
  * check-links.mjs — ship-time liveness probe for every RQAI project URL.
  *
- * Reads the seven (slug, url) pairs straight from src/data/products.ts (the
+ * Reads the (slug, url) pairs straight from src/data/products.ts (the
  * single source of truth), HEAD-or-GETs each with a timeout, and writes
  * src/data/liveness.json. The UI downgrades a project to a "coming soon" state
  * when its entry is `ok: false`, so a dead link NEVER fails the build — this
