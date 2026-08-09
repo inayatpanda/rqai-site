@@ -378,7 +378,7 @@ export const PRODUCTS: Product[] = [
     url: 'https://scribble.rqai.co.uk',
     tagline: 'Typed notes in blocks, with AI and publishing.',
     description:
-      'For the note-taker who wants more than plain text without the tracking, Scribble is a notebook built from typed blocks: text, headings, quotes, images, figures, 211 stickers and sandboxed interactive playgrounds, with a live preview as you write. Optional AI drafts with your own key across seven providers. A note can publish straight to your own website’s repository, and your devices sync through a private repository you control, with conflicts surfaced rather than silently overwritten. There is also a calendar planner and a video-reel maker that renders on your device. It runs in any browser, installs on iOS and Android, and keeps no account and collects nothing.',
+      'For the note-taker who wants more than plain text without behavioural tracking, Scribble is a local-first notebook built from typed blocks: text, headings, quotes, images, figures, hundreds of stickers and sandboxed interactive playgrounds, with a live preview as you write. Optional AI drafts use your own provider key. A note can publish straight to your own website’s repository, and optional sync uses a cloud destination you control, with conflicts surfaced rather than silently overwritten. There is also a calendar planner and a video-reel maker that renders on your device. It runs in a browser, installs as a PWA on iOS and Android, requires no Scribble account, and keeps notebook content on the device by default.',
     recognition: 'Why should a note stop at words on a page?',
     storyHeadline: 'Let a note become something more.',
     promise:
@@ -391,13 +391,13 @@ export const PRODUCTS: Product[] = [
       { title: 'Carry the notebook across devices', body: 'Sync through a private repository you control, with conflicts shown rather than overwritten.' },
     ],
     proof: [
-      { value: '211', label: 'stickers ready to use' },
+      { value: '332', label: 'stickers ready to use' },
       { value: '7', label: 'supported AI providers' },
       { value: '0', label: 'Scribble accounts required' },
     ],
-    controlNote: 'Notes, keys and rendered media stay with you. AI is optional, uses your key and disappears from the workflow when you choose not to configure it.',
-    price: '£29 a year',
-    offer: { price: '29', currency: 'GBP', period: 'year' },
+    controlNote: 'Notes and rendered media stay on your device by default. AI is optional: your key remains on the device, while request content goes directly to the provider you choose.',
+    price: 'Free until 4 August 2027',
+    offer: { price: '0', currency: 'GBP', period: 'year' },
     category: 'Productivity software',
     platforms: 'Web, iOS, Android',
     flagship: false,
