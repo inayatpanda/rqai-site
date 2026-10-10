@@ -1,3 +1,4 @@
+import { PodiumIllustration, LiteratureIllustration, SignalIllustration, ShoulderIllustration } from '../components/IllustratedHero'
 import type { ComponentType } from 'react'
 import liveness from './liveness.json'
 import { AudioQuillDemo } from '../components/demos/AudioQuillDemo'
@@ -42,6 +43,10 @@ export type Slug =
   | 'consultantprep'
   | 'audioquill'
   | 'scribble'
+  | 'podium'
+  | 'literature-decoded'
+  | 'thestreetsignal'
+  | 'universal-shoulder-model'
 
 /**
  * Optional spoke-site palette for a project whose external marketing site has
@@ -79,6 +84,7 @@ export type ProofPoint = { value: string; label: string }
 
 export type Product = {
   name: string
+  status?: 'development'
   slug: Slug
   url: string
   /** <= 8 words, factual. */
@@ -123,34 +129,29 @@ export const PRODUCTS: Product[] = [
     name: 'ResearchAssistant',
     slug: 'researchassistant',
     url: 'https://researchassistant.rqai.co.uk',
-    tagline: 'Evidence, from search to submission.',
-    hook: 'One desktop app that carries a study from question to submitted manuscript.',
+    tagline: 'Plan, run and write up research.',
     description:
-      'For the clinician running a systematic review or writing up a study, ResearchAssistant is one desktop app that carries the whole project from question to submitted manuscript. Build a PubMed search from an offline MeSH index of 30,956 terms, screen with a live Cohen’s kappa, then run risk of bias, meta-analysis and GRADE. The statistics module has 52 tests, each validated against the same run in R, and strict AI mode must ground every claim to a sentence in your library or say nothing. A simulated Reviewer 2 critiques the draft, and a one-click packet builds the submission zip. Your project stays in a database on your own Mac, Windows or Linux machine. Full walkthroughs and downloads are at researchassistant.rqai.co.uk.',
-    recognition: 'From the first search to the final submission.',
-    storyHeadline: 'One research workbench. Every stage connected.',
+      'Run systematic reviews, statistics and health-economic analyses. Write the manuscript and prepare submission files in the same app.',
+    recognition: 'Research',
+    storyHeadline: 'Work on a study from start to finish.',
     promise:
-      'Build systematic reviews. Run validated statistics and health-economic analyses. Draft manuscripts, check the evidence and prepare submission files without changing tools.',
+      'Run systematic reviews, statistics and health-economic analyses. Write the manuscript and prepare submission files in the same app.',
     featureMoments: [
-      { title: 'Run the whole systematic review', body: 'Build the search, screen together, assess bias, pool results and produce GRADE summaries.' },
-      { title: 'Use statistics you can defend', body: 'Choose from 52 tests validated against equivalent runs in R, with power and sample-size planning.' },
-      { title: 'Make the economics visible', body: 'Run QALY, ICER, NMB, CEAC and sensitivity analyses, then produce CHEERS-style reporting.' },
-      { title: 'Keep AI on a short lead', body: 'Ground drafts in your evidence, inspect every claim, use local Ollama—or write without AI.' },
-      { title: 'Meet Reviewer 2 early', body: 'Stress-test the manuscript, resolve criticism and build the final submission package.' },
+      { title: 'Review the evidence', body: 'Search papers, screen studies, assess bias and combine results.' },
+      { title: 'Analyse your data', body: 'Use statistical tests, sample-size tools and health-economic analyses.' },
+      { title: 'Prepare your manuscript', body: 'Write with references, use Reviewer 2 feedback and export submission files.' },
+      { title: 'Choose whether to use AI', body: 'Use your own evidence to guide drafts, run a local model or work without AI.' },
     ],
     proof: [
       { value: '52', label: 'validated statistical tests' },
       { value: '30,956', label: 'offline MeSH descriptors' },
       { value: '1', label: 'workflow from search to submission' },
     ],
-    controlNote: 'Your library and project database stay on your own computer. Generative AI is optional, inspectable and can run locally.',
-    price: '£99 a year',
-    offer: { price: '99', currency: 'GBP', period: 'year' },
+    controlNote: 'The hosted workspace stores accounts and uploaded work on its servers. Desktop storage and optional AI follow the setup you choose. Read the app privacy notice before uploading data.',
+    price: 'See current access options',
     category: 'Research software',
-    platforms: 'macOS, Windows, Linux',
+    platforms: 'Web; desktop early access',
     flagship: true,
-    whereLine:
-      'ResearchAssistant is desktop software for Mac, Windows and Linux. Walkthroughs, documentation and downloads are at researchassistant.rqai.co.uk.',
     theme: {
       accent: '#2563eb',
       accentInk: '#ffffff',
@@ -168,34 +169,29 @@ export const PRODUCTS: Product[] = [
     name: 'ClinicalPROMs',
     slug: 'clinicalproms',
     url: 'https://clinicalproms.rqai.co.uk',
-    tagline: 'Collect and track validated patient-reported outcomes.',
-    hook: 'Twenty validated instruments, scored as published, on hardware you control.',
+    tagline: 'Collect patient scores and track recovery.',
     description:
-      'For the orthopaedic surgeon or department that wants to know how patients actually do after surgery, ClinicalPROMs (also known as Ortho Outcomes) collects and tracks validated patient-reported outcomes without a vendor cloud. Photograph a theatre or clinic list and it becomes structured cases with no retyping. Patients answer end-to-end encrypted questionnaires on their own phone, and the key never touches a server. Twenty validated instruments, from the Oxford scores to EQ-5D-5L, are scored exactly as published, each with the MCID thresholds and concern bands that make a change clinically meaningful, and every patient’s recovery plots as a trajectory over time. It runs on your own Mac or Windows PC with an embedded database: one licence, no per-seat fees. The full detail is at clinicalproms.rqai.co.uk.',
-    recognition: 'Collecting scores is easy. Understanding recovery is the real work.',
-    storyHeadline: 'See recovery, not just another score.',
+      'Send patients questionnaires and track their scores over time. See changes against published thresholds for meaningful improvement.',
+    recognition: 'Patient outcomes',
+    storyHeadline: 'Follow recovery over time.',
     promise:
-      'Collect validated PROMs and follow each patient’s progress over time. MCID thresholds show when change is clinically meaningful.',
+      'Send patients questionnaires and track their scores over time. See changes against published thresholds for meaningful improvement.',
     featureMoments: [
-      { title: 'See recovery, not isolated scores', body: 'Follow every patient over time with MCID thresholds and concern bands already interpreted.' },
-      { title: 'Use measures clinicians recognise', body: 'Twenty validated instruments are scored as published, from Oxford scores to EQ-5D-5L.' },
-      { title: 'Turn a list into a clinic', body: 'Photograph a theatre or clinic list and create structured cases without retyping them.' },
-      { title: 'Let patients answer anywhere', body: 'Send a secure link that works in the patient’s own phone browser.' },
-      { title: 'Keep the key out of the cloud', body: 'Answers are encrypted on the patient’s device before they travel.' },
+      { title: 'Collect patient scores', body: 'Patients complete questionnaires in their phone browser.' },
+      { title: 'Track changes', body: 'View recovery charts using validated outcome measures and published scoring rules.' },
+      { title: 'Import a clinic list', body: 'Create draft cases from a photo of a theatre or clinic list, then check the details.' },
+      { title: 'Run it on your computer', body: 'Use your own Mac or Windows PC to store and manage the records.' },
     ],
     proof: [
       { value: '20', label: 'validated outcome measures' },
       { value: '∞', label: 'patients on one licence' },
       { value: '0', label: 'vendor-held encryption keys' },
     ],
-    controlNote: 'Self-hosted on your Mac or Windows PC, with an embedded database, audit log and data-rights tools.',
-    price: '£199 a year',
-    offer: { price: '199', currency: 'GBP', period: 'year' },
+    controlNote: 'Data handling depends on the clinical deployment. Confirm the operator, patient notice and approved storage arrangements before collecting patient information.',
+    price: 'Beta access — contact the project',
     category: 'Medical software',
     platforms: 'macOS, Windows',
     flagship: true,
-    whereLine:
-      'ClinicalPROMs is self-hosted software for your own Mac or Windows PC. Learn more and get it at clinicalproms.rqai.co.uk.',
     theme: {
       accent: '#0e7490',
       accentInk: '#ffffff',
@@ -213,31 +209,27 @@ export const PRODUCTS: Product[] = [
     name: 'OrthoLog',
     slug: 'ortholog',
     url: 'https://ortholog.rqai.co.uk',
-    tagline: 'A surgical logbook for reflection and learning.',
+    tagline: 'Record operations and what you learn.',
     description:
-      'For the surgeon or trainee keeping a personal record of operative experience, OrthoLog brings cases, reflections, procedural learning and optional follow-up notes into one encrypted vault. Cases can be entered manually, imported from a spreadsheet or drafted from a selected theatre-list or operation-note image using the user’s own Gemini, Groq or OpenAI key. Every AI suggestion remains a draft for review. The installable web app works across phone and desktop, with optional encrypted Google Drive synchronisation. Patient identifiers are optional, and the product directs users to mock or non-identifying data unless their organisation has expressly approved the processing.',
-    recognition: 'The useful part of a logbook is what you learn from the case.',
-    storyHeadline: 'Capture the operation. Keep the reflection.',
+      'Log operations, add learning notes and review your experience. Use the app on your phone or computer.',
+    recognition: 'Surgical logbook',
+    storyHeadline: 'Keep cases and reflections together.',
     promise:
-      'Record cases on phone or desktop. Revisit learning points and build a reflective portfolio in an encrypted vault.',
+      'Log operations, add learning notes and review your experience. Use the app on your phone or computer.',
     featureMoments: [
-      { title: 'Start with the simplest route', body: 'Enter a case manually, import a spreadsheet or ask optional AI to draft fields from a selected image.' },
-      { title: 'Review before anything is kept', body: 'Work through each suggested case and check it against the source before saving.' },
-      { title: 'Keep the learning with the case', body: 'Add reflections, procedural steps, feedback, links, attachments and optional follow-up notes.' },
-      { title: 'Move between phone and desktop', body: 'Install the PWA and optionally synchronise the encrypted vault through Google Drive.' },
-      { title: 'Choose what leaves the device', body: 'Manual and spreadsheet workflows stay local; AI transmission is optional and explicitly disclosed.' },
+      { title: 'Add cases', body: 'Enter cases yourself, import a spreadsheet or review an optional AI draft.' },
+      { title: 'Keep learning notes', body: 'Add reflections, feedback, attachments and follow-up notes to each case.' },
+      { title: 'Use more than one device', body: 'Install the web app and optionally sync an encrypted copy through Google Drive.' },
     ],
     proof: [
       { value: '0', label: 'required patient identifiers' },
       { value: '3', label: 'optional AI providers' },
       { value: '1', label: 'encrypted personal vault' },
     ],
-    controlNote: 'Free to use. No OrthoLog account or central patient database; full legal, privacy, AI and security documents are published in the app and website.',
+    controlNote: 'Your logbook is encrypted. AI and Google Drive sync are optional. Use non-identifying data unless your organisation has approved otherwise.',
     category: 'Education software',
     platforms: 'Web, macOS, Android',
     flagship: false,
-    whereLine:
-      'OrthoLog is available as an installable web app at ortholog.rqai.co.uk. Signed native downloads are published only after release verification.',
     Demo: OrthoLogDemo,
     HeroScene: OrthoLogHero,
   },
@@ -245,34 +237,30 @@ export const PRODUCTS: Product[] = [
     name: 'Chapbook',
     slug: 'chapbook',
     url: 'https://chapbook.rqai.co.uk',
-    tagline: 'Write your blog from your phone.',
-    hook: 'A chat-style composer that publishes to a blog you own.',
+    tagline: 'Write and publish a blog from your phone.',
     description:
-      'For the writer who wants to publish from a phone without renting an audience, Chapbook makes blogging as quick as sending a message. Type into a chat-style composer where each message becomes a paragraph, and edit any block by tapping it and carrying on the conversation. Drop in photos processed on your device, embed a video, or add one of 75 interactive widgets, and choose from six reading surfaces for how the blog looks. Publishing is a real commit to your own repository, deployed to your own site on your own domain, with no Chapbook server in between. An AI can draft in a voice it learns from your recent posts, and nothing posts without your say-so.',
-    recognition: 'What if owning a beautiful blog felt as easy as sending a message?',
-    storyHeadline: 'Own a blog that never feels ordinary.',
+      'Write posts in a chat-style editor. Add photos, video and interactive elements, then publish to your own website.',
+    recognition: 'Blogging',
+    storyHeadline: 'Write a post. Publish it on your site.',
     promise:
-      'Write from your phone as naturally as sending a message. Change the reading mood, add interactive ideas and publish to your own domain.',
+      'Write posts in a chat-style editor. Add photos, video and interactive elements, then publish to your own website.',
     featureMoments: [
-      { title: 'Write by chatting', body: 'Each message becomes a paragraph; tap any block and continue editing the conversation.' },
-      { title: 'Change the whole atmosphere', body: 'Cycle through six distinctive reading surfaces with one choice—not a site rebuild.' },
-      { title: 'Make the page playful', body: 'Mix photos, video and 75 interactive widgets into the story.' },
-      { title: 'Publish somewhere you own', body: 'A real repository commit deploys the post to your website and domain.' },
-      { title: 'Borrow a spark, keep your voice', body: 'Optional AI can learn from recent posts, but nothing publishes without you.' },
+      { title: 'Write in short blocks', body: 'Each message becomes a paragraph. Tap a block to edit it.' },
+      { title: 'Add more to a post', body: 'Include photos, videos and interactive widgets.' },
+      { title: 'Choose a layout', body: 'Pick a reading style for your blog.' },
+      { title: 'Publish to your own site', body: 'Save posts to your repository and publish on your domain.' },
     ],
     proof: [
       { value: '6', label: 'reading surfaces' },
       { value: '75', label: 'interactive widgets' },
       { value: '1 tap', label: 'to change the reading mood' },
     ],
-    controlNote: 'Your posts live in your repository and publish to your domain. Chapbook has no publishing server in between.',
+    controlNote: 'Your posts live in your own repository. AI drafting is optional, and you choose when to publish.',
     price: '£49 a year',
     offer: { price: '49', currency: 'GBP', period: 'year' },
     category: 'Publishing software',
     platforms: 'Web, iOS, Android',
     flagship: true,
-    whereLine:
-      'Chapbook runs in your browser at chapbook.rqai.co.uk and installs to your phone. Your posts live in your own repository; your keys stay in your browser.',
     Demo: ChapbookDemo,
     HeroScene: ChapbookHero,
   },
@@ -280,26 +268,25 @@ export const PRODUCTS: Product[] = [
     name: 'OrthoPortfolio',
     slug: 'orthoportfolio',
     url: 'https://orthoportfolio.rqai.co.uk',
-    tagline: 'Compile a submission-ready Portfolio Pathway application.',
+    tagline: 'Organise your Portfolio Pathway application.',
     description:
-      'For the SAS or overseas-trained T&O surgeon assembling a GMC Portfolio Pathway application, the hard part is not storage but shaping a pile of certificates, WBAs and letters into what the GMC asks for. OrthoPortfolio knows the Trauma and Orthopaedics curriculum, its 13 index procedures, 14 critical conditions and CiP structured reports, so it files each document against the right requirement, redacts patient details and verifies no recoverable text remains, then compiles indexed per-section PDF bundles with cover pages and continuous numbering. A dashboard tracks readiness, lists the gaps and prints a submission checklist. Everything runs on your own device.',
-    recognition: 'A Portfolio Pathway application should not feel like organising a warehouse.',
-    storyHeadline: 'Turn years of evidence into one coherent application.',
+      'Match documents to the T&O requirements. Find missing evidence, redact patient details and export indexed PDF bundles.',
+    recognition: 'Surgical portfolio',
+    storyHeadline: 'Put your evidence in order.',
     promise:
-      'Place each document against the right T&O requirement. Find the gaps, protect patient details and build indexed submission bundles.',
+      'Match documents to the T&O requirements. Find missing evidence, redact patient details and export indexed PDF bundles.',
     featureMoments: [
-      { title: 'Know where every document belongs', body: 'Match evidence to the curriculum, index procedures, critical conditions and CiP reports.' },
-      { title: 'Find the gaps before the GMC does', body: 'See readiness by section and work from a prioritised missing-evidence list.' },
-      { title: 'Redact beyond the black rectangle', body: 'Rasterise pages, detect common identifiers and verify that text cannot be recovered.' },
-      { title: 'Build submission-ready bundles', body: 'Generate cover pages, indexes, reflection sheets and continuous page numbering.' },
-      { title: 'Keep the wider portfolio moving', body: 'Track logbook evidence, CPD and the final printable submission checklist.' },
+      { title: 'Sort your evidence', body: 'Organise documents by curriculum requirements, procedures and conditions.' },
+      { title: 'Check what is missing', body: 'Review progress by section and see where you need more evidence.' },
+      { title: 'Redact patient details', body: 'Remove identifying information and check the result before sharing.' },
+      { title: 'Export your application', body: 'Create PDF bundles with cover pages, indexes and page numbers.' },
     ],
     proof: [
       { value: '13', label: 'index procedures mapped' },
       { value: '14', label: 'critical conditions mapped' },
       { value: '0', label: 'recoverable text after verified redaction' },
     ],
-    controlNote: 'The application and its evidence stay on your own device. Classification still works offline when no AI key is configured.',
+    controlNote: 'You can organise evidence on your device without an AI key. Optional cloud backup sends data to the configured backup service; check its settings before enabling it.',
     price: '£49 a year',
     offer: { price: '49', currency: 'GBP', period: 'year' },
     category: 'Medical software',
@@ -312,26 +299,25 @@ export const PRODUCTS: Product[] = [
     name: 'OrthoConsultantPrep',
     slug: 'consultantprep',
     url: 'https://consultantprep.rqai.co.uk',
-    tagline: 'Structured preparation for the consultant interview.',
+    tagline: 'Practise for a T&O consultant interview.',
     description:
-      'For the T&O registrar, fellow or locum consultant facing a substantive consultant interview, OrthoConsultantPrep is a self-contained way to rehearse. It ships with 237 questions across 15 categories, each carrying a model answer, delivery advice, key statistics, references and follow-ups. A daily five-card flow keeps revision moving, a timed mock runs ten questions on a real three-minute clock, and Trust Prep reads a named trust’s published CQC, GIRFT and NHFD signals to show which scenarios that panel is likely to probe. All content is built in, your notes and progress stay on your device, and it is £49 once with no subscription.',
-    recognition: 'A consultant interview is never generic. Your preparation should not be either.',
-    storyHeadline: 'Prepare for the Trust, not a generic interview.',
+      'Revise interview questions, review Trust information and practise timed answers. Keep notes on the topics you need to revisit.',
+    recognition: 'Interview preparation',
+    storyHeadline: 'Prepare answers and practise aloud.',
     promise:
-      'Build stronger answers around the Trust and NHS context in front of you. Then rehearse them against the clock.',
+      'Revise interview questions, review Trust information and practise timed answers. Keep notes on the topics you need to revisit.',
     featureMoments: [
-      { title: 'Prepare for this Trust', body: 'Match interview scenarios to published CQC, GIRFT and NHFD signals from real Trust profiles.' },
-      { title: 'Build answers with substance', body: 'Use model answers, delivery advice, statistics, references and follow-up questions.' },
-      { title: 'Feel the three-minute clock', body: 'Run a ten-question mock and review what you answered, skipped or timed out.' },
-      { title: 'Revise what needs attention', body: 'A daily five-card flow prioritises unseen and flagged material.' },
-      { title: 'Stay fluent in the NHS conversation', body: 'Connect current hot-topic briefings directly to the questions they inform.' },
+      { title: 'Revise questions', body: 'Read model answers, references and likely follow-up questions.' },
+      { title: 'Practise a timed interview', body: 'Work through ten questions with three minutes for each answer.' },
+      { title: 'Prepare for the Trust', body: 'Review published Trust information and relevant NHS topics.' },
+      { title: 'Track your revision', body: 'Flag questions and return to topics that need more work.' },
     ],
     proof: [
       { value: '237', label: 'interview questions' },
       { value: '20', label: 'real Trust profiles' },
       { value: '28', label: 'NHS hot-topic briefings' },
     ],
-    controlNote: 'All core content is built in. Your notes and progress stay on your device, with one purchase and no subscription.',
+    controlNote: 'Core content is included in the app. Your notes and progress stay on your device. The purchase is a one-off payment.',
     price: '£49 one-off',
     offer: { price: '49', currency: 'GBP', period: 'once' },
     category: 'Education software',
@@ -344,26 +330,25 @@ export const PRODUCTS: Product[] = [
     name: 'AudioQuill',
     slug: 'audioquill',
     url: 'https://audioquill.rqai.co.uk',
-    tagline: 'Speak, and get clean, structured writing.',
+    tagline: 'Turn speech into written documents.',
     description:
-      'For anyone who thinks faster than they type, AudioQuill turns speech into clean, structured writing you can shape into a finished document. Transcription runs on your own device with a local Whisper model, free and offline, or through your own key to a provider you choose. Every recording keeps its raw transcript intact while AI-cleaned versions layer on top, so you can switch between raw, clean and structured without losing the original. 44 guided templates and 49 spoken commands shape a dictation as you talk, and topics gather scattered recordings into one compiled document you can export to DOCX, PDF or Markdown.',
-    recognition: 'Your best sentence should not have to wait for your fingers.',
-    storyHeadline: 'Speak while the thought is alive.',
+      'Transcribe recordings, edit the text and combine notes into documents. Export as Word, PDF or Markdown.',
+    recognition: 'Dictation',
+    storyHeadline: 'Record your thoughts. Edit the transcript.',
     promise:
-      'Turn recordings into clean, structured writing. Gather scattered dictations into finished documents without losing the untouched transcript.',
+      'Transcribe recordings, edit the text and combine notes into documents. Export as Word, PDF or Markdown.',
     featureMoments: [
-      { title: 'Transcribe without sending audio away', body: 'Run a local Whisper model on your own device, free and offline.' },
-      { title: 'Never lose what you actually said', body: 'Move between raw, clean and structured versions while preserving the original transcript.' },
-      { title: 'Shape the document while speaking', body: 'Use guided templates and spoken commands to create structure in the moment.' },
-      { title: 'Gather fragments into something whole', body: 'Compile recordings by topic, then export one coherent document.' },
-      { title: 'Choose where intelligence comes from', body: 'Use local transcription or bring a key for the AI provider you prefer.' },
+      { title: 'Transcribe recordings', body: 'Run Whisper on your device or use your chosen online provider.' },
+      { title: 'Keep the original', body: 'Compare edited versions with the original transcript.' },
+      { title: 'Structure your notes', body: 'Use templates and spoken commands to organise dictation.' },
+      { title: 'Export a document', body: 'Group recordings by topic and export the text.' },
     ],
     proof: [
       { value: '44', label: 'guided templates' },
       { value: '49', label: 'spoken commands' },
       { value: '3', label: 'exports: DOCX, PDF, Markdown' },
     ],
-    controlNote: 'Raw recordings and transcripts stay available. There is no AudioQuill account, tracking profile or required AI subscription.',
+    controlNote: 'Local transcription works offline. If you choose an online provider, it receives the audio or text needed for that request.',
     price: '£29 a year',
     offer: { price: '29', currency: 'GBP', period: 'year' },
     category: 'Productivity software',
@@ -376,26 +361,25 @@ export const PRODUCTS: Product[] = [
     name: 'Scribble',
     slug: 'scribble',
     url: 'https://scribble.rqai.co.uk',
-    tagline: 'Typed notes in blocks, with AI and publishing.',
+    tagline: 'Keep notes with text, images and sketches.',
     description:
-      'For the note-taker who wants more than plain text without behavioural tracking, Scribble is a local-first notebook built from typed blocks: text, headings, quotes, images, figures, hundreds of stickers and sandboxed interactive playgrounds, with a live preview as you write. Optional AI drafts use your own provider key. A note can publish straight to your own website’s repository, and optional sync uses a cloud destination you control, with conflicts surfaced rather than silently overwritten. There is also a calendar planner and a video-reel maker that renders on your device. It runs in a browser, installs as a PWA on iOS and Android, requires no Scribble account, and keeps notebook content on the device by default.',
-    recognition: 'Why should a note stop at words on a page?',
-    storyHeadline: 'Let a note become something more.',
+      'Write notes, add pictures and sketches, and publish selected pages to your website. AI tools are optional.',
+    recognition: 'Notes',
+    storyHeadline: 'Make a notebook you can use anywhere.',
     promise:
-      'Build visual stories, interactive playgrounds, tiny flipbooks and published posts. Keep the speed and simplicity of typed notes.',
+      'Write notes, add pictures and sketches, and publish selected pages to your website. AI tools are optional.',
     featureMoments: [
-      { title: 'Build with more than text', body: 'Combine headings, images, figures, stickers and sandboxed interactive playgrounds.' },
-      { title: 'Draw an idea into motion', body: 'Create frame-by-frame flipbooks and render caption, sketch or sticker reels on your device.' },
-      { title: 'Invite a stranger idea in', body: 'Use Goblin mode, Partner chat or other optional BYOK tools when the blank page feels too polite.' },
-      { title: 'Publish the note where you live', body: 'Send finished work directly to your own website repository.' },
-      { title: 'Carry the notebook across devices', body: 'Sync through a private repository you control, with conflicts shown rather than overwritten.' },
+      { title: 'Build a page', body: 'Combine text, images, stickers and interactive elements.' },
+      { title: 'Add drawings and short videos', body: 'Make flipbooks or render a short reel on your device.' },
+      { title: 'Publish selected notes', body: 'Send a finished note to your own website repository.' },
+      { title: 'Sync if you need to', body: 'Use your own private repository and review any conflicting changes.' },
     ],
     proof: [
       { value: '332', label: 'stickers ready to use' },
       { value: '7', label: 'supported AI providers' },
       { value: '0', label: 'Scribble accounts required' },
     ],
-    controlNote: 'Notes and rendered media stay on your device by default. AI is optional: your key remains on the device, while request content goes directly to the provider you choose.',
+    controlNote: 'Notes stay on your device by default. Optional AI requests go to the provider you choose.',
     price: 'Free until 4 August 2027',
     offer: { price: '0', currency: 'GBP', period: 'year' },
     category: 'Productivity software',
@@ -404,6 +388,147 @@ export const PRODUCTS: Product[] = [
     Demo: ScribbleDemo,
     HeroScene: ScribbleHero,
   },
+{
+    name: 'Podium',
+    slug: 'podium',
+    url: 'https://podium.rqai.co.uk',
+    tagline: 'Rehearse presentations and interviews.',
+    description: 'Import your slides, choose a practice room and rehearse with a simulated audience. Record a take and review it.',
+    recognition: 'Presentation practice',
+    storyHeadline: 'Practise your talk before the day.',
+    promise: 'Import your slides, choose a practice room and rehearse with a simulated audience. Record a take and review it.',
+    featureMoments: [
+      { title: 'Use your slides', body: 'Import PowerPoint, PDF, OpenDocument or image slides.' },
+      { title: 'Choose an audience', body: 'Practise in different rooms with simulated audience characters.' },
+      { title: 'Review a recording', body: 'Watch your rehearsal and use the feedback to plan your next attempt.' },
+    ],
+    proof: [
+        {
+            value: '6',
+            label: 'practice rooms'
+        },
+        {
+            value: '38',
+            label: 'audience characters'
+        },
+        {
+            value: 'Local',
+            label: 'rehearsal recordings'
+        }
+    ],
+    controlNote: 'Rehearsal recordings are saved locally. Desktop access is currently by invitation.',
+    category: 'Education software',
+    platforms: 'Desktop',
+    flagship: false,
+  Demo: PodiumIllustration,
+    HeroScene: PodiumIllustration,
+  },
+{
+    name: 'Literature Decoded',
+    slug: 'literature-decoded',
+    url: 'https://literature-decoded.rqai.co.uk',
+    tagline: 'Read open-access orthopaedic research.',
+    description: 'Browse orthopaedic studies by subject. Read reformatted articles and follow the links to the original publications.',
+    recognition: 'Research papers',
+    storyHeadline: 'Read papers in a simpler layout.',
+    promise: 'Browse orthopaedic studies by subject. Read reformatted articles and follow the links to the original publications.',
+    featureMoments: [
+      { title: 'Browse by subject', body: 'Find papers on upper limb, hip, knee, trauma, spine, sports and perioperative care.' },
+      { title: 'Read the full paper', body: 'Articles are reformatted for reading, rather than rewritten.' },
+      { title: 'Check the source', body: 'Each article includes attribution and a link to its journal version.' },
+    ],
+    proof: [
+        {
+            value: 'Open',
+            label: 'access research'
+        },
+        {
+            value: 'Linked',
+            label: 'journal originals'
+        },
+        {
+            value: 'Readable',
+            label: 'article layouts'
+        }
+    ],
+    controlNote: 'The collection uses open-access articles under CC BY or CC BY-SA licences. Attribution stays with each paper.',
+    category: 'Education software',
+    platforms: 'Web',
+    flagship: false,
+  Demo: LiteratureIllustration,
+    HeroScene: LiteratureIllustration,
+  },
+{
+    name: 'The Street Signal',
+    slug: 'thestreetsignal',
+    url: 'https://thestreetsignal.rqai.co.uk',
+    tagline: 'Read market analysis and track its results.',
+    description: 'Read the morning market report, explore charts and check how previous calls performed, including the misses.',
+    recognition: 'Market research',
+    storyHeadline: 'Follow market calls and their outcomes.',
+    promise: 'Read the morning market report, explore charts and check how previous calls performed, including the misses.',
+    featureMoments: [
+      { title: 'Read the daily report', body: 'Review market movements, sector changes and new listings.' },
+      { title: 'Check past calls', body: 'Compare results over five and ten trading sessions against SPY.' },
+      { title: 'Explore the charts', body: 'See sector views and how well the reported probabilities match outcomes.' },
+    ],
+    proof: [
+        {
+            value: '5 / 10',
+            label: 'session outcome windows'
+        },
+        {
+            value: 'SPY',
+            label: 'relative benchmark'
+        },
+        {
+            value: 'Public',
+            label: 'record of hits and misses'
+        }
+    ],
+    controlNote: 'Market analysis, not investment advice. The project website explains licences and reader access.',
+    category: 'Finance software',
+    platforms: 'Web, macOS, Windows',
+    flagship: false,
+  Demo: SignalIllustration,
+    HeroScene: SignalIllustration,
+  },
+{
+    name: 'Universal Shoulder Model',
+    slug: 'universal-shoulder-model',
+    url: '',
+    status: 'development',
+    tagline: 'Study shoulder anatomy and movement.',
+    description: 'Explore anatomy, compare saved scenarios and examine prescribed movement. This research software is still in development.',
+    recognition: 'In development',
+    storyHeadline: 'Compare shoulder models and movement.',
+    promise: 'Explore anatomy, compare saved scenarios and examine prescribed movement. This research software is still in development.',
+    featureMoments: [
+      { title: 'View anatomy', body: 'Inspect shoulder geometry while retaining the original scan position.' },
+      { title: 'Compare scenarios', body: 'Save and revisit patient and implant configurations.' },
+      { title: 'Study movement', body: 'Run prescribed movement tasks and inspect geometric measurements.' },
+    ],
+    proof: [
+        {
+            value: 'Local',
+            label: 'research workbench'
+        },
+        {
+            value: 'Saved',
+            label: 'reproducible study scenarios'
+        },
+        {
+            value: 'In progress',
+            label: 'model development'
+        }
+    ],
+    controlNote: 'In development for research. Predictions about muscle forces, implant fit and joint stability remain incomplete. It has not been clinically validated.',
+    category: 'Research software',
+    platforms: 'macOS',
+    flagship: false,
+  Demo: ShoulderIllustration,
+    HeroScene: ShoulderIllustration,
+  }
 ]
 
 type LivenessEntry = { url: string; ok: boolean; checkedAt: string }
@@ -415,5 +540,5 @@ const livenessMap = liveness as Record<string, LivenessEntry>
  * unreachable slug is treated as not live so the UI shows "coming soon".
  */
 export function isLive(slug: Slug): boolean {
-  return livenessMap[slug]?.ok === true
+  return PRODUCTS.find(p => p.slug === slug)?.status !== 'development' && livenessMap[slug]?.ok === true
 }

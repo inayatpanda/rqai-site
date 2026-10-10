@@ -2,41 +2,56 @@
   "researchassistant": {
     "url": "https://researchassistant.rqai.co.uk",
     "ok": true,
-    "checkedAt": "2026-07-10T07:19:06.782Z"
+    "checkedAt": "2026-10-10T08:59:45.524Z"
   },
   "clinicalproms": {
     "url": "https://clinicalproms.rqai.co.uk",
     "ok": true,
-    "checkedAt": "2026-07-10T07:19:06.782Z"
+    "checkedAt": "2026-10-10T08:59:45.524Z"
   },
   "ortholog": {
     "url": "https://ortholog.rqai.co.uk",
     "ok": true,
-    "checkedAt": "2026-08-08T20:55:00.000Z"
+    "checkedAt": "2026-10-10T08:59:45.524Z"
   },
   "chapbook": {
     "url": "https://chapbook.rqai.co.uk",
     "ok": true,
-    "checkedAt": "2026-07-10T07:19:06.782Z"
+    "checkedAt": "2026-10-10T08:59:45.524Z"
   },
   "orthoportfolio": {
     "url": "https://orthoportfolio.rqai.co.uk",
     "ok": true,
-    "checkedAt": "2026-07-10T07:19:06.782Z"
+    "checkedAt": "2026-10-10T08:59:45.524Z"
   },
   "consultantprep": {
     "url": "https://consultantprep.rqai.co.uk",
     "ok": true,
-    "checkedAt": "2026-07-10T07:19:06.782Z"
+    "checkedAt": "2026-10-10T08:59:45.524Z"
   },
   "audioquill": {
     "url": "https://audioquill.rqai.co.uk",
     "ok": true,
-    "checkedAt": "2026-07-10T07:19:06.782Z"
+    "checkedAt": "2026-10-10T08:59:45.524Z"
   },
   "scribble": {
     "url": "https://scribble.rqai.co.uk",
     "ok": true,
-    "checkedAt": "2026-07-10T07:19:06.782Z"
+    "checkedAt": "2026-10-10T08:59:45.524Z"
+  },
+  "podium": {
+    "url": "https://podium.rqai.co.uk",
+    "ok": true,
+    "checkedAt": "2026-10-10T08:59:45.524Z"
+  },
+  "literature-decoded": {
+    "url": "https://literature-decoded.rqai.co.uk",
+    "ok": true,
+    "checkedAt": "2026-10-10T08:59:45.524Z"
+  },
+  "thestreetsignal": {
+    "url": "https://thestreetsignal.rqai.co.uk",
+    "ok": true,
+    "checkedAt": "2026-10-10T08:59:45.524Z"
   }
 }

@@ -2,12 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://rqai.co.uk/</loc><lastmod>2026-08-08</lastmod></url>
   <url><loc>https://rqai.co.uk/researchassistant/</loc><lastmod>2026-07-10</lastmod></url>
-  <url><loc>https://rqai.co.uk/clinicalproms/</loc><lastmod>2026-07-10</lastmod></url>
+  <url><loc>https://rqai.co.uk/projects/clinicalproms/</loc><lastmod>2026-07-10</lastmod></url>
   <url><loc>https://rqai.co.uk/ortholog/</loc><lastmod>2026-08-08</lastmod></url>
   <url><loc>https://rqai.co.uk/chapbook/</loc><lastmod>2026-07-10</lastmod></url>
   <url><loc>https://rqai.co.uk/orthoportfolio/</loc><lastmod>2026-07-10</lastmod></url>
   <url><loc>https://rqai.co.uk/consultantprep/</loc><lastmod>2026-07-10</lastmod></url>
-  <url><loc>https://rqai.co.uk/audioquill/</loc><lastmod>2026-07-10</lastmod></url>
+  <url><loc>https://rqai.co.uk/projects/audioquill/</loc><lastmod>2026-07-10</lastmod></url>
   <url><loc>https://rqai.co.uk/scribble/</loc><lastmod>2026-07-10</lastmod></url>
   <url><loc>https://rqai.co.uk/about/</loc><lastmod>2026-07-10</lastmod></url>
+  <url><loc>https://rqai.co.uk/projects/podium/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://rqai.co.uk/projects/literature-decoded/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://rqai.co.uk/projects/thestreetsignal/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://rqai.co.uk/universal-shoulder-model/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://rqai.co.uk/orthopaedics/</loc><lastmod>2026-10-10</lastmod></url>
 </urlset>

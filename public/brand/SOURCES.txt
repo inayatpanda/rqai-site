@@ -1,0 +1,9 @@
+RQAI identity concept — 10 October 2026
+Hat outline: https://github.com/christianp/aperiodic-monotile/blob/main/hat-monotile.svg
+File author: Christian Lawson-Perfect. Repository licence: CC0 1.0.
+Licence: https://creativecommons.org/publicdomain/zero/1.0/
+Mathematical discovery: David Smith, Joseph Samuel Myers, Craig S. Kaplan, Chaim Goodman-Strauss.
+Paper and explanation: https://cs.uwaterloo.ca/~csk/hat/
+Modifications: scale and position; cyan fill, gold internal facet, construction lines. Outer polygon retained. RQAI lettering and Universal Shoulder Model symbol drawn for this project. Eleven existing app logos are reused without changes; see logo-sources.json for the individual sources.
+The standalone logo is a decorated tile, not an infinite tiling proof. No claim of ownership of the mathematical shape or trademark clearance is made. CC0 does not waive patent or trademark rights.
+Illustrations: original code-native SVG artwork. Shoulder drawing is a conceptual illustration, not patient data or a clinical diagram.

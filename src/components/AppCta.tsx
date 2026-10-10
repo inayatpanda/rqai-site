@@ -47,6 +47,8 @@ function ExternalArrow() {
 export function AppCta({ product, className = '' }: { product: Product; className?: string }) {
   const { name, slug, url } = product
 
+  if (product.status === 'development') return <a href="mailto:hello@rqai.co.uk?subject=Universal%20Shoulder%20Model" className="development-contact">Ask about the project <span aria-hidden="true">↗</span></a>
+
   if (isLive(slug)) {
     // Where a project has a spoke-site palette, the CTA adopts its accent so the
     // hand-off to that site is unmistakable. The accent + accentInk pair is

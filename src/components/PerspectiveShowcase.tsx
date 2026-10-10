@@ -1,3 +1,4 @@
+import { projectPath } from '../data/projectPaths'
 import { useEffect, useRef, useState, type PointerEvent } from 'react'
 import { Link } from 'react-router-dom'
 import {
@@ -9,8 +10,10 @@ import {
   useSpring,
   useTransform,
 } from 'framer-motion'
-import { PRODUCTS, type Product } from '../data/products'
+import { type Product } from '../data/products'
+import { MAIN_PROJECTS, ORTHOPAEDIC_PROJECTS } from '../data/navigation'
 import { PRODUCT_IDENTITIES, identityStyle } from '../data/productIdentities'
+import { ProductLogo } from './ProductLogo'
 import { ProductGlyph } from './ProductGlyph'
 
 /*
@@ -31,15 +34,13 @@ import { ProductGlyph } from './ProductGlyph'
 // ResearchAssistant + ClinicalPROMs share row one, Chapbook anchors row two
 // at width 4, and the remaining projects close the grid in balanced rows.
 const LG_SPAN = [
-  'lg:col-span-3',
-  'lg:col-span-3',
-  'lg:col-span-4',
-  'lg:col-span-2',
-  'lg:col-span-2',
-  'lg:col-span-2',
-  'lg:col-span-3',
-  'lg:col-span-3',
+  'lg:col-span-3', 'lg:col-span-3',
+  'lg:col-span-3', 'lg:col-span-3',
+  'lg:col-span-3', 'lg:col-span-3',
+  'lg:col-span-3', 'lg:col-span-3',
 ] as const
+
+const CARD_ART: Record<string, string> = { researchassistant: 'research', chapbook: 'writing', podium: 'podium', 'literature-decoded': 'literature', thestreetsignal: 'signal', 'universal-shoulder-model': 'shoulder' }
 
 const MAX_TILT = 6 // degrees — small, so text never becomes hard to read
 
@@ -107,7 +108,7 @@ function ProjectCard({
 
   return (
     <li
-      className={`reveal ${LG_SPAN[index]}`}
+      className={`reveal ${LG_SPAN[index] ?? 'lg:col-span-3'}`}
       style={{ perspective: 900, ['--reveal-delay' as string]: `${index * 0.06}s` }}
     >
       <motion.div
@@ -117,7 +118,7 @@ function ProjectCard({
         className="h-full"
       >
         <Link
-          to={`/${slug}`}
+          to={projectPath(slug)}
           aria-label={`${name}: ${tagline}`}
           data-slug={slug}
           style={cardStyle}
@@ -135,7 +136,7 @@ function ProjectCard({
           <div className="relative flex items-start justify-between gap-4">
             {/* Product-specific workflow glyph, given a settled frame so cards align. */}
             <div className="flex h-14 min-w-0 flex-1 items-center">
-              <ProductGlyph slug={slug} />
+              <ProductLogo slug={slug} />{CARD_ART[slug] ? <img src={`/illustrations/${CARD_ART[slug]}.svg`} className="project-card-drawing" width="480" height="370" alt="" loading="lazy" /> : <ProductGlyph slug={slug} className="ml-auto opacity-70" />}
             </div>
           </div>
 
@@ -149,7 +150,7 @@ function ProjectCard({
 
           <div className="project-card__cta relative mt-auto flex items-center gap-2 pt-6 text-sm font-medium">
             <span>
-              Open project
+              {product.status === 'development' ? 'In development' : 'View details'}
             </span>
             <Arrow />
           </div>
@@ -172,7 +173,7 @@ export function PerspectiveShowcase() {
   // after mount — so SSR / first paint / touch / reduced-motion stay flat and
   // there is never a hydration mismatch.
   useEffect(() => {
-    if (reduce) return
+    if (reduce) { setInteractive(false); return }
     const mq = window.matchMedia('(hover: hover) and (pointer: fine)')
     const apply = () => setInteractive(mq.matches)
     apply()
@@ -193,20 +194,19 @@ export function PerspectiveShowcase() {
       />
 
       <div className="container-edge relative">
-        <p className="eyebrow reveal" aria-hidden="true"><span>01</span><span>Projects</span></p>
+        <p className="eyebrow reveal" aria-hidden="true"><span>01</span><span>The collection</span></p>
         <h2 id={headingId} className="reveal mt-4 max-w-2xl text-3xl leading-tight md:text-4xl">
-          Eight projects, each built to do real work.
+          Apps, experiments and research.
         </h2>
         <p
           className="reveal mt-4 max-w-[52ch] text-base leading-relaxed text-ink"
           style={{ ['--reveal-delay' as string]: '0.06s' }}
         >
-          Each one is its own tool, made for a specific person and moment. Open a
-          project to see what it does, how it works and where to get it.
+          See what each project does, how to use it and what is still being built.
         </p>
 
         <ul className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-6">
-          {PRODUCTS.map((product, i) => (
+          {MAIN_PROJECTS.map((product, i) => (
             <ProjectCard
               key={product.slug}
               product={product}
@@ -215,6 +215,13 @@ export function PerspectiveShowcase() {
             />
           ))}
         </ul>
+        <div className="mt-8 flex flex-col gap-6 rounded-2xl border border-hairline bg-card p-6 lg:flex-row lg:items-center lg:justify-between">
+          <div><h3 className="text-xl">Orthopaedic tools & research</h3><p className="mt-2 text-sm text-ink">Log cases, prepare for interviews, organise your portfolio and explore shoulder research.</p></div>
+          <Link to="/orthopaedics" className="flex flex-wrap items-center gap-3 text-sm font-medium text-accent">
+            <span className="flex">{ORTHOPAEDIC_PROJECTS.map(project => <ProductLogo key={project.slug} slug={project.slug} className="!h-9 !w-9" />)}</span>
+            Explore the projects →
+          </Link>
+        </div>
       </div>
     </section>
   )

@@ -1,15 +1,14 @@
 import { Head } from 'vite-react-ssg'
 import { Constellation } from '../components/Constellation'
+import { Link } from 'react-router-dom'
+import { RQAI_IDENTITY } from '../data/identity'
 
 const ABOUT_TITLE = 'About RQAI: how these projects are built'
 const ABOUT_DESCRIPTION =
-  'The principles behind every RQAI project: real, shipping features, your data kept on your own device, no tracking, and nothing claimed that is not built.'
+  'How RQAI projects are built, from research and clinical software to writing, rehearsal and work in development.'
 
 /*
- * About — the page that carries RQAI's voice: principles over persona.
- *
- * Five commitments, told with conviction and plain language, then a direct line
- * to the maker. No founder bio, no specialty references, no hype. The
+ * About — the founder, current business identity and app information. The
  * Constellation is used as punctuation between movements, exactly as on the home
  * and project pages, so the page reads as one system.
  *
@@ -19,27 +18,12 @@ const ABOUT_DESCRIPTION =
  * fully readable with JavaScript disabled and reduced-motion users see it at once.
  */
 
-const COMMITMENTS: Array<{ title: string; body: string }> = [
-  {
-    title: 'Real tools, not demos.',
-    body: 'Every feature described here exists in the project you can use. Each tool begins focused, goes deep where its audience needs it, and leaves the sprawling software suite behind.',
-  },
-  {
-    title: 'Local-first. Your data stays with you.',
-    body: 'Your work stays on your device by default. When a project syncs or publishes, it uses storage you choose and control. Privacy begins by collecting less.',
-  },
-  {
-    title: 'No tracking. Nothing collected.',
-    body: 'No behavioural profile follows you between projects. Your writing, research and clinical work are not measured, mined or sold. The software does its job and minds its own business.',
-  },
-  {
-    title: 'Nothing claimed that is not built.',
-    body: 'The write-ups are checked against the software. Work in progress is labelled; unverifiable claims come down. Trust is more useful than a dramatic feature list.',
-  },
-  {
-    title: 'Buy once, or subscribe. Plainly.',
-    body: 'One price, shown before you leave the page. Some projects are bought once and others renew simply—without hidden tiers, per-seat surprises or an upsell maze.',
-  },
+const COMMITMENTS = [
+  { title: 'Focused apps', body: 'Each app has a specific job, such as recording cases, writing a paper or practising a presentation.' },
+  { title: 'Clear data choices', body: 'The app pages explain where your work is stored and when data is sent to another service.' },
+  { title: 'Optional AI', body: 'Where AI is available, the app explains how it is used. You review its output before relying on it.' },
+  { title: 'Development status', body: 'Projects that are still being built are labelled. Their pages explain what is available and what remains unfinished.' },
+  { title: 'Access and pricing', body: 'Some apps are free; others require a purchase, subscription or invitation. Check the app page for details.' },
 ]
 
 export function About() {
@@ -71,15 +55,17 @@ export function About() {
         />
         <div className="container-edge relative pb-10 pt-16 md:pb-14 md:pt-24">
           <h1 className="reveal max-w-4xl text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.03]">
-            Made thoughtfully.
+            About RQAI.
           </h1>
           <p
             className="reveal mt-6 max-w-[52ch] text-lg leading-relaxed text-ink md:text-xl"
             style={{ ['--reveal-delay' as string]: '0.1s' }}
           >
-            Eight different jobs, one way of building: useful depth, honest claims
-            and control that remains with the person doing the work.
+            {RQAI_IDENTITY.description}
           </p>
+          <p className="mt-5 max-w-[52ch] text-ink">RQAI stands for <strong>{RQAI_IDENTITY.brandLine}</strong></p>
+          <p className="mt-5 text-ink"><strong>{RQAI_IDENTITY.founder}</strong> — Founder, RQAI.</p>
+          <p className="mt-5 max-w-[60ch] text-sm leading-relaxed text-inkMuted">RQAI is currently operated by {RQAI_IDENTITY.founder}. {RQAI_IDENTITY.companyStatus} <Link to="/legal" className="underline underline-offset-4 hover:text-accent">Legal information</Link>.</p>
 
           <div
             className="reveal relative mt-12 md:mt-16"
@@ -97,8 +83,8 @@ export function About() {
       {/* Lead — one paragraph that sets up the commitments. */}
       <section className="container-edge py-10 md:py-14">
         <p className="reveal max-w-[60ch] text-xl leading-relaxed text-inkStrong md:text-2xl md:leading-relaxed">
-          These projects do not force unrelated work into one platform. Each is
-          shaped around its own audience; the principles are what connect them.
+          Each app works on its own. This website brings them together so you
+          can see what they do and where to find them.
         </p>
         <Constellation
           tone="ink"
@@ -134,10 +120,9 @@ export function About() {
             className="pointer-events-none absolute -right-10 -top-8 h-28 w-[30rem] opacity-[0.07]"
           />
           <div className="relative">
-            <h2 className="text-2xl md:text-3xl">Say hello.</h2>
+            <h2 className="text-2xl md:text-3xl">Contact.</h2>
             <p className="mt-3 max-w-prose leading-relaxed text-ink">
-              Questions, feedback, or a licence query go straight to the maker.
-              There is no ticketing system and no bot in between.
+              Email us with questions, feedback or help with a licence.
             </p>
             <a
               href="mailto:hello@rqai.co.uk"

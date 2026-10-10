@@ -50,13 +50,13 @@ async function readTargets() {
   const src = await readFile(PRODUCTS_TS, 'utf8')
   // Anchor to line-start so the Slug type union (`| 'orthoportfolio'`) is ignored.
   const slugs = [...src.matchAll(/^\s*slug:\s*'([^']+)'/gm)].map((m) => m[1])
-  const urls = [...src.matchAll(/^\s*url:\s*'([^']+)'/gm)].map((m) => m[1])
+  const urls = [...src.matchAll(/^\s*url:\s*'([^']*)'/gm)].map((m) => m[1])
   if (slugs.length === 0 || slugs.length !== urls.length) {
     throw new Error(
       `Could not parse matching slug/url pairs from products.ts (slugs=${slugs.length}, urls=${urls.length}).`,
     )
   }
-  return slugs.map((slug, i) => ({ slug, url: urls[i] }))
+  return slugs.map((slug, i) => ({ slug, url: urls[i] })).filter(target => target.url)
 }
 
 /** One request with a hard timeout; resolves to a status number or null on failure. */

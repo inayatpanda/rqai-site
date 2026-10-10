@@ -1,0 +1,25 @@
+<svg width="512" height="512" viewBox="56 72 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AudioQuill">
+  <title>AudioQuill</title>
+  <defs>
+    <linearGradient id="aq-grad" x1="150" y1="80" x2="360" y2="450" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <!-- Nib slit + breather hole -->
+    <mask id="aq-nib-mask">
+      <path d="M228 300 Q230 388 256 448 Q282 388 284 300 Z" fill="#fff"/>
+      <rect x="252.5" y="320" width="7" height="92" rx="3.5" fill="#000"/>
+      <circle cx="256" cy="330" r="9" fill="#000"/>
+    </mask>
+  </defs>
+  <!-- Feather plume rendered as five soundwave bars, tallest at the centre -->
+  <g fill="url(#aq-grad)">
+    <rect x="179" y="214" width="22" height="86"  rx="11"/>
+    <rect x="212" y="150" width="22" height="150" rx="11"/>
+    <rect x="245" y="92"  width="22" height="208" rx="11"/>
+    <rect x="278" y="150" width="22" height="150" rx="11"/>
+    <rect x="311" y="214" width="22" height="86"  rx="11"/>
+  </g>
+  <!-- Pen nib -->
+  <path d="M228 300 Q230 388 256 448 Q282 388 284 300 Z" fill="url(#aq-grad)" mask="url(#aq-nib-mask)"/>
+</svg>

@@ -49,9 +49,8 @@ jobs:
           # clinicalproms.rqai.co.uk and audioquill.rqai.co.uk are SEPARATE sites
           # (the ortho-outcomes marketing-site and the @audioquill/app PWA) whose
           # document roots ARE public_html/clinicalproms and public_html/audioquill.
-          # rqai.co.uk's /clinicalproms/ and /audioquill/ hub pages render to
-          # dist/<slug>/index.html and, without these excludes, overwrite each
-          # site's homepage on every deploy (the shared-folder collision, 2026-07).
+          # RQAI overview pages live under /projects/<slug>/ instead, to avoid
+          # overwriting each site's homepage (the shared-folder collision, 2026-07).
           # Excluded paths are left untouched on the server (not uploaded, not
           # deleted), so each app owns its folder and rqai.co.uk's /clinicalproms(/)
           # and /audioquill(/) 301-redirect to the subdomains (Hostinger redirects).
@@ -61,7 +60,10 @@ jobs:
             **/.git*
             **/.git*/**
             **/node_modules/**
-            **/clinicalproms/**
-            **/audioquill/**
+            clinicalproms/**
+            audioquill/**
+            podium/**
+            literature-decoded/**
+            thestreetsignal/**
           state-name: .ftp-deploy-sync-state-rqai.json
           timeout: 180000

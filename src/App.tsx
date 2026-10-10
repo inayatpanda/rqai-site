@@ -3,8 +3,12 @@ import { Shell } from './components/Shell'
 import { Home } from './pages/Home'
 import { About } from './pages/About'
 import { AppPage } from './pages/AppPage'
+import { Orthopaedics } from './pages/Orthopaedics'
+import { LegalPage } from './pages/LegalPage'
+import { LEGAL_LINKS } from './data/navigation'
 import { NotFound } from './pages/NotFound'
 import { PRODUCTS } from './data/products'
+import { SHARED_APP_ROOTS } from './data/projectPaths'
 
 export interface ProjectMeta {
   /** URL slug (exact, from the global constraints). */
@@ -36,10 +40,17 @@ export const routes: RouteRecord[] = [
     children: [
       { index: true, element: <Home /> },
       { path: 'about', element: <About /> },
+      { path: 'orthopaedics', element: <Orthopaedics /> },
+      ...LEGAL_LINKS.map(({ slug }) => ({ path: slug, element: <LegalPage page={slug} /> })),
       {
         path: ':slug',
         element: <AppPage />,
-        getStaticPaths: () => PROJECT_SLUGS,
+        getStaticPaths: () => PROJECT_SLUGS.filter(slug => !SHARED_APP_ROOTS.some(root => root === slug)),
+      },
+      {
+        path: 'projects/:slug',
+        element: <AppPage />,
+        getStaticPaths: () => SHARED_APP_ROOTS.map(slug => `projects/${slug}`),
       },
       { path: '404', element: <NotFound /> },
       { path: '*', element: <NotFound /> },

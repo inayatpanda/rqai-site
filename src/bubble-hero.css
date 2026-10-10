@@ -1,0 +1,210 @@
+/* A full-width bubble field, with a quiet centre beneath the copy. */
+.bubble-hero {
+  isolation: isolate;
+  background: radial-gradient(ellipse at 15% 35%, #174758 0, transparent 53%),
+    radial-gradient(ellipse at 91% 70%, #353356 0, transparent 49%), #102638;
+}
+.bubble-hero .home-hero-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 700px;
+  padding-top: 145px;
+  padding-bottom: 158px;
+  text-align: center;
+}
+.bubble-hero .home-hero-copy { max-width: 740px; }
+.bubble-hero .home-hero-copy h1 {
+  max-width: 15ch;
+  margin-inline: auto;
+  font-size: clamp(3.4rem, 5.4vw, 5rem);
+  line-height: 1.04;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+  color: #f5f5ef;
+}
+.bubble-hero .home-hero-copy > p:first-child { color: #a1d1d6; }
+.bubble-hero .home-hero-copy > p:not(:first-child) {
+  max-width: 46ch;
+  margin-inline: auto;
+  color: #cededf;
+  line-height: 1.7;
+}
+.bubble-hero .home-explore {
+  color: #b5f2e7;
+  border-color: #82bab7;
+  margin-top: 26px;
+}
+.bubble-field { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.bubble-copy-shade {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 36% 46% at 50% 49%, #102638f7 20%, #102638d9 46%, #10263860 77%, transparent 100%);
+}
+.app-bubble {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  margin-left: calc(var(--size) / -2);
+  margin-top: calc(var(--size) / -2);
+  color: var(--tint);
+}
+.bubble-surface {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--tint) 52%, transparent);
+  background: radial-gradient(circle at 28% 22%, #ffffff26, transparent 37%),
+    radial-gradient(circle at 75% 90%, color-mix(in srgb, var(--tint) 24%, transparent), transparent 62%),
+    color-mix(in srgb, var(--tint) 5%, transparent);
+  box-shadow: inset 2px 3px 8px #ffffff10, inset -2px -3px 9px #ffffff0d, 0 8px 30px #07152124;
+}
+.bubble-glint {
+  position: absolute;
+  inset: 7%;
+  border: 2px solid transparent;
+  border-top-color: #ffffff8c;
+  border-left-color: #ffffff22;
+  border-radius: 50%;
+  transform: rotate(-30deg);
+  clip-path: inset(0 35% 54% 0);
+}
+.bubble-surface::after {
+  content: '';
+  position: absolute;
+  width: 8%;
+  height: 4%;
+  right: 16%;
+  bottom: 15%;
+  border-radius: 50%;
+  background: #ffffff7a;
+  transform: rotate(-35deg);
+}
+.bubble-surface .product-logo {
+  width: 51%;
+  height: 51%;
+  border-radius: 23%;
+  transform: rotate(var(--tilt));
+}
+.bubble-surface .product-logo[src$='audioquill.svg'] { padding: 4%; }
+.bubble-burst {
+  position: absolute;
+  inset: -18%;
+  width: 136%;
+  height: 136%;
+  opacity: 0;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+.bubble-burst-ring { stroke-width: .7; opacity: .5; }
+.bubble-motion-toggle {
+  position: absolute;
+  right: max(24px, calc((100vw - 1200px) / 2));
+  bottom: 22px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 13px;
+  border: 1px solid #adcbdf35;
+  border-radius: 999px;
+  background: #102638b3;
+  color: #c5d8e0;
+  font: 11px 'IBM Plex Mono', monospace;
+  transition: background .2s, border-color .2s;
+}
+.bubble-motion-toggle:hover { background: #203d50; border-color: #adcbdf80; }
+.bubble-motion-toggle:focus-visible { outline: 2px solid #a4eee4; outline-offset: 4px; }
+@media (prefers-reduced-motion: no-preference) {
+  .app-bubble { animation: bubble-drift var(--life) var(--delay) linear infinite; }
+  .bubble-surface { animation: bubble-life var(--life) var(--delay) linear infinite; }
+  .bubble-burst { animation: bubble-pop var(--life) var(--delay) linear infinite; }
+  .bubble-hero[data-paused='true'] .app-bubble,
+  .bubble-hero[data-paused='true'] .bubble-surface,
+  .bubble-hero[data-paused='true'] .bubble-burst { animation-play-state: paused; }
+}
+@keyframes bubble-drift {
+  0% { transform: translate3d(0, 27px, 0); }
+  35% { transform: translate3d(var(--drift), 3px, 0); }
+  74%, 100% { transform: translate3d(0, -29px, 0); }
+}
+@keyframes bubble-life {
+  0% { opacity: 0; transform: scale(.18); }
+  7% { opacity: .92; transform: scale(1.06, .96); animation-timing-function: ease-out; }
+  12% { opacity: .92; transform: scale(.98, 1.02); }
+  20%, 61% { opacity: .92; transform: scale(1); }
+  70% { opacity: .95; transform: scale(1.06, .97); }
+  74% { opacity: .7; transform: scale(1.12); }
+  77%, 100% { opacity: 0; transform: scale(1.23); }
+}
+@keyframes bubble-pop {
+  0%, 73% { opacity: 0; transform: scale(.66); }
+  76% { opacity: .8; transform: scale(.9); }
+  84%, 100% { opacity: 0; transform: scale(1.32); }
+}
+@media (max-width: 700px) {
+  .bubble-hero .home-hero-layout { min-height: 740px; padding-top: 164px; padding-bottom: 180px; }
+  .bubble-hero .home-hero-copy { width: 100%; }
+  .bubble-hero .home-hero-copy h1 { font-size: clamp(2.7rem, 10.2vw, 4rem); max-width: 13ch; line-height: 1.08; }
+  .bubble-hero .home-hero-copy > p:not(:first-child) { font-size: 16px; max-width: 32ch; }
+  .app-bubble { left: var(--mx); top: var(--my); width: var(--ms); height: var(--ms); margin-left: calc(var(--ms) / -2); margin-top: calc(var(--ms) / -2); }
+  .bubble-copy-shade { background: radial-gradient(ellipse 70% 39% at 50% 48%, #102638fc 25%, #102638e6 55%, #10263870 83%, transparent 100%); }
+  .bubble-motion-toggle { right: 18px; bottom: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bubble-motion-toggle { display: none; }
+  .bubble-surface { opacity: .8; }
+}
+
+/* RQAI leads the page; a second, faint layer continues beneath the copy. */
+.bubble-hero .home-hero-layout { min-height: 770px; padding-top: 112px; padding-bottom: 136px; pointer-events: none; }
+.bubble-hero .home-hero-copy { pointer-events: none; }
+.hero-brand { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 16px; }
+.hero-brand img { width: 112px; height: 88px; justify-self: end; }
+.hero-brand span { font: 500 clamp(5rem, 7vw, 7rem)/1 'Fraunces', Georgia, serif; letter-spacing: -.045em; color: #f5f5ef; }
+.bubble-hero .home-hero-copy h1 { font-size: clamp(2.5rem, 3.6vw, 3.6rem); max-width: 22ch; margin-top: 32px; line-height: 1.14; }
+.bubble-hero .home-hero-copy h1 span { display: block; }
+.sketchbook-heading .sketchbook-intro { margin-top: 12px; color: #aebbda; font-size: 15px; line-height: 1.6; }
+.bubble-hero .home-explore { pointer-events: auto; }
+.bubble-copy-shade { background: radial-gradient(ellipse 36% 46% at 50% 49%, #102638c9 20%, #102638a8 46%, #10263840 77%, transparent 100%); }
+.app-bubble--link { pointer-events: auto; z-index: 1; border-radius: 50%; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+.app-bubble--link:hover, .app-bubble--link:focus-visible { z-index: 5; animation-play-state: paused; outline: none; }
+.app-bubble--link:hover .bubble-surface, .app-bubble--link:focus-visible .bubble-surface { animation: none; opacity: 1; transform: scale(1.04); border-color: var(--tint); }
+.app-bubble--link:focus-visible .bubble-surface { outline: 2px solid #d5fff8; outline-offset: 5px; }
+.app-bubble--link:hover .bubble-burst, .app-bubble--link:focus-visible .bubble-burst { animation: none; opacity: 0; }
+.bubble-tooltip { position: absolute; bottom: calc(100% + 16px); left: 50%; transform: translateX(-50%) translateY(5px); width: 224px; padding: 15px 17px; border: 1px solid #8fb7c657; border-radius: 14px; background: #102334f7; box-shadow: 0 12px 30px #06152150; color: #eaf6f3; text-align: left; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .16s, transform .16s, visibility .16s; }
+.bubble-tooltip strong { display: block; font: 500 15px/1.3 'IBM Plex Sans', sans-serif; }
+.bubble-tooltip > span { display: block; margin-top: 6px; font: 400 12px/1.5 'IBM Plex Sans', sans-serif; color: #bdcfda; }
+.bubble-tooltip .bubble-tooltip-link { color: #9de7db; margin-top: 10px; font-size: 11px; }
+.app-bubble--link:hover .bubble-tooltip, .app-bubble--link:focus-visible .bubble-tooltip { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.bubble-top .bubble-tooltip { bottom: auto; top: calc(100% + 16px); }
+.bubble-left .bubble-tooltip { left: 0; transform: translateY(5px); }
+.bubble-right .bubble-tooltip { left: auto; right: 0; transform: translateY(5px); }
+.bubble-left:hover .bubble-tooltip, .bubble-left:focus-visible .bubble-tooltip, .bubble-right:hover .bubble-tooltip, .bubble-right:focus-visible .bubble-tooltip { transform: translateY(0); }
+.bubble-ambient { position: absolute; inset: 0; pointer-events: none; opacity: .14; }
+.ambient-bubble { --size: 114px; }
+.ambient-bubble--0 { left: 43%; top: 39%; }
+.ambient-bubble--1 { left: 58%; top: 51%; --size: 92px; }
+.ambient-bubble--2 { left: 47%; top: 67%; --size: 134px; }
+.ambient-bubble--3 { left: 65%; top: 31%; --size: 74px; }
+@media(max-width:700px) {
+  .bubble-hero .home-hero-layout { min-height: 800px; padding-top: 142px; padding-bottom: 164px; }
+  .hero-brand { gap: 10px; }
+  .hero-brand img { width: 60px; height: 48px; }
+  .hero-brand span { font-size: clamp(4.1rem, 18vw, 5rem); }
+  .bubble-hero .home-hero-copy h1 { font-size: clamp(1.8rem, 7.5vw, 3rem); max-width: 22ch; margin-top: 27px; }
+  .bubble-copy-shade { background: radial-gradient(ellipse 70% 42% at 50% 48%, #102638cc 25%, #102638a8 55%, #10263840 83%, transparent 100%); }
+  .ambient-bubble { width: var(--size); height: var(--size); margin: calc(var(--size)/-2) 0 0 calc(var(--size)/-2); }
+  .ambient-bubble--0 { left: 29%; top: 36%; --size: 88px; }
+  .ambient-bubble--1 { left: 73%; top: 49%; --size: 78px; }
+  .ambient-bubble--2 { left: 44%; top: 61%; --size: 100px; }
+  .ambient-bubble--3 { left: 67%; top: 27%; --size: 58px; }
+  .bubble-tooltip { width: 185px; padding: 12px; }
+  .app-bubble--link:nth-child(3) .bubble-tooltip, .app-bubble--link:nth-child(4) .bubble-tooltip, .app-bubble--link:nth-child(5) .bubble-tooltip, .app-bubble--link:nth-child(8) .bubble-tooltip, .app-bubble--link:nth-child(12) .bubble-tooltip { right: 0; left: auto; transform: translateY(0); }
+}
+@media(prefers-reduced-motion:reduce) { .bubble-tooltip { transition: none; } }

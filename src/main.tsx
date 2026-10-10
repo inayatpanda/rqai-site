@@ -1,5 +1,6 @@
 import { ViteReactSSG } from 'vite-react-ssg'
 import './index.css'
+import './atelier.css'
 import { routes } from './App'
 
 // vite-react-ssg drives the router: it prerenders each route to static HTML at

@@ -1,36 +1,17 @@
+import { projectPath } from '../data/projectPaths'
 import { Head } from 'vite-react-ssg'
 import { Link, useParams } from 'react-router-dom'
 import { Constellation } from '../components/Constellation'
 import { AppCta } from '../components/AppCta'
-import { ProductGlyph } from '../components/ProductGlyph'
-import { PRODUCTS, isLive, type Product } from '../data/products'
+import { ProductLogo } from '../components/ProductLogo'
+import { ProjectPreview } from '../components/ProjectPreview'
+import { PRODUCTS, isLive } from '../data/products'
 import { identityStyle } from '../data/productIdentities'
+import { PROJECT_LEGAL } from '../data/projectLegal'
 import { NotFound } from './NotFound'
 
-/*
- * AppPage — one data-driven template for all project pages.
- *
- * Per product it renders: a factual pitch paragraph (description), 3-5 feature
- * bullets, the animated hero scene beside the title, a price line when
- * a price is verified, the AppCta ("Open <name>" when live, an on-brand
- * "coming soon" state otherwise), a back-link home and a strip cross-linking the
- * other six projects.
- *
- * One coherent system, uniform layout: every page renders the hero as the same
- * two-column grid, the title and animated scene side by side, so the container
- * size reads identically across all projects. The constellation
- * punctuation alternates tone so no two consecutive pages read identically.
- *
- * No-JS legibility: every piece of page COPY uses the pure-CSS `.reveal` class
- * (its hidden start state lives only inside a prefers-reduced-motion:no-preference
- * query — see index.css), so the prerendered HTML is fully readable with
- * JavaScript disabled and reduced-motion users see it immediately. Only the
- * decorative micro-demo needs JS; it sits in a fixed-height stage so the layout
- * never shifts.
- *
- * Meta (title, description, OG) is emitted through vite-react-ssg's <Head> and
- * prerendered into each dist/<slug>/index.html.
- */
+/* Shared project page with an on-demand screenshot video beside the title.
+   Copy and the poster remain readable without JavaScript. */
 
 /** Everything before the first full stop, e.g. a clean one-line meta summary. */
 function firstSentence(text: string): string {
@@ -46,14 +27,14 @@ function tidyForMeta(text: string): string {
 /* Coming-soon status, shown once in the hero (the page's only eyebrow). All
    projects are live, so a "Live" pill would be decorative noise; only
    the meaningful "coming soon" state renders. */
-function StatusPill({ live }: { live: boolean }) {
+function StatusPill({ live, development }: { live: boolean; development: boolean }) {
   if (live) {
     return null
   }
   return (
     <span className="inline-flex items-center gap-2 rounded-full border border-accentWarm/40 bg-accentWarm/10 px-3 py-1.5 font-mono text-[0.65rem] font-medium uppercase tracking-label text-accentWarm">
       <span className="h-1.5 w-1.5 rounded-full bg-accentWarm shadow-[0_0_6px_currentColor]" />
-      Coming soon
+      {development ? 'In development' : 'Coming soon'}
     </span>
   )
 }
@@ -86,43 +67,6 @@ function BackLink() {
   )
 }
 
-/*
- * DemoStage — the micro-demo given real room as the page's centrepiece.
- * A framed, atmospheric panel of fixed height (so the layout holds even before
- * the demo's JS runs) with the demo scaled up and centred. Decorative, so the
- * glow and faint constellation behind it are aria-hidden.
- */
-function DemoStage({
-  product,
-  tone,
-  className = '',
-}: {
-  product: Product
-  tone: 'accent' | 'ink'
-  className?: string
-}) {
-  const { Demo } = product
-  return (
-    <div
-      className={`relative flex items-center justify-center overflow-hidden rounded-2xl border border-hairline bg-card px-6 shadow-soft ${className}`}
-    >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_45%,rgba(69,213,242,0.10),transparent_70%)]"
-      />
-      <Constellation
-        tone={tone}
-        className="pointer-events-none absolute -bottom-6 left-1/2 h-24 w-[130%] -translate-x-1/2 opacity-[0.10]"
-      />
-      {/* Scaled up from its natural size; the wrapper width x scale is kept
-          within the smallest stage so nothing is clipped. */}
-      <div className="relative w-48 scale-[1.5] sm:w-56 sm:scale-[1.7] lg:w-60 lg:scale-[1.9]">
-        <Demo />
-      </div>
-    </div>
-  )
-}
-
 export function AppPage() {
   const { slug } = useParams<{ slug: string }>()
   const index = PRODUCTS.findIndex((p) => p.slug === slug)
@@ -132,7 +76,7 @@ export function AppPage() {
 
   const {
     name, tagline, description, recognition, storyHeadline, promise, featureMoments, proof,
-    controlNote, price, url, whereLine, HeroScene, theme,
+    controlNote, price, url, whereLine,
   } = product
   const live = isLive(product.slug)
   const host = (() => {
@@ -154,9 +98,9 @@ export function AppPage() {
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
+    '@type': product.status === 'development' ? 'CreativeWork' : 'SoftwareApplication',
     name,
-    url,
+    url: url || `https://rqai.co.uk${projectPath(product.slug)}/`,
     description: metaDescription,
     applicationCategory: product.category,
     operatingSystem: product.platforms,
@@ -181,6 +125,7 @@ export function AppPage() {
 
   const heroText = (
     <div className="min-w-0">
+      <ProductLogo slug={product.slug} className="mb-5" />
       <h1
         className={`reveal ${heroTitleSize} leading-[1.04]`}
         style={{ ['--reveal-delay' as string]: '0.04s' }}
@@ -213,12 +158,12 @@ export function AppPage() {
         <meta property="og:title" content={metaTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://rqai.co.uk/${product.slug}/`} />
+        <meta property="og:url" content={`https://rqai.co.uk${projectPath(product.slug)}/`} />
         <meta property="og:site_name" content="RQAI" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={metaTitle} />
         <meta name="twitter:description" content={metaDescription} />
-        <link rel="canonical" href={`https://rqai.co.uk/${product.slug}/`} />
+        <link rel="canonical" href={`https://rqai.co.uk${projectPath(product.slug)}/`} />
         <meta property="og:image" content="https://rqai.co.uk/og.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -235,7 +180,7 @@ export function AppPage() {
         <div className="container-edge relative">
           <div className="flex items-center justify-between gap-4">
             <BackLink />
-            <StatusPill live={live} />
+            <StatusPill live={live} development={product.status === 'development'} />
           </div>
 
           <div className="mt-5 grid items-center gap-10 md:mt-7 lg:grid-cols-2 lg:gap-14">
@@ -244,15 +189,7 @@ export function AppPage() {
               className="reveal"
               style={{ ['--reveal-delay' as string]: '0.24s' }}
             >
-              {HeroScene ? (
-                <HeroScene theme={theme} />
-              ) : (
-                <DemoStage
-                  product={product}
-                  tone={puncTone}
-                  className="min-h-[13rem] sm:min-h-[14rem] lg:min-h-[17rem]"
-                />
-              )}
+              <ProjectPreview key={product.slug} product={product} />
             </div>
           </div>
         </div>
@@ -277,7 +214,7 @@ export function AppPage() {
 
       {/* Feature moments — benefits first, with one short proof sentence. */}
       <section className="container-edge py-8 md:py-12">
-        <h2 className="reveal text-2xl leading-tight md:text-3xl">Look what you can do</h2>
+        <h2 className="reveal text-2xl leading-tight md:text-3xl">Features</h2>
         <ul className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline sm:grid-cols-2">
           {featureMoments.map((feature, i) => (
             <li
@@ -315,7 +252,7 @@ export function AppPage() {
         </dl>
       </section>
 
-      {/* Where to find it */}
+      {/* Access and privacy */}
       <section className="container-edge py-8 md:py-12">
         <div className="relative overflow-hidden rounded-2xl border border-hairline bg-card p-8 md:p-10">
           <Constellation
@@ -323,17 +260,22 @@ export function AppPage() {
             className="pointer-events-none absolute -right-10 -top-8 h-28 w-[30rem] opacity-[0.07]"
           />
           <div className="relative">
-            <h2 className="text-2xl md:text-3xl">Where to find it</h2>
+            <h2 className="text-2xl md:text-3xl">Access and privacy</h2>
             <p className="mt-3 max-w-prose font-medium leading-relaxed text-inkStrong">
               {controlNote}
             </p>
+            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+              {PROJECT_LEGAL[product.slug]?.map(link => <a key={link.url} href={link.url} className="underline underline-offset-4">{name}: {link.label} ↗</a>)}
+              <Link to="/legal#app-notices" className="underline underline-offset-4">RQAI legal directory</Link>
+            </div>
+            <p className="mt-3 max-w-prose text-sm text-inkMuted">App notices cover this project. The <Link to="/privacy" className="underline underline-offset-4">RQAI website notice</Link> covers visits to this site.</p>
             {live ? (
               <>
                 <p className="mt-2 max-w-prose text-sm leading-relaxed text-ink">
                   {/* whereLine overrides the default where the web-app framing
                       would be untrue (e.g. self-hosted desktop software). */}
                   {whereLine ??
-                    `${name} runs in your browser at ${host}. It is local-first: your data stays on your device.`}
+                    `Visit ${host} for access and setup details.`}
                 </p>
                 <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
                   <AppCta product={product} />
@@ -347,8 +289,7 @@ export function AppPage() {
             ) : (
               <>
                 <p className="mt-3 max-w-prose leading-relaxed text-ink">
-                  {name} is not yet reachable at {host}. This page will link
-                  straight to it as soon as it is live.
+                  {product.status === 'development' ? 'The model is being developed locally. A public release is not available yet.' : `${name} is not yet reachable at ${host}. This page will link to it when it is live.`}
                 </p>
                 {price && (
                   <p className="project-price mt-6 font-display text-lg font-semibold">
@@ -363,16 +304,16 @@ export function AppPage() {
 
       {/* Cross-links to the other projects */}
       <section className="container-edge py-8 md:py-12">
-        <h2 className="text-2xl md:text-3xl">More from RQAI</h2>
+        <h2 className="text-2xl md:text-3xl">Other apps</h2>
         <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {others.map((other) => (
             <li key={other.slug}>
               <Link
-                to={`/${other.slug}`}
+                to={projectPath(other.slug)}
                 style={identityStyle(other.slug)}
                 className="project-cross-card group flex h-full flex-col rounded-2xl border p-5 transition-all duration-300 ease-out-soft"
               >
-                <ProductGlyph slug={other.slug} className="h-10 w-14" />
+                <ProductLogo slug={other.slug} className="h-10 w-14" />
                 <h3 className="mt-3 font-display text-lg font-semibold">
                   {other.name}
                 </h3>
@@ -380,7 +321,7 @@ export function AppPage() {
                   {other.tagline}
                 </p>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium">
-                  Open project
+                  View details
                   <svg
                     width="15"
                     height="15"

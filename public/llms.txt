@@ -1,75 +1,26 @@
 # RQAI
 
-> RQAI (rqai.co.uk) makes organised, clutter-free software that streamlines
-> the working week for clinicians, researchers and writers: a clinical
-> research workbench, clean dictation, a blog controlled from your phone
-> and a feature-rich note taker, with AI used only where it genuinely
-> helps. Each project keeps data on the user's own device or hardware.
-> Contact: hello@rqai.co.uk
+Radical Questions. Applied Intelligence.
+Independent software for research, writing and creative work, with specialist tools for orthopaedics.
+Founder and current operator: Inayat Panda, trading as RQAI.
+RQAI Technologies Ltd is a proposed company name; the company has not yet been incorporated.
+Contact: hello@rqai.co.uk
 
-## Projects
+## Apps and projects
 
-- [ResearchAssistant](https://rqai.co.uk/researchassistant/): one desktop app
-  for Mac, Windows and Linux that carries a clinical research project from
-  question to submitted manuscript. Build a PubMed search from an offline MeSH
-  index of 30,956 terms, screen with a live Cohen's kappa, then run risk of
-  bias, meta-analysis and GRADE; 52 statistical tests, each validated
-  against the same run in R; strict AI drafting that grounds every claim to a sentence in the
-  user's library; a simulated Reviewer 2 critique and one-click submission
-  packets; AI can run fully offline via Ollama. Projects stay on the user's own
-  machine. £99 a year. Full site: https://researchassistant.rqai.co.uk
-- [ClinicalPROMs](https://rqai.co.uk/clinicalproms/): self-hosted software
-  (also known as Ortho Outcomes) for orthopaedic surgeons and departments to
-  collect and track validated patient-reported outcomes. Photograph a theatre
-  or clinic list to create structured cases; twenty validated instruments from
-  the Oxford scores to EQ-5D-5L scored exactly as published, with MCID
-  thresholds and concern bands and each patient's recovery plotted as a
-  trajectory; end-to-end encrypted patient questionnaires whose key never
-  reaches a server. Runs on the surgeon's own Mac or Windows PC; one licence,
-  no per-seat fees. £199 a year. Full site: https://clinicalproms.rqai.co.uk
-- [OrthoLog](https://rqai.co.uk/ortholog/): a free personal surgical logbook
-  for operative cases, reflections, procedural learning and optional follow-up
-  notes. Manual entry and spreadsheet import run locally; selected images can
-  be sent to Gemini, Groq or OpenAI with the user's own key to draft fields for
-  human review. Patient identifiers are optional. The vault is encrypted on the
-  device and can optionally synchronise as an encrypted file through Google
-  Drive. Installable on phone and desktop. App: https://ortholog.rqai.co.uk
-- [Chapbook](https://rqai.co.uk/chapbook/): write a blog from a phone in a
-  chat-style composer where each message is a paragraph, with on-device photos,
-  video embeds, 75 interactive widgets and six reading surfaces; publishing is
-  a real commit to the user's own repository, deployed to their own domain with
-  no Chapbook server in between. An AI drafts in a voice learned from the user's
-  recent posts and never posts on its own. £49 a year. App:
-  https://chapbook.rqai.co.uk
-- [OrthoPortfolio](https://rqai.co.uk/orthoportfolio/): compiles a
-  submission-ready GMC Portfolio Pathway application for Trauma and
-  Orthopaedics. It knows the T&O curriculum (13 index procedures, 14 critical
-  conditions, the CiP structured reports), files each document against the
-  right requirement, redacts patient details and verifies no recoverable text
-  remains, then builds indexed per-section PDF bundles with a readiness
-  dashboard, gap list and printable checklist. Runs on the user's own device.
-  £49 a year. App: https://orthoportfolio.rqai.co.uk
-- [OrthoConsultantPrep](https://rqai.co.uk/consultantprep/): preparation for
-  the UK T&O substantive consultant interview: 237 questions across 15
-  categories with model answers, delivery advice and key statistics; a timed
-  ten-question mock on a three-minute clock; Trust Prep matched to 20 real
-  trust profiles using their published CQC, GIRFT and NHFD signals. £49 one-off.
-  App: https://consultantprep.rqai.co.uk
-- [AudioQuill](https://rqai.co.uk/audioquill/): turns speech into clean,
-  structured writing. On-device Whisper transcription (free and offline) or
-  bring-your-own-key AI; the raw transcript is preserved while cleaned versions
-  layer on top; 44 templates and 49 spoken commands; topics compile scattered
-  recordings into one document exported to DOCX, PDF or Markdown. £29 a year.
-  App: https://audioquill.rqai.co.uk
-- [Scribble](https://rqai.co.uk/scribble/): a notebook built from typed blocks
-  (text, headings, quotes, images, figures, 211 stickers, sandboxed interactive
-  playgrounds) with a live preview; optional bring-your-own-key AI across seven
-  providers; publish a note to the user's own website repository and sync
-  devices through a private repository they control; plus a calendar planner and
-  on-device video reels. Runs in any browser and installs on iOS and Android.
-  £29 a year. App: https://scribble.rqai.co.uk
+- [researchassistant](https://rqai.co.uk/researchassistant/): Plan, run and write up research. Run systematic reviews, statistics and health-economic analyses. Write the manuscript and prepare submission files in the same app.
+- [clinicalproms](https://rqai.co.uk/projects/clinicalproms/): Collect patient scores and track recovery. Send patients questionnaires and track their scores over time. See changes against published thresholds for meaningful improvement.
+- [chapbook](https://rqai.co.uk/chapbook/): Write and publish a blog from your phone. Write posts in a chat-style editor. Add photos, video and interactive elements, then publish to your own website.
+- [audioquill](https://rqai.co.uk/projects/audioquill/): Turn speech into written documents. Transcribe recordings, edit the text and combine notes into documents. Export as Word, PDF or Markdown.
+- [scribble](https://rqai.co.uk/scribble/): Keep notes with text, images and sketches. Write notes, add pictures and sketches, and publish selected pages to your website. AI tools are optional.
+- [podium](https://rqai.co.uk/projects/podium/): Rehearse presentations and interviews. Import your slides, choose a practice room and rehearse with a simulated audience. Record a take and review it.
+- [literature-decoded](https://rqai.co.uk/projects/literature-decoded/): Read open-access orthopaedic research. Browse orthopaedic studies by subject. Read reformatted articles and follow the links to the original publications.
+- [thestreetsignal](https://rqai.co.uk/projects/thestreetsignal/): Read market analysis and track its results. Read the morning market report, explore charts and check how previous calls performed, including the misses.
 
-## About
+## Orthopaedic tools and research
 
-- [How these projects are built](https://rqai.co.uk/about/): one job done
-  well, local-first, no tracking, nothing claimed that is not built.
+- [Orthopaedics](https://rqai.co.uk/orthopaedics/): OrthoLog, OrthoConsultantPrep, OrthoPortfolio and Universal Shoulder Model, grouped for training, career development and research.
+- [ortholog](https://rqai.co.uk/ortholog/): Record operations and what you learn. Log operations, add learning notes and review your experience. Use the app on your phone or computer.
+- [orthoportfolio](https://rqai.co.uk/orthoportfolio/): Organise your Portfolio Pathway application. Match documents to the T&O requirements. Find missing evidence, redact patient details and export indexed PDF bundles.
+- [consultantprep](https://rqai.co.uk/consultantprep/): Practise for a T&O consultant interview. Revise interview questions, review Trust information and practise timed answers. Keep notes on the topics you need to revisit.
+- [universal-shoulder-model](https://rqai.co.uk/universal-shoulder-model/): Study shoulder anatomy and movement. Explore anatomy, compare saved scenarios and examine prescribed movement. This research software is still in development.

@@ -98,6 +98,10 @@ export function ProductGlyph({ slug, className = '' }: { slug: Slug; className?:
       case 'consultantprep': return <PrepGlyph />
       case 'audioquill': return <QuillGlyph />
       case 'scribble': return <ScribbleGlyph />
+      case 'podium': return <><path className="glyph-primary" d="M10 25h44l-8 18H18zM32 25V9c0-7 16-7 16 0" /><path className="glyph-secondary glyph-draw" pathLength="1" d="M7 8 2 3M7 16H1M20 35h24" /></>
+      case 'literature-decoded': return <><path className="glyph-primary" d="M20 3h25v42H20z" /><path className="glyph-secondary glyph-draw" pathLength="1" d="M25 13h15M25 20h11m-13 8-7 5 7 5m36-10 7 5-7 5" /></>
+      case 'thestreetsignal': return <><path className="glyph-primary" d="M5 5h54v39H5z" /><path className="glyph-secondary glyph-draw" pathLength="1" d="m12 35 13-12 12 6 15-16M42 13h10v10" /></>
+      case 'universal-shoulder-model': return <><path className="glyph-primary" d="m7 10 25-5 6 10-14 25Z" /><circle className="glyph-secondary" cx="44" cy="19" r="10" /><path className="glyph-warm" d="m42 29 3 16h9l-3-19" /></>
     }
   })()
 

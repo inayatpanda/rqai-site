@@ -1,19 +1,19 @@
 import { Head } from 'vite-react-ssg'
-import { Link } from 'react-router-dom'
-import { Constellation } from '../components/Constellation'
+import { FounderNote } from '../components/FounderNote'
 import { PerspectiveShowcase } from '../components/PerspectiveShowcase'
+import { BubbleHero } from '../components/BubbleHero'
 import { ProductOrbit } from '../components/ProductOrbit'
+import { RQAI_IDENTITY } from '../data/identity'
+import '../bubble-hero.css'
 
-const HOME_TITLE = 'RQAI: focused software for clinicians, researchers and writers'
-const HOME_DESCRIPTION =
-  'Streamline the work. Keep the hours. A clinical research workbench, clean dictation, a blog you run from your phone and a feature-rich note taker.'
+const HOME_TITLE = `RQAI — ${RQAI_IDENTITY.brandLine}`
+const HOME_DESCRIPTION = RQAI_IDENTITY.description
 
 /*
  * Home — the front door of the site.
  *
- * Three movements: a hero (RQAI wordmark, the truthful tagline and the animated
- * Constellation as the house signature), the perspective-grid project showcase,
- * and a principles note into /about.
+ * A bubble hero with the existing app marks, the project sketchbook and cards,
+ * and a short founder note. Copy stays above the decorative animation.
  *
  * No-JS legibility: the hero entrance is pure CSS (the `.reveal` class in
  * index.css), whose hidden start state lives only inside a
@@ -26,10 +26,12 @@ export function Home() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'RQAI',
+    founder: { '@type': 'Person', name: RQAI_IDENTITY.founder },
     url: 'https://rqai.co.uk/',
-    email: 'hello@rqai.co.uk',
-    description:
-      'Streamline the work and keep the hours: organised, clutter-free tools for clinicians, researchers and writers, with AI only where it genuinely helps.',
+    email: RQAI_IDENTITY.email,
+    logo: 'https://rqai.co.uk/brand/rqai-mark.svg',
+    slogan: RQAI_IDENTITY.brandLine,
+    description: RQAI_IDENTITY.description,
   }
 
   return (
@@ -54,23 +56,24 @@ export function Home() {
         <script type="application/ld+json">{JSON.stringify(orgJsonLd)}</script>
       </Head>
 
-      <section className="home-intro relative overflow-hidden">
-        <div className="container-edge relative pb-16 pt-16 md:pb-24 md:pt-24">
-          <p className="reveal font-display text-lg font-semibold tracking-[0.12em] text-inkStrong">
-            RQAI
-          </p>
+      <BubbleHero>
+        <div className="container-edge home-hero-layout"
+        ><div className="home-hero-copy">
+          <div className="hero-brand reveal" aria-label="RQAI"><img src="/brand/rqai-mark.svg" alt="" width="112" height="88" /><span>RQAI</span></div>
           <h1
             className="reveal mt-6 max-w-4xl text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.03]"
             style={{ ['--reveal-delay' as string]: '0.07s' }}
-          >Streamline the work. Keep the hours.</h1>
+          ><span>Radical Questions.</span><span>Applied Intelligence.</span></h1>
           <p
             className="reveal mt-6 max-w-[54ch] text-lg leading-relaxed text-ink"
             style={{ ['--reveal-delay' as string]: '0.15s' }}
           >
-            Eight focused tools for turning difficult work into forward motion—from evidence and patient outcomes to surgical learning, interviews, writing and publishing. Use AI where it helps. Stay in control everywhere.
+            {RQAI_IDENTITY.description}
           </p>
+          <a href="#projects" className="home-explore">Explore the projects <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
-      </section>
+      </BubbleHero>
 
       <ProductOrbit />
 
@@ -78,43 +81,7 @@ export function Home() {
         <PerspectiveShowcase />
       </div>
 
-      {/* Principles note — two sentences into the About page. */}
-      <section className="container-edge pb-20 md:pb-28">
-        <div className="relative overflow-hidden rounded-2xl border border-hairline bg-card p-8 md:p-10">
-          <Constellation
-            tone="ink"
-            className="pointer-events-none absolute -right-16 -top-10 h-32 w-[36rem] opacity-[0.08]"
-          />
-          <div className="relative flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-            <p className="max-w-2xl text-lg leading-relaxed text-ink">
-              Different jobs, one promise: useful features, honest claims and
-              control over your work and data.
-            </p>
-            <Link
-              to="/about"
-              className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-hairline bg-canvas px-5 py-3 text-sm font-semibold text-inkStrong transition-colors duration-300 ease-out-soft hover:border-accent hover:text-accent"
-            >
-              How these projects are built
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                aria-hidden="true"
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              >
-                <path
-                  d="M2 8h11M9 4l4 4-4 4"
-                  stroke="currentColor"
-                  strokeWidth="1.7"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <FounderNote />
     </>
   )
 }

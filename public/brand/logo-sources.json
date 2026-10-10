@@ -1,0 +1,78 @@
+{
+  "researchassistant": {
+    "file": "researchassistant.svg",
+    "status": "existing",
+    "source": "/Users/inayat/Projects/ra-site-early-access/apps/site/public/favicon.svg",
+    "sha256": "bbcf67ea1664188a2d5380744b7e9e78bc27699330307db6d7686f02dd238682"
+  },
+  "clinicalproms": {
+    "file": "clinicalproms.svg",
+    "status": "existing",
+    "source": "/Users/inayat/Projects/ortho-outcomes/marketing-site/app/icon.svg",
+    "sha256": "561920705e8547fa23041b176e578b2a10c4b8f800ae42a99e6831f48c66ab51"
+  },
+  "ortholog": {
+    "file": "ortholog.png",
+    "status": "existing",
+    "source": "/Users/inayat/Projects/orthopaedic-logbook/public/ortholog-mark.png",
+    "sha256": "ca019ae9ae80afc78e8285b78bf5f6cb2ee8c3624218f9dde2ba9f189f30b620"
+  },
+  "chapbook": {
+    "file": "chapbook.svg",
+    "status": "existing",
+    "source": "/Users/inayat/Projects/chapbook/src/icon.svg",
+    "sha256": "2297d6ccc0135579e72cc02f874c65d86c307a97e0d54309e70350a5f6bb1add"
+  },
+  "orthoportfolio": {
+    "file": "orthoportfolio.svg",
+    "status": "existing",
+    "source": "/Users/inayat/Projects/topp/public/icons/icon.svg",
+    "sha256": "2106c671df4dbcc464b125688b40d3c339c3279e43c11ffc12f7361b009b4d16"
+  },
+  "consultantprep": {
+    "file": "consultantprep.svg",
+    "status": "existing",
+    "source": "/Users/inayat/Projects/consultantprep/app/public/icons/icon.svg",
+    "sha256": "9c34d2ff9006262663ead4352861f9c5aa82b3b2fcc24d734efa1603c2fec055"
+  },
+  "audioquill": {
+    "file": "audioquill.svg",
+    "status": "existing",
+    "source": "/Users/inayat/Projects/audioquill/apps/audioquill/public/logo.svg",
+    "sha256": "793435deaf17061a33b5f709c01bd617835a8f2ac27bb23018bb7d0160a0a558"
+  },
+  "scribble": {
+    "file": "scribble.svg",
+    "status": "existing",
+    "source": "/Users/inayat/Projects/scribble/apps/mobile/www/icon.svg",
+    "sha256": "86348db3aaf44fe968716e5324ad64ee8ff85b2bd8a466babcf9f3df23edfa4b"
+  },
+  "podium": {
+    "file": "podium.svg",
+    "status": "existing",
+    "source": "https://podium.rqai.co.uk/favicon.svg",
+    "sha256": "b6cdffc9a17544c82e6983bb13444295d1497f5c29e6345c7168f36fb97df7f3"
+  },
+  "literature-decoded": {
+    "file": "literature-decoded.svg",
+    "status": "existing",
+    "source": "https://literature-decoded.rqai.co.uk/favicon.svg",
+    "sha256": "9bfe98ffdd135e09752368f276f2c17a2050d6439fc8450d8e5eac6bc0320419"
+  },
+  "thestreetsignal": {
+    "file": "thestreetsignal.svg",
+    "status": "existing",
+    "source": "/Users/inayat/Projects/thestreetsignal/public/icon.svg",
+    "sha256": "e7087621cbb0a29215f1f3278953fa164ecebf8f31da4ac9b3d5ae14c1b30313"
+  },
+  "universal-shoulder-model": {
+    "file": "universal-shoulder-model.svg",
+    "status": "new proposal",
+    "source": "Original RQAI draft artwork; no existing logo found in the model source or resources.",
+    "concept": "Revision 6: open geometric scapular contour, a light upper-arm silhouette and a gold joint centre. Original vector artwork.",
+    "variants": [
+      "universal-shoulder-model-mark.svg",
+      "universal-shoulder-model-mono.svg"
+    ]
+  }
+}

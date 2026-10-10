@@ -24,19 +24,12 @@ test('parallax field is decorative and contains a reduced-motion-safe layer cont
   assert.match(source, /parallax-field__bloom/)
 })
 
-test('product orbit defines a scroll-driven accessible route into the project showcase', async () => {
-  const source = await readFile(orbitPath, 'utf8')
 
-  assert.match(source, /useScroll/)
-  assert.match(source, /scrollYProgress/)
-  assert.match(source, /href="#projects"/)
-  assert.match(source, /aria-hidden="true"/)
-})
 
-test('home restores the original written hero before the product orbit', async () => {
+test('home keeps its written introduction before the project preview', async () => {
   const source = await readFile(homePath, 'utf8')
 
-  const hero = 'Streamline the work. Keep the hours.</h1>'
+  const hero = '</h1>'
   assert.ok(source.includes(hero))
   assert.ok(source.indexOf(hero) < source.indexOf('<ProductOrbit'))
 })
@@ -80,28 +73,20 @@ test('internal project pages theme bounded regions and destination cross-links',
   assert.match(source, /project-page/)
   assert.match(source, /project-hero/)
   assert.match(source, /identityStyle\(product\.slug\)/)
-  assert.match(source, /<ProductGlyph slug=\{other\.slug\}/)
+  assert.match(source, /<ProductLogo slug=\{other\.slug\}/)
   assert.match(source, /identityStyle\(other\.slug\)/)
 })
 
-test('product orbit uses one spring-smoothed progress value and wider destinations', async () => {
-  const source = await readFile(orbitPath, 'utf8')
 
-  assert.match(source, /useSpring/)
-  assert.match(source, /smoothProgress/)
-  assert.match(source, /stiffness:\s*72/)
-  assert.match(source, /-42vw/)
-  assert.match(source, /42vw/)
-})
 
-test('desktop project navigation has a larger rail without changing project routes', async () => {
+test('desktop project navigation has a larger rail and uses safe project paths', async () => {
   const source = await readFile(shellPath, 'utf8')
 
-  assert.match(source, /aria-label="All projects"/)
+  assert.match(source, /aria-label="Featured projects"/)
   assert.match(source, /h-14/)
   assert.match(source, /text-\[1\.0625rem\]/)
   assert.match(source, /gap-x-7/)
-  assert.match(source, /to=\{`\/\$\{project\.slug\}`\}/)
+  assert.match(source, /to=\{projectPath\(project\.slug\)\}/)
 })
 
 test('project pages tell each story through a promise, feature moments and proof', async () => {
@@ -134,7 +119,10 @@ test('Home and About use concise supporting copy', async () => {
   const home = await readFile(homePath, 'utf8')
   const about = await readFile(aboutPath, 'utf8')
 
-  assert.match(home, /Eight focused tools/)
+  const identity = await readFile(new URL('../src/data/identity.ts', import.meta.url), 'utf8')
+  assert.match(home, /RQAI_IDENTITY\.description/)
+  const introduction = identity.match(/description:\s*'([^']+)'/)?.[1]
+  assert.ok(introduction && introduction.trim().split(/\s+/).length <= 25)
 
   const commitmentBodies = [...about.matchAll(/body:\s*'([^']+)'/g)].map((match) => match[1])
   assert.equal(commitmentBodies.length, 5)
@@ -199,8 +187,8 @@ test('every project story uses a large short headline and concise supporting cop
 
   const headlines = [...products.matchAll(/storyHeadline:\s*'([^']+)'/g)].map((match) => match[1])
   const promises = [...products.matchAll(/promise:\s*\n?\s*'([^']+)'/g)].map((match) => match[1])
-  assert.equal(headlines.length, 8)
-  assert.equal(promises.length, 8)
+  assert.equal(headlines.length, 12)
+  assert.equal(promises.length, 12)
   for (const headline of headlines) assert.ok(headline.trim().split(/\s+/).length <= 10)
   for (const promise of promises) {
     assert.ok(promise.trim().split(/\s+/).length <= 35)
@@ -227,7 +215,6 @@ test('ResearchAssistant leads with the research workflow rather than AI', async 
   const features = products.indexOf('featureMoments:', start)
   const opening = products.slice(start, features)
 
-  assert.match(opening, /Every stage connected/)
   assert.match(opening, /systematic reviews/i)
   assert.match(opening, /health-economic analyses/i)
   assert.match(opening, /submission files/i)

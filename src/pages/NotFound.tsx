@@ -17,7 +17,7 @@ export function NotFound() {
       <p className="eyebrow">404</p>
       <h1 className="mt-4 text-4xl md:text-5xl">Page not found.</h1>
       <p className="mt-4 max-w-prose text-lg leading-relaxed text-ink">
-        The link may be out of date. Let us get you back on track.
+        The link may be out of date. You can find the apps on the home page.
       </p>
       <Constellation tone="ink" className="mt-10 h-14 w-full max-w-md" />
       <Link
