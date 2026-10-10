@@ -4,6 +4,10 @@ import type { Slug } from './products'
 // because accounts, uploads, optional AI and payment arrangements differ.
 export type PolicyLink = { label: string; url: string }
 export const PROJECT_LEGAL: Partial<Record<Slug, PolicyLink[]>> = {
+  orthoportfolio: [
+    { label: 'Privacy', url: 'https://orthoportfolio.rqai.co.uk/#/legal/privacy' },
+    { label: 'Terms', url: 'https://orthoportfolio.rqai.co.uk/#/legal/terms' },
+  ],
   researchassistant: [
     { label: 'Privacy', url: 'https://researchassistant.rqai.co.uk/privacy/' },
     { label: 'Terms', url: 'https://researchassistant.rqai.co.uk/terms/' },

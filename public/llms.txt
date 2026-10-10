@@ -21,6 +21,6 @@ Contact: hello@rqai.co.uk
 
 - [Orthopaedics](https://rqai.co.uk/orthopaedics/): OrthoLog, OrthoConsultantPrep, OrthoPortfolio and Universal Shoulder Model, grouped for training, career development and research.
 - [ortholog](https://rqai.co.uk/ortholog/): Record operations and what you learn. Log operations, add learning notes and review your experience. Use the app on your phone or computer.
-- [orthoportfolio](https://rqai.co.uk/orthoportfolio/): Organise your Portfolio Pathway application. Match documents to the T&O requirements. Find missing evidence, redact patient details and export indexed PDF bundles.
+- [orthoportfolio](https://rqai.co.uk/orthoportfolio/): Organise your Portfolio Pathway application. Import PDFs up to 100 MB, review evidence gaps, edit your own reflections and export indexed PDFs with page-level splitting. Multiple PDF parts download together in a ZIP. Patient-identifiable information must be removed before import; optional AI sends submitted content to the selected provider.
 - [consultantprep](https://rqai.co.uk/consultantprep/): Practise for a T&O consultant interview. Revise interview questions, review Trust information and practise timed answers. Keep notes on the topics you need to revisit.
 - [universal-shoulder-model](https://rqai.co.uk/universal-shoulder-model/): Study shoulder anatomy and movement. Explore anatomy, compare saved scenarios and examine prescribed movement. This research software is still in development.
